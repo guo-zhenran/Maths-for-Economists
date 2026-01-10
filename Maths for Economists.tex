@@ -1,0 +1,55 @@
+\documentclass{myBook}
+
+\title{Maths for Economists: A Comprehensive Handbook}
+\author{Zhenran Guo}
+\date{\today}
+
+
+\begin{document}
+
+% Front matter section.
+\frontmatter
+
+% Include the title page, which is located in the FrontMatter subfolder.
+\include{./FrontMatter/titlepage}
+
+% Create the book's title page.
+\maketitle\pagebreak
+
+% Include the preface page from the FrontMatter subfolder.
+\include{./FrontMatter/preface}
+
+% Include the acknowledgement page from the FrontMatter subfolder.
+\include{./FrontMatter/acknowledgement}
+
+% Table of contents page.
+\tableofcontents
+
+% Main matter section.
+\mainmatter
+
+% Part 1: Preliminaries.
+\part{Preliminaries}
+
+\include{./MainMatter/Logic}
+\include{./MainMatter/Set_Theory}
+
+\part{Spaces}
+
+\include{./MainMatter/Metric_spc}
+
+% Appendices section.
+\appendix
+
+% Include the "notation" appendix from the BackMatter subfolder.
+\include{./BackMatter/notation}
+
+% Include the "code" appendix from the BackMatter subfolder.
+\include{./BackMatter/code}
+
+
+% Include the "references" appendix from the BackMatter subfolder.
+\include{./BackMatter/references}
+
+% End the document.
+\end{document}
