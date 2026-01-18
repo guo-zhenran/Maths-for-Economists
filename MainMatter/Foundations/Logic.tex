@@ -1,0 +1,75 @@
+\chapter{Logic}
+To make complex ideas clear, we often separate them into statements and check whether they're right or wrong. Here we use symbolic logic. Symbolic logic is basically about
+statements which can be claimed to be either true or false and "operations" of statements.
+
+
+We start with what is a statement. For sure, most of the sentences can be seen as a statement. But to notice, not all sentences are statements. For example, "This sentence is false." is not a statement, that is because when it is true, it is false and vice versa.
+
+In maths, we call statements as propositions and we can categorize them into theorems, axioms, lemmas, corollaries, etc. Axioms are statements that we accept to be true without proof. Theorems are statements that can be proven to be true based on axioms and previously proven theorems. Lemmas are "helper" theorems used to prove larger theorems and corollaries are statements that follow directly from a theorem.
+\section{Negation}
+We use the symbol $\neg$ to express "NOT". Suppose A is a statement, then $\neg A$ is also a statement and $\neg A$ means "A is NOT true". We can use a truth table to show the relationship between A and $\neg A$.
+\begin{table}[h]
+    \centering
+\begin{tabular}{@{}ccc@{}}
+\toprule
+Statement                                                              & $A$ & $\neg A$ \\ \midrule
+\multirow{2}{*}{\begin{tabular}[c]{@{}l@{}}Truth\\ Value\end{tabular}} & T & F                     \\
+                                                                       & F & T                     \\   \bottomrule
+\end{tabular}
+\end{table}
+
+\section{Conjunction and Disjunction}
+Conjunction and Disjunction are ways to combine statements together. We use the symbol $\land$ to express "AND". Suppose A and B are statements, then $A \land B$ is also a statement and $A \land B$ is true only when both A and B are true.
+Similarly, we use the symbol $\lor$ to express "OR". Suppose A and B are statements, then $A \lor B$ is also a statement and $A \lor B$ is false only when both A and B are false.
+
+We can use a truth table to show the relationship between A, B, $A \land B$ and $A \lor B$.
+\begin{table}[h]
+    \centering
+\begin{tabular}{@{}ccccc@{}}
+\toprule
+Statement                                                              & $A$ & $B$ & $A \land B$ & $A \lor B$ \\ \midrule
+\multirow{4}{*}{\begin{tabular}[c]{@{}l@{}}Truth\\ Value\end{tabular}} & T & T & T           & T          \\
+                                                                       & T & F & F           & T          \\
+                                                                       & F & T & F           & T          \\
+                                                                       & F & F & F           & F          \\ \bottomrule
+\end{tabular}
+\end{table}
+
+\section{Quantifiers}
+\subsection{Property}
+We first define the concept of property. We say $P(x)$ is a property of $x$ ($x$ is from a particular class) if when $x$ is replaced with a certain object, $P(x)$ becomes a statement. For example, let $P(x)$ be "$x$ is even", then $P(2)$ is true and $P(3)$ is false.
+The set $\{x : P(x)\}$ consists of all values of $x$ such that $P(x)$ is true.
+
+\subsection{Forall and Exists}
+Now we can create another kind of statement using quantifiers. There are two quantifiers: "for all" and "there exists". 
+The expression $\forall x \in X : P(x)$ means "for all components $x$ in the set $X$, $P(x)$ is true".
+And the expression $\exists x \in X : P(x)$ means "there exists at least one component $x$ in the set $X$, such that $P(x)$ is true".
+
+A very important proposition is that 
+\begin{equation}\label{equ:equi}
+\neg [\exists x \in X : P(x)] = \forall x \in X : \neg P(x)
+\end{equation}
+\,And to understand all statements, we also need $\neg (\neg A) = A, \neg (A\land B) = \neg A \lor \neg B, \neg (A\lor B) = \neg A \land \neg B$. This becomes trivial to deal with quantifiers that we only have to interchange
+$\lor $ and $\land$ and change $\forall$ to $\exists$ and vice versa when we negate a statement.
+
+
+\section{Implications}
+\subsection{Implication}
+The implication $(A \implies B):= (\neg A) \lor B$ is false if and only if  $A$ is true and $B$ is false. The definition is simple, but note that $A\implies B$ not necessarily mean that $A$ causes $B$ to be true.
+When $A$ and $B$ are false, the implication is also true, which makes it different from the familiar meaning of "imply".
+
+We also say that $A$ is a sufficient condition for $B$, and $B$ is a necessary condition for $A$ when we write the statement $A \implies B$.
+
+\subsection{Equivalence}
+When $A$ is both necessary and sufficient for $B$, we say that $A$ is equivalent to $B$, and we write $A \iff B$. Note that $A \iff B$ is equivalent to $(A \implies B) \land (B \implies A)$.
+
+\subsection{Prove by Contrapositive}
+With equivalence, we know that the equation in \eqref{equ:equi} actually means equivalent and we can make clear of the above relationships. Moreover, using the interchanging technique, we can find the counterpositive statement
+$$(A \implies B) \iff (\neg B \implies \neg A)$$
+\,This inspires us to prove a statement, we can turn to its contrapositive if difficulties arise when proving the original statement.
+
+\subsection{Prove by Contradiction}
+Consider statements $(A\implies C),(C \implies B)$, then $$(A \implies B) \iff (A \implies C) \land (C \implies B)$$
+\,Suppose $B$ is false and assume $A$ is true, then $(C \implies B)$ and $(A \implies C)$ are false, that is to say, we can find a statement $C$ with the false truth value.
+
+This leads us to the proof by contradiction method. To prove $A \implies B$, we can assume $A$ is true and $B$ is false, then try to find a statement with a false truth value and we prove the original statement.

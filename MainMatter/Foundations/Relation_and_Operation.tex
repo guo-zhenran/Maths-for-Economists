@@ -1,0 +1,123 @@
+\section{Relation and Operation}
+This subsection is to formally introduce relationship between elements in a set $X$. A binary relation $R$ on a set $X$ is a subset of the Cartesian product $X\times X$. 
+For $(x,y) \in R$, we denote it as $xRy$.
+
+There're several important types of relations.
+\begin{longtable}[c]{@{}cc@{}}
+\toprule
+Relation   & Meaning                             \\* \midrule
+\endfirsthead
+%
+\endhead
+%
+\bottomrule
+\endfoot
+%
+\endlastfoot
+%
+Reflexive  & $\forall x \in X, xRx$                \\
+Symmetric  & $xRy \implies yRx$                    \\
+Transitive & $(xRy) \land (yRz) \implies (xRz)$    \\
+Complete   & $\forall x,y \in X, (xRy) \lor (yRx)$ \\* \bottomrule
+\end{longtable}
+
+We now turn to some special relations.
+\subsection{Order}
+A relation $\leq$ on a set $X$ is a partial order if it's reflexive, transitive, and anti-symmetric\footnote{Anti-symmetry means $(x \leq y) \land (y \leq x) \implies x = y$}.
+We call the pair $(X,\leq)$ a partially ordered set. If, in addition to reflexiveness, transitivity, and anti-symmetric, completeness also holds for $\leq$, we say it's a total order and $(X,\leq)$ is a total ordered set.
+
+We now turn to the elements in a partially ordered set $(X,\leq)$.
+
+\begin{definition}[Monotonicity]
+    Given a partially ordered set $(X,\leq)$, for $\{{x_n}\}_{n=1}^{\infty} \subset X$, we say it's \textbf{monotonically increasing} if $x_n \leq x_{n+1}, \forall n \in \mathbb{N}$; similarly, it's \textbf{monotonically decreasing} if $x_{n+1} \leq x_n, \forall n \in \mathbb{N}$.
+\end{definition}
+
+\begin{definition}[Boundedness]
+    Given a partially ordered set $(X,\leq)$ and $A \subseteq X$, an element $x$ is an \textbf{upper bound} of $A$ if $a \leq x, \forall a \in A$. We say $A$ is bounded above. And similarly, an element $x$ is a \textbf{lower bound} of $A$ if $x \leq a, \forall a \in A$ and it's bounded below.
+\end{definition}
+
+\begin{definition}[Supremum and Infimum]
+    Given a partially ordered set $(X,\leq)$ and $A \subseteq X$, if $A$ is bounded above, then we define
+    $$\sup A = \min\{x \in X : x \text{ is an upper bound of } A\}$$
+    Similarly, if $A$ is bounded below, 
+    $$\inf A = \max\{x \in X : x \text{ is a lower bound of } A\}$$
+\end{definition}
+\begin{note}
+Note that, if $\sup A$ and $\max A$ exists, $\sup A \in A \iff \sup A = \max A$. Similarly, if $\inf A$ and $\min A$ exists, $\inf A \in A \iff \inf A = \min A$.
+\end{note}
+
+A very important example of partially order is the subset relation. We introduce the concept of $\liminf$ and $\limsup$ of a sequence of sets as an example, which is of great importance in measure theory.
+\begin{example}
+    Let $\{A_i\}_{i=1}^{\infty}$ be a family of subsets of a set $X$. Let $\mathcal{A}^{(n)}$ and $\mathcal{A}_{(n)}$ denote
+    $$\mathcal{A}^{(n)} = \bigcap_{i=n}^{\infty} A_i, \quad \mathcal{A}_{(n)} = \bigcup_{i=n}^{\infty} A_i$$
+    \,and notice that
+    $$\mathcal{A}^{(n+1)} \subset \mathcal{A}^{(n)}, \mathcal{A}_{(n)} \subset \mathcal{A}_{(n+1)},\quad \forall n \in \mathbb{N}$$
+    Since $\left(\left\{\mathcal{A}^{(n)}\right\}_{n=1}^{\infty},\subset \right)$ and $\left(\left\{\mathcal{A}_{(n)}\right\}_{n=1}^{\infty},\subset \right)$ are partially ordered sets, we have
+    $$\begin{aligned}
+        \inf \left\{\mathcal{A}^{(n)}\right\}_{n=1}^{\infty} = \bigcup_{n=1}^{\infty} \mathcal{A}^{(n)} = \bigcup_{n=1}^{\infty} \bigcap_{i=n}^{\infty} A_i\\
+    \sup \left\{\mathcal{A}_{(n)}\right\}_{n=1}^{\infty} = \bigcap_{n=1}^{\infty} \mathcal{A}_{(n)} = \bigcap_{n=1}^{\infty} \bigcup_{i=n}^{\infty} A_i
+    \end{aligned}$$
+    \,denoted as $\liminf_{n \to \infty} A_n$ and $\limsup_{n \to \infty} A_n$ respectively.
+\end{example}
+
+The concept of partial order is important in economics as preference is actually a partial order. We can define certain kinds of preferences with ease.
+\begin{definition}[Rational Preference]
+    A preference is rational if and only it's complete and transitive.
+\end{definition}
+
+\subsection{Mapping}
+We've encountered mappings before, where we say mapping is a rule that assigns each element of a set, the domain, to exactly one element of the image set. 
+If treated carefully, we may find the word "rule" vague. We now try to give it a formal definition. 
+
+Consider the set $G=\{(x,f(x)):x\in X\}$. To make $f:X \to Y$ a mapping, given any $x \in X$, there should exist only one $y \in Y$ such that $(x,y) \in G$. This leads to the following definition.
+\begin{definition}[Mapping]
+    A mapping $f:X\to Y$ is a binary relation $$G=\{(x,f(x)) : x \in X \land (\exists ! y \in Y \text{s.t.} f(x) = y)\}$$
+    \,and we denote $f(A) = \operatorname{Im}f|_A$, where $A \subset X$.
+\end{definition}
+
+We now list some important concepts.
+\begin{definition}
+    Let $f:X\to Y$ be a mapping.
+    \begin{description}
+        \item[Surjective] $f$ is surjective $\iff \operatorname{Im} f = Y.$
+        \item[Injective] $f$ is injective $\iff (f(x) = f(y) \implies x = y).$  
+        \item[Bijective] $f$ is bijective $\iff$ $f$ is both injective and surjective.
+        \item[Inverse] Suppose $f$ is bijective, then there exists an inverse function $f^{-1}: Y\to X$ such that $f^{-1} \circ f = \operatorname{Id}_{X}.$\footnote{$f^{-1}$ is well-defined as we'll show later that an operation has at most one identity element and then we can construct the inverse function with the bijective property. An important
+        proposition is $(f\circ g)^{-1}= g^{-1}\circ f^{-1}$.} 
+    \end{description}
+\end{definition}
+
+\begin{proposition}[Set Valued Mapping]
+    Suppose we have $f:X\to Y$ and families of subsets of $X$ $\{A_i\}_{i\in I_A}$ and $\{B_j\}_{j\in I_B}$. Then we have
+    \begin{enumerate}
+        \item $f\left(\bigcup_{i\in I_A} A_i\right) = \bigcup_{i\in I_A} f(A_i)$
+        \item $f\left(\bigcap_{i\in I_A} A_i\right) \subset \bigcap_{i\in I_A} f(A_i)$
+        \item $f^{-1}\left(\bigcup_{j\in I_B} B_j\right) = \bigcup_{j\in I_B} f^{-1}(B_j)$
+        \item $f^{-1}\left(\bigcap_{j\in I_B} B_j\right) = \bigcap_{j\in I_B} f^{-1}(B_j)$
+    \end{enumerate}
+\end{proposition}
+
+\subsection{Correspondence}
+For mappings, we assign only one element in the image set to each element in the domain. We now consider assigning multiple elements in the image set to each element in the domain, which is called correspondence.
+\begin{definition}[Correspondence]
+    A correspondence $\varphi : X \twoheadrightarrow Y$ is a binary relation 
+    $$G=\{(x,\varphi(x)) : x \in X \land (\varphi(x) \subset Y)\}.$$ 
+    \,and for the subset A of $X$, we call $\varphi^{u} (A):=\{x\in X: \varphi(x) \subset A\}$ the upper inverse image of $A$; similarly, we call $\varphi^{l} (A):=\{x\in X: \varphi(x) \cap A \neq \emptyset\}$ the lower inverse image of $A$.
+\end{definition}
+
+
+\subsection{Operation}
+An operation is a mapping $\circledast: X \times X \to Y$ and we denote $\circledast(x,y)$ as $x \circledast y$ in convention. We say the subset $A$ of $X$ is closed under the operation $\circledast$ if $A \circledast A \subset A$.
+
+Two important kinds of operation we often meet are associative and commutative operations.
+\begin{description}
+    \item[Associative] An operation $\circledast$ is associative if $(x \circledast y) \circledast z = x \circledast (y \circledast z)$ for all $x,y,z \in X$.
+    \item[Commutative] An operation $\circledast$ is commutative if $x \circledast y = y \circledast x$ for all $x,y \in X$.
+\end{description}
+
+\begin{proposition}[Uniqueness of Identity Element]
+    We  call an element $e$ an identity element if and only if $x \circledast e = e \circledast x = x$ for all $x \in X$. For a certain operation, there exsists at most one identity element.    
+\end{proposition}
+\begin{proof}
+    We prove by contradiction. Suppose there're two identity elements $e$ and $e^{\prime}$. Then $e =e \circledast e^{\prime} = e^{\prime}$, contradicting with $e \neq e^{\prime}$.
+\end{proof}

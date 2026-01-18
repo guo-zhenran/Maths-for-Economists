@@ -1,0 +1,57 @@
+\section{Countability}
+For finite sets, we can easily count the element and say it's countable. But what if the set have infinite many elements?
+Mathematicians believe that natural numbers can be counted and is the smallest infinite set. In this section we formally treat infinity, before which we introduce the axiom of choice.
+\subsection{The Axiom of Choice}
+The axiom of choice states that for a family of non-empty sets $\{A_i\}_{i\in I}$, the Cartesian product $\prod_{i\in I} A_i$ is non-empty.
+
+That is to say there exists a choice function $f$ such that $\forall i \in I, f(i) \in A_i.$ 
+
+\subsection{Cardinality}
+The cardinality of a finite set is defined as the number of elements, that is $|A|=\# A$. For infinite sets, the definition is complicated and we turn to compare the cardinality
+of 2 sets.
+\begin{definition}[Equality of Cardinality]
+    Two sets $A$ and $B$ are said to have the same cardinality if there exists a bijection from $A$ to $B$, denoted as $|A|=|B|$. 
+    If there exists a subsection of $B$ and a bijection from $A$ to that subsection, we say $|A|\leq |B|$.
+\end{definition}
+
+\begin{proposition}
+    Let $X, Y$ be sets, the following statements are equivalent:
+    \begin{enumerate}
+        \item $|X|\leq|Y|$
+        \item there exists an injection from $X$ to $Y$.
+        \item there exists a surjection from $Y$ to $X$.
+    \end{enumerate}
+\end{proposition}
+\begin{proof}
+    $(1)\implies (2)$ is done by definition. 
+    
+    To show $(2)\implies (3)$, let $g$ be a mapping from $f(X)$ to $X$ such that $g\circ f|_{f(X)} = \operatorname{Id}_{f(X)}$, which is a bijection. For a fixed $x \in X$, define
+$$h(y)= \begin{cases}
+    g(y), & y \in f(X)\\
+    x, & y \notin f(X)
+\end{cases}$$
+\,which is a surjection from $Y$ to $X$.
+
+$(3)\implies (1)$ needs the axiom of choice. Let $A_x := \{y \in Y : f(y) = x \}$ and $A_x$ is non-empty as $f$ is surjective. 
+By the axiom of choice, there exists a choice function $h$ such that $h(x) \in A_x$. Notice that
+$$x\neq x^\prime \implies (A_x \cap A_{x^{\prime}})=\emptyset \implies h(x) \neq h(x^\prime)$$
+\,Then $h$ is an injection from $X$ to $Y$.
+\end{proof}
+
+Actually, $(|\cdot|, \leq)$ is a total ordered set. See the following theorems.
+\begin{theorem}[Anti-symmetry and Completeness of Cardinality]
+Let $X,Y$ be sets.
+\begin{description}
+    \item[Bernstein-Schroeder] $(|Y|\leq |X| \land |X|\leq |Y|) \implies |X|=|Y|$
+    \item[Completeness] $|X| \leq |Y| \lor |Y| \leq |X|$
+\end{description}    
+\end{theorem}
+\begin{note}
+    Note that the completeness is equivalent to the axiom of choice.
+\end{note}
+
+\subsection{Countable Set}
+\begin{definition}[Countability]
+    A set $X$ is countable if $|X|=|\mathbb{N}|$.
+\end{definition}
+

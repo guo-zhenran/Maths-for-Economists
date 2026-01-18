@@ -1,0 +1,73 @@
+\section{Operations of Sets}
+\subsection{Complement, Intersection and Union}
+\begin{definition}[Complement, Intersection and Union]
+    Let $A,B$ be sets, we define the following operations:
+\begin{description}
+    \item[Complement] The (relative) complement of set $B$ in set $A$ is defined as $A \setminus B = \{x : (x \in A) \land (x \notin B)\}$.
+    \item[Intersection] The intersection of sets $A$ and $B$ is defined as $A \cap B = \{x : (x \in A) \land (x \in B)\}$.
+    \item[Union] The union of sets $A$ and $B$ is defined as $A \cup B = \{x : (x \in A) \lor (x \in B)\}$.
+\end{description}
+
+By definition, one can easily check:
+\begin{proposition}
+    Let $A,B,C$ be sets, then 
+    \begin{description}
+        \item[Commutativity] $A \cap B = B \cap A$ and $A \cup B = B \cup A$.
+        \item[Associativity] $(A \cap B) \cap C = A \cap (B \cap C)$ and $(A \cup B) \cup C = A \cup (B \cup C)$.
+        \item[Distributivity] $A \cap (B \cup C) = (A \cap B) \cup (A \cap C)$ and $A \cup (B \cap C) = (A \cup B) \cap (A \cup C)$
+        \item[de Morgan's Laws] $(A\cap B)^c=A^c \cup B^c$ and $(A\cup B)^c=A^c \cap B^c$
+        \item[Subset] $A \subset B \iff A \cap B = A \iff A \cup B = B$.
+    \end{description}
+\end{proposition}
+\end{definition}
+
+\subsection{Power Set}
+\begin{definition}[Power Set]
+    Let $A$ be a set, define:
+    $$2^A = \{X : X \subset A\}$$
+\end{definition}
+\subsection{Cartesian Product}
+We define an ordered pair or a n-tuple $x = (x_1,x_2,\cdots,x_n)$ and the equity means that all components are equal. Denote $x_j := pr_j(x)$ and we call it the jth projection of $x$.
+
+The Cartesian product is to describe the set of ordered pairs.
+\begin{definition}[Cartesian Product]
+    Let $A,B$ be sets, define:
+    $$A \times B = \{(a,b) : a \in A, b \in B\}$$
+    \,and by deduction,
+    $$\prod_{i=1}^n A_i = (A_1\times \cdots \times A_{n-1})\times A_n$$
+    \,Specially, when $A_i = A$ for all $i$, we denote:
+    $$A^n = \prod_{i=1}^n A$$
+\end{definition}
+
+To practice logic, we show how to prove the following proposition.
+\begin{proposition}
+    Let $A,B$ be sets, then $A \times B = \emptyset \iff (A = \emptyset) \lor (B = \emptyset)$  
+\end{proposition}
+\begin{proof}
+    ($\Rightarrow $) We prove by contradiction. Suppose $A\times B$ is non-empty, which implies there exists $(a,b) \in A\times B$, then by definition of Cartesian product, we have $a \in A$ and $b \in B$, contradicting the assumption.
+
+    ($\Leftarrow $) This side can be similarly proved by contradiction.
+\end{proof}
+
+\subsection{Family of Sets}
+We now extend the operation of intersection and union a little bit. Consider we're intersecting a series of sets $A,B,C,\cdots$, we first
+rename the sets as $\{A_i\}_{i\in I}$, where $I$ is called an index set, and intersect them according to the index $i$, that is $$\bigcap_{i \in I} A_i = \{x : \forall i \in I, x \in A_i\}.$$
+\,Similarly, for union, we have
+$$\bigcup_{i \in I} A_i = \{x : \exists i \in I, x \in A_i\}.$$
+
+\begin{proposition}
+    Let $\{A_{\alpha}:\alpha \in I_{A}\}$ and $\{B_{\beta}:\beta \in I_{B}\}$ be families of subsets of a set $X$, then
+\begin{enumerate}
+    \item Associativity: $$\left(\bigcap_{\alpha \in I_A} A_{\alpha}\right) \cap \left(\bigcap_{\beta \in I_B} B_{\beta}\right) = \bigcap_{(\alpha,\beta) \in I_A \times I_B} (A_{\alpha} \cap B_{\beta})$$
+    and
+    $$\left(\bigcup_{\alpha \in I_A} A_{\alpha}\right) \cup \left(\bigcup_{\beta \in I_B} B_{\beta}\right) = \bigcup_{(\alpha,\beta) \in I_A \times I_B} (A_{\alpha} \cup B_{\beta})$$
+    \item Distributivity: $$A \cap \left(\bigcup_{\alpha \in I_A} A_{\alpha}\right) = \bigcup_{\alpha \in I_A} (A \cap A_{\alpha})$$
+    and 
+    $$A \cup \left(\bigcap_{\alpha \in I_A} A_{\alpha}\right) = \bigcap_{\alpha \in I_A} (A \cup A_{\alpha})$$
+    \item de Morgan's Laws: $$\left(\bigcap_{\alpha \in I_A} A_{\alpha}\right)^c = \bigcup_{\alpha \in I_A} A_{\alpha}^c$$
+    and $$\left(\bigcup_{\alpha \in I_A} A_{\alpha}\right)^c = \bigcap_{\alpha \in I_A} A_{\alpha}^c$$
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+    We show how to prove (3). 
+\end{proof}

@@ -39,6 +39,7 @@
 \usepackage{array}
 \usepackage{graphicx}
 \usepackage{xcolor}
+\usepackage{longtable}
 
 % ================ 颜色定义 ================
 \definecolor{ecolor}{RGB}{0,0,0}
@@ -165,6 +166,7 @@
 \usepackage{ragged2e}
 \usepackage{titlesec}
 \usepackage{hyperref}
+\usepackage{multirow}
 
 % ================ 页眉页脚设置 ================
 \pagestyle{fancy}

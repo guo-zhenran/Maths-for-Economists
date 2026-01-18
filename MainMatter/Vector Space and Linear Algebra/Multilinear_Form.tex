@@ -1,0 +1,194 @@
+\chapter{Multilinear Form and Determinant}
+One good way to introduce determinant is through solving equation systems and define it by deduction. Consider solving
+$$\begin{cases}
+    a_{11}x_{1}+a_{12}x_2=b_1 \\
+    a_{21}x_{1}+a_{22}x_2=b_2
+\end{cases}$$
+\,then we have
+$$x_1=\frac{b_1 a_{22}- b_2 a_{12}}{a_{11} a_{22}- a_{12} a_{21}}, x_2=\frac{b_2 a_{11}- b_1 a_{21}}{a_{11} a_{22}- a_{12} a_{21}}$$
+\,and denote $$\operatorname{det} \begin{pmatrix} a_{11} & a_{12} \\ a_{21} & a_{22} \end{pmatrix} = a_{11} a_{22}- a_{12} a_{21}$$ 
+We can rewrite the solution as
+$$x_1=\frac{\operatorname{det} \begin{pmatrix} b_{1} & a_{12} \\ b_{2} & a_{22} \end{pmatrix}}{\operatorname{det} \begin{pmatrix} a_{11} & a_{12} \\ a_{21} & a_{22} \end{pmatrix}}, x_2=\frac{\operatorname{det} \begin{pmatrix} a_{11} & b_{1} \\ a_{21} & b_{2} \end{pmatrix}}{\operatorname{det} \begin{pmatrix} a_{11} & a_{12} \\ a_{21} & a_{22} \end{pmatrix}}$$
+
+Now we turn to the 3-dimensional case:
+$$\begin{cases}
+    a_{11}x_{1}+a_{12}x_2+a_{13}x_3=b_1\\
+    a_{21}x_{1}+a_{22}x_2+a_{23}x_3=b_2\\
+    a_{31}x_{1}+a_{32}x_2+a_{33}x_3=b_3
+\end{cases}$$
+\,Similarly, by elimination method, we have
+$$\begin{aligned}
+x_1 = \frac{b_1 \operatorname{det} \begin{pmatrix} a_{22} & a_{23} \\ a_{32} & a_{33} \end{pmatrix} - a_{12} \operatorname{det} \begin{pmatrix} b_2 & a_{23} \\ b_3 & a_{33} \end{pmatrix} + a_{13} \operatorname{det} \begin{pmatrix} b_2 & a_{22} \\ b_3 & a_{32} \end{pmatrix}}
+           {a_{11} \operatorname{det} \begin{pmatrix} a_{22} & a_{23} \\ a_{32} & a_{33} \end{pmatrix} - a_{12} \operatorname{det} \begin{pmatrix} a_{21} & a_{23} \\ a_{31} & a_{33} \end{pmatrix} + a_{13} \operatorname{det} \begin{pmatrix} a_{21} & a_{22} \\ a_{31} & a_{32} \end{pmatrix}}\\
+x_2 = \frac{a_{11} \operatorname{det} \begin{pmatrix} b_2 & a_{23} \\ b_3 & a_{33} \end{pmatrix} - b_1 \operatorname{det} \begin{pmatrix} a_{21} & a_{23} \\ a_{31} & a_{33} \end{pmatrix} + a_{13} \operatorname{det} \begin{pmatrix} a_{21} & b_2 \\ a_{31} & b_3 \end{pmatrix}}
+           {a_{11} \operatorname{det} \begin{pmatrix} a_{22} & a_{23} \\ a_{32} & a_{33} \end{pmatrix} - a_{12} \operatorname{det} \begin{pmatrix} a_{21} & a_{23} \\ a_{31} & a_{33} \end{pmatrix} + a_{13} \operatorname{det} \begin{pmatrix} a_{21} & a_{22} \\ a_{31} & a_{32} \end{pmatrix}}\\
+x_3 = \frac{a_{11} \operatorname{det} \begin{pmatrix} a_{22} & b_2 \\ a_{32} & b_3 \end{pmatrix} - a_{12} \operatorname{det} \begin{pmatrix} a_{21} & b_2 \\ a_{31} & b_3 \end{pmatrix} + b_1 \operatorname{det} \begin{pmatrix} a_{21} & a_{22} \\ a_{31} & a_{32} \end{pmatrix}}
+           {a_{11} \operatorname{det} \begin{pmatrix} a_{22} & a_{23} \\ a_{32} & a_{33} \end{pmatrix} - a_{12} \operatorname{det} \begin{pmatrix} a_{21} & a_{23} \\ a_{31} & a_{33} \end{pmatrix} + a_{13} \operatorname{det} \begin{pmatrix} a_{21} & a_{22} \\ a_{31} & a_{32} \end{pmatrix}}
+\end{aligned}$$
+This leads us to denote 
+$$\operatorname{det} \begin{pmatrix}
+a_{11} & a_{12} & a_{13} \\
+a_{21} & a_{22} & a_{23} \\
+a_{31} & a_{32} & a_{33}
+\end{pmatrix} = a_{11} \operatorname{det} \begin{pmatrix} 
+a_{22} & a_{23} \\ 
+a_{32} & a_{33} 
+\end{pmatrix} - a_{12} \operatorname{det} \begin{pmatrix}
+a_{21} & a_{23} \\
+a_{31} & a_{33}
+\end{pmatrix} + a_{13} \operatorname{det} \begin{pmatrix}
+a_{21} & a_{22} \\
+a_{31} & a_{32}
+\end{pmatrix}
+$$
+\,and rewrite the solution as
+$$
+x_1 = \frac{\operatorname{det} \begin{pmatrix}
+b_{1} & a_{12} & a_{13} \\
+b_{2} & a_{22} & a_{23} \\ 
+b_{3} & a_{32} & a_{33}
+\end{pmatrix}}{\operatorname{det} \begin{pmatrix}
+a_{11} & a_{12} & a_{13} \\
+a_{21} & a_{22} & a_{23} \\
+a_{31} & a_{32} & a_{33}
+\end{pmatrix}},
+x_2 = \frac{\operatorname{det} \begin{pmatrix}
+a_{11} & b_{1} & a_{13} \\ 
+a_{21} & b_{2} & a_{23} \\ 
+a_{31} & b_{3} & a_{33}
+\end{pmatrix}}{\operatorname{det} \begin{pmatrix}
+a_{11} & a_{12} & a_{13} \\
+a_{21} & a_{22} & a_{23} \\
+a_{31} & a_{32} & a_{33}
+\end{pmatrix}},
+x_3 = \frac{\operatorname{det} \begin{pmatrix}
+a_{11} & a_{12} & b_{1} \\ 
+a_{21} & a_{22} & b_{2} \\ 
+a_{31} & a_{32} & b_{3}
+\end{pmatrix}}{\operatorname{det} \begin{pmatrix}
+a_{11} & a_{12} & a_{13} \\
+a_{21} & a_{22} & a_{23} \\
+a_{31} & a_{32} & a_{33}
+\end{pmatrix}}$$
+
+In this way can we define determinant in a deductive way and achieve the important Cramer's Law easily. However, this definition arises only as a notation, lacking the geometric understanding of determinants. To do this, we start from the concept of \textbf{multilinear form}.
+
+\section{Multilinear Form}
+\subsection{Bilinear Form}
+A bilinear form on $V$ is a function on $V\times V$ and is linear in each slot while holding the other one fixed.
+\begin{definition}[Bilinear Form]
+    Let $V$ be a vector space over field $\mathbb{F}$. A function $\beta: V\times V \to \mathbb{F}$ is called a bilinear form on $V$ if 
+    $$v \mapsto \beta(u,v), \quad u \mapsto \beta(u,v)$$
+    \,are both linear mapping on $V$. We denote $V^{(2)}$ as the set of all bilinear forms in $V$.
+\end{definition}
+
+An example of bilinear form is the inner product. 
+\begin{example}[Inner Product]
+    Let $\beta$ be the inner product $\langle \cdot, \cdot \rangle$. Recall the linearity of inner product in each slot and we can verify by definition that inner product is indeed a bilinear form.
+\end{example}
+
+\subsubsection{Symmetric and Alternating Bilinear Form}
+However, though the inner product is symmetric, that is $\beta(u,v) = \beta(v,u)$, symmetry does not always hold for bilinear forms. There is a special kind of bilinear form called \textbf{symmetric bilinear form}.
+\begin{definition}[Symmetric Bilinear Form]
+    A bilinear form $\beta$ from $V^{(2)}$ is called symmetric if 
+    $$\beta(u,v) = \beta(v,u), \quad \forall u,v \in V.$$
+    \,We denote $V_{sym}^{(2)}$ as the set of all symmetric bilinear forms in $V^{(2)}$. It's trivial to show that $V_{sym}^{(2)}$ is a subspace of $V^{(2)}$.
+\end{definition}
+
+Another special and important kind of bilinear form is \textbf{alternating bilinear form}. We'll see its importance when we reach the final theorem that $V^{(2)}$ can be separated as the direct sum
+of $V_{sym}^{(2)}$ and $V_{alt}^{(2)}$.
+\begin{definition}[Alternating Bilinear Form]
+    A bilinear form $\beta$ from $V^{(2)}$ is called alternating if 
+    $$\beta(v,v) = 0, \quad \forall v \in V.$$
+    \,We denote $V_{alt}^{(2)}$ as the set of all alternating bilinear forms in $V^{(2)}$. It's trivial to show that $V_{alt}^{(2)}$ is a subspace of $V^{(2)}$.
+\end{definition}
+
+\begin{proposition}[Characterization of Alternating Bilinear Form]
+    A bilinear form $\alpha$ is alternating if and only if 
+    $$\alpha(u,v) = -\alpha(v,u), \quad \forall u,v \in V.$$
+\end{proposition}
+\begin{proof}
+Notice that, by definition of bilinear form, we have
+$$\alpha(u+v, u+v) = \alpha(u,u) + \alpha(u,v) + \alpha(v,u) + \alpha(v,v)$$
+
+Suppose $\alpha$ is alternating, then $\alpha(u+v, u+v) = \alpha(u,v) + \alpha(v,u) = 0$, which implies $\alpha(u,v) = -\alpha(v,u)$.
+
+Conversely, suppose $\alpha(u,v) = -\alpha(v,u)$, then $\alpha(v,v) = -\alpha(v,v)$, which implies $\alpha(v,v) = 0$ for all $v$. Therefore, $\alpha$ is alternating.
+\end{proof}
+
+Now we turn to the final theorem of alternating and symmetric bilinear forms.
+\begin{theorem}[Decomposition of Bilinear Form]
+Given a vector space $V$, we have $$V^{(2)}= V_{sym}^{(2)} \oplus V_{alt}^{(2)}.$$
+\end{theorem}
+\begin{proof}
+    We first show that $V^{(2)}= V_{sym}^{(2)} + V_{alt}^{(2)}$. Suppose $\beta \in V^{(2)}$, Let
+    $$\beta_{sym} = \frac{\beta(u,v) + \beta(v,u)}{2}, \quad \beta_{alt} = \frac{\beta(u,v) - \beta(v,u)}{2}$$
+    \,It's trivial that $\beta_{sym} \in V_{sym}^{(2)}$ and $\beta_{alt} \in V_{alt}^{(2)}$, and $\beta = \beta_{sym} + \beta_{alt}$.
+
+    Then we only have to show that $V_{sym}^{(2)} \cap V_{alt}^{(2)} = \{0\}$. 
+    Suppose $\beta \in V_{sym}^{(2)} \cap V_{alt}^{(2)}$. Then $\beta$ is both symmetric and alternating, so $\beta(u,v) = \beta(v,u)$ and $\beta(u,v) = -\beta(v,u)$, which implies $\beta(u,v) = 0$ for all $u,v$. Therefore, $V_{sym}^{(2)} \cap V_{alt}^{(2)} = \{0\}$.
+\end{proof}
+
+
+\subsubsection{Matrix of a Bilinear Form}
+
+
+\subsection{Multilinear Form}
+We now turn to define determinants and this subsection is for preparation. The definition of multilinear form is a natural extension of bilinear form.
+
+\begin{definition}[Multilinear Form]
+    Let $V$ be a vector space over field $\mathbb{F}$. A $k$-multilinear form $$\beta: \underbrace{V\times V \times \cdots \times V}_{k\text{ times}} \to \mathbb{F}$$ satisfies that 
+    $$v_i \mapsto \beta(v_1, \ldots, v_i, \ldots, v_k)$$
+    \,are all linear mapping on $V$ for each $i = 1, 2, \ldots, k$. We denote $V^{(k)}$ as the set of all $k$-multilinear forms in $V$.
+\end{definition}
+
+\subsubsection{Alternating Multilinear Form}
+For multilinear forms, we only concern about alternating ones.
+\begin{definition}[Alternating Multilinear Form]
+    A multilinear form $\beta$ from $V^{(k)}$ is called alternating if 
+    $$\beta(v_1, \ldots, v_k) = 0$$
+    \,whenever $v_i = v_j$ for some $i \neq j$. We denote $V_{alt}^{(k)}$ as the set of all alternating multilinear forms in $V^{(k)}$. It's trivial to show that $V_{alt}^{(k)}$ is a subspace of $V^{(k)}$.
+\end{definition}
+
+By linearity at each slot, it's trivial to show that for a linearly dependent set $\{v_1, \ldots, v_k\}$, we have $\alpha(v_1, \ldots, v_k) = 0$ for any alternating multilinear form $\alpha \in V_{alt}^{(k)}$.
+The counterpositive satement implies that if $\alpha(v_1, \ldots, v_k) \neq 0$ for some alternating multilinear form $\alpha \in V_{alt}^{(k)}$, then $\{v_1, \ldots, v_k\}$ is linearly independent. Actucally, with the theorem $\operatorname{dim} V^{(\operatorname{dim} V)}_{alt}=1$, which will be shown later, the converse statement also holds.
+\begin{theorem}
+    For a nonzero $\alpha \in V_{alt}^{(k)} $, $\alpha(v_1, \ldots, v_k) \neq 0 \iff \{v_1, \ldots, v_k\}$ is linearly independent.
+\end{theorem}
+
+\subsubsection{Swapping the Entries}
+\begin{theorem}[Swapping 2 Slots of an Alternating Multilinear Form]
+    For alternating multilinear form $\alpha$ and distinct $i,j \in \{1,2,\ldots,k\}$, we have
+    $$\alpha(v_1, \ldots, v_i, \ldots, v_j, \ldots, v_k) = -\alpha(v_1, \ldots, v_j, \ldots, v_i, \ldots, v_k)$$
+\end{theorem}
+\begin{proof}
+    We show the case of swapping $v_1$ and $v_2$. Notice that 
+    $$\begin{aligned}
+        0 &= \alpha(v_1 + v_2, v_1 + v_2, \ldots, v_k)\\
+        &= \alpha(v_1, v_1, \ldots, v_k) + \alpha(v_1, v_2, \ldots, v_k) + \alpha(v_2, v_1, \ldots, v_k) + \alpha(v_2, v_2, \ldots, v_k)\\
+        &= \alpha(v_1, v_2, \ldots, v_k) + \alpha(v_2, v_1, \ldots, v_k)
+    \end{aligned}$$ 
+\,We have $\alpha(v_1, v_2, \ldots, v_k) = -\alpha(v_2, v_1, \ldots, v_k).$
+\end{proof}
+
+To generalize the swapping theorem, we consider swapping multiple slots and multiple times. The intuitive idea asks us to count how many times we just swapped and we can use the above theorem.
+That is to consider, given the original list $(v_1, \ldots, v_k)$ and the swapped list $(v_{j_1},\ldots, v_{j_k})$ with exactly the same elements but in different orders, how many swaps are made. 
+We don't know how many swaps are made since there're multiple ways to do it and actually, how the swaps were made wouldn't change the result.
+So we can reconstruct the process of swapping by doing adjacent swaps, that is only swapping $v_i$ and $v_{i+1}$. 
+In this manner, we can count the swap by comparing the original order and the final order.
+We introduce the concept of permutation to understand the full picture following our intuition.
+
+\begin{definition}[Permutation and its Sign]
+    A permutation of the list $(1, \ldots, k)$ is an element of $\operatorname{perm} k := \{(j_1, \ldots, j_k)\in \mathbb{N}^k:j_u\neq j_v \quad\text{and}\quad 1 \leq j_i\leq k \}$.
+    
+    The sign of a permutation maps a certain element of $\operatorname{perm} k$ to either $+1$ or $-1$. For a permutation $(j_1, \ldots, j_k) \in \operatorname{perm} k$, its sign $\operatorname{sign}(j_1, \ldots, j_k)$ is defined as
+$$\operatorname{sign}(j_1, \ldots, j_k) = (-1)^N$$
+\,where $N$ is the cardinality of $\{(m,n): 1\leq m < n \leq k \text{ and } j_m > j_n\}$.
+\end{definition}
+
+The next result is straightforward.
+\begin{proposition}[Generalization of the Swapping]
+Given a permutation $(j_1, \ldots, j_k) \in \operatorname{perm} k$ and an alternating multilinear form $\alpha \in V_{alt}^{(k)}$, we have
+$$\alpha(v_{j_1}, \ldots, v_{j_k}) = \operatorname{sign}(j_1, \ldots, j_k) \alpha(v_1, \ldots, v_k)$$
+\end{proposition}
+
