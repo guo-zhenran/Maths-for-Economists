@@ -1,0 +1,34 @@
+\section{Ring and Field}
+In this section, we add another operations to a group. We require that the set forms an Abelian group with respect to one of the operations and we want a certain kind of distributivity. This leads us to ring.
+And we can further add more requirements to rings and make it a field.
+\subsection{The Definition}
+\begin{definition}[Ring]
+    For a 3-tuple $(R,+,\cdot)$, if
+    \begin{enumerate}
+        \item $(R,+)$ is an Abelian group\footnote{A conventional notation for the identity element is $0_R$.},
+        \item $(R,\cdot)$ is a semi-group,
+        \item Distributivity: $$a \cdot (b + c) = a \cdot b + a \cdot c,\quad (a + b) \cdot c = a \cdot c + b \cdot c, \qquad \forall a,b,c \in R$$
+    \end{enumerate}
+    With more specific requirements, we have different kinds of rings:
+    \begin{description}
+        \item[Commutative Ring] If $\cdot$ is commutative, then $(R,+,\cdot)$ is a commutative ring.
+        \item[Ring with Unity] If there exists an identity element $1_R \in R$ for multiplication, then $(R,+,\cdot)$ is a ring with unity. 
+    \end{description}
+\end{definition}
+
+The definition of subring is similar to that of subgroup.
+\begin{definition}[Subring]
+    Let $S$ be a nonempty subset of a ring $(R,+,\cdot)$. If $S$ is a subgroup of $(R,+)$ and is closed under multiplication, we say it's a subring.
+\end{definition}
+
+\begin{remark}
+    Given the existence of additive and multiplicative identity elements in a ring, we know that they're unique. Also, there may exists $a\neq 0_R$ such that $a\cdot b = 0_R$ or $b\cdot a = 0_R$ for some $b\neq 0_R$. Such elements are called \textbf{zero divisors}.
+\end{remark}
+
+\subsection{Homomorphism and Isomorphism}
+The definition here is similar to that of group homomorphism and isomorphism.
+\begin{definition}[Ring Homomorphism and Isomorphism]
+    Let $R,S$ be rings. A mapping $\varphi:R\to S$ is a ring homomorphism if it preserve the multiplication and addition operations. If $\varphi$ is bijective, then it is a ring isomorphism.
+\end{definition}
+
+Note that if $\varphi$ is a ring homomorphism, then it's a group homomorphism for $(R,+)$ and $(S,+)$ and the kernel is defined by $\operatorname{Ker}(\varphi)=\{r\in R: \varphi(r)=0_S\}$.

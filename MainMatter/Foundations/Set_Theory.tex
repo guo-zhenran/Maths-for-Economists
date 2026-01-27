@@ -69,5 +69,10 @@ $$\bigcup_{i \in I} A_i = \{x : \exists i \in I, x \in A_i\}.$$
 \end{enumerate}
 \end{proposition}
 \begin{proof}
-    We show how to prove (3). 
+    We show how to prove (3). A common trick we use when proving the equality of 2 sets is to show that each set is the subset of the other set.
+
+    For $\subset$, $\forall a \in \left(\bigcap_{\alpha \in I_A} A_{\alpha}\right)^c$, since $a \in \bigcap_{\alpha \in I_A} A_{\alpha} \iff \forall \alpha \in I_A, a \in A_{\alpha}$,
+    \,we have $a \in \left(\bigcap_{\alpha \in I_A} A_{\alpha}\right)^c \iff \exists \alpha_0 \in I_A, a \in A_{\alpha_0}^c$ by negation. Thus $a \in A_{\alpha_0}^c \subset \bigcup_{\alpha \in I_A} A_{\alpha}^c.$
+
+    For the other side, there exists an $\alpha_0 \in I_A$ such that $a\in A_{\alpha_0}^c$. Notice that $\bigcap_{\alpha \in I_A} A_{\alpha} \subset A_{\alpha_0}$, we have $A_{\alpha_0}^c \subset \left(\bigcap_{\alpha \in I_A} A_{\alpha}\right)^c.$
 \end{proof}

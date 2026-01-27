@@ -1,0 +1,59 @@
+\section{Ring and Field}
+In this section, we add another operations to a group. We require that the set forms an Abelian group with respect to one of the operations and we want a certain kind of distributivity. This leads us to ring.
+And we can further add more requirements to rings and make it a field.
+\subsection{The Definition}
+\begin{definition}[Ring]
+    For a 3-tuple $(R,+,\cdot)$, if
+    \begin{enumerate}
+        \item $(R,+)$ is an Abelian group\footnote{A conventional notation for the identity element is $0_R$.},
+        \item $(R,\cdot)$ is a semi-group,
+        \item Distributivity: $$a \cdot (b + c) = a \cdot b + a \cdot c,\quad (a + b) \cdot c = a \cdot c + b \cdot c, \qquad \forall a,b,c \in R$$
+    \end{enumerate}
+    With more specific requirements, we have different kinds of rings:
+    \begin{description}
+        \item[Commutative Ring] If $\cdot$ is commutative, then $(R,+,\cdot)$ is a commutative ring.
+        \item[Ring with Unity] If there exists an identity element $1_R \in R$ for multiplication, then $(R,+,\cdot)$ is a ring with unity. 
+    \end{description}
+\end{definition}
+
+The definition of subring is similar to that of subgroup.
+\begin{definition}[Subring]
+    Let $S$ be a nonempty subset of a ring $(R,+,\cdot)$. If $S$ is a subgroup of $(R,+)$ and is closed under multiplication, we say it's a subring.
+\end{definition}
+
+\begin{remark}
+    Given the existence of additive and multiplicative identity elements in a ring, we know that they're unique. Also, there may exists $a\neq 0_R$ such that $a\cdot b = 0_R$ or $b\cdot a = 0_R$ for some $b\neq 0_R$. Such elements are called \textbf{zero divisors}.
+\end{remark}
+
+We now turn to fields.
+\begin{definition}[Field]
+    A field is a commutative ring with unity $(F,+,\cdot)$ such that $0 \neq 1_F$ and $F^{\times}\footnote{We call it a multiplicative group.}:=(F\setminus \{0_F\},\cdot)$ is an Abelian group.
+\end{definition}
+\begin{proposition}
+    A field has no zero divisor.
+\end{proposition}
+\begin{proof}
+    Suppose $ab=0$ and $a\neq 0$, then there exists $a^{-1}$, which implies $b=a^{-1}0$.
+\end{proof}
+
+We can define the inverse of $\cdot$. Let $a \in F^{\times}, b \in F$, then we have a unique $c \in F$ such that $a \cdot c = b$. We denote $c$ as $b/a$ or $a^{-1} \cdot b$, called the \textbf{quotient}.
+
+
+\subsection{Homomorphism and Isomorphism}
+The definition and property of homomorphism and isomorphism of rings and fields are similar to those of groups and we can define them analogously.
+
+\begin{definition}[Ring Homomorphism and Isomorphism]
+    Let $R,S$ be rings. A mapping $\varphi:R\to S$ is a ring homomorphism if it preserve the multiplication and addition operations. If $\varphi$ is bijective, then it is a ring isomorphism.
+\end{definition}
+
+Note that if $\varphi$ is a ring homomorphism, then it's a group homomorphism for $(R,+)$ and $(S,+)$ and the kernel is defined by $\operatorname{Ker}(\varphi)=\{r\in R: \varphi(r)=0_S\}$.
+
+\subsection{Ordered Field}
+In this subsubsection, we add an order relation to a field and make it an ordered field.
+\begin{definition}[Ordered Field]
+    An ordered field is a field $(F,+,\cdot)$ equipped with a total order relation $\leq$, if the following statements hold for all $a,b,c \in F$:
+    \begin{enumerate}
+        \item If $a \leq b$, then $a + c \leq b + c$.
+        \item If $0 \leq a$ and $0 \leq b$, then $0 \leq a \cdot b$.
+    \end{enumerate}
+\end{definition}   

@@ -62,7 +62,7 @@
 {\bfseries}
 {.}
 {0.5em}
-{\thmname{#1}\thmnumber{ #2}\thmnote{(#3)}}
+{\thmname{#1}\thmnumber{ #2}\thmnote{ (#3)}}
 
 \theoremstyle{namedthm}
 
@@ -72,6 +72,7 @@
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{proposition}[theorem]{Proposition}
 \newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{axiom}{Axiom}[section]  % 添加 axiom 环境
 \theoremstyle{definition}
 \newtheorem{definition}{Definition}[section]
 \newtheorem{conjecture}{Conjecture}[section]
@@ -81,6 +82,63 @@
 \newtheorem{note}{Note}
 \newcommand\ebibname{Bibliography}
 \newtheorem{case}{Case}
+
+% ================ 定理引用命令 ================
+% 最简单的方法：使用自定义标签命令
+\makeatletter
+
+% 定义一个新的标签命令，可以接受名称
+\newcommand{\namedlabel}[2]{%
+  \label{#1}%
+  \ifx\\#2\\%
+  \else
+    \expandafter\gdef\csname name@#1\endcsname{#2}%
+  \fi
+}
+
+% 重新定义引用命令
+\newcommand{\thmref}[1]{%
+  \@ifundefined{name@#1}{%
+    \textbf{theorem~\ref{#1}}%
+  }{%
+    \textbf{theorem~\ref{#1}, \csname name@#1\endcsname}%
+  }%
+}
+
+\newcommand{\propref}[1]{%
+  \@ifundefined{name@#1}{%
+    \textbf{proposition~\ref{#1}}%
+  }{%
+    \textbf{proposition~\ref{#1}, \csname name@#1\endcsname}%
+  }%
+}
+
+\newcommand{\lemmaref}[1]{%
+  \@ifundefined{name@#1}{%
+    \textbf{lemma~\ref{#1}}%
+  }{%
+    \textbf{lemma~\ref{#1}, \csname name@#1\endcsname}%
+  }%
+}
+
+\newcommand{\corref}[1]{%
+  \@ifundefined{name@#1}{%
+    \textbf{corollary~\ref{#1}}%
+  }{%
+    \textbf{corollary~\ref{#1}, \csname name@#1\endcsname}%
+  }%
+}
+
+\newcommand{\axiomref}[1]{%
+  \@ifundefined{name@#1}{%
+    \textbf{axiom~\ref{#1}}%
+  }{%
+    \textbf{axiom~\ref{#1}, \csname name@#1\endcsname}%
+  }%
+}
+
+\makeatother
+
 
 % ================ 代码环境 ================
 \usepackage{listings}
@@ -167,6 +225,8 @@
 \usepackage{titlesec}
 \usepackage{hyperref}
 \usepackage{multirow}
+\usepackage{pdfpages,tikz}
+\usetikzlibrary{matrix, positioning}
 
 % ================ 页眉页脚设置 ================
 \pagestyle{fancy}
@@ -252,6 +312,7 @@
 \providecommand{\remarkname}{Remark}
 \providecommand{\solutionname}{Solution}
 \providecommand{\theoremname}{Theorem}
+\providecommand{\axiomname}{Axiom}  % 添加 axiom 名称
 
 % ================ 参考文献支持 ================
 \usepackage{natbib}

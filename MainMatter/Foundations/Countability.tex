@@ -2,9 +2,11 @@
 For finite sets, we can easily count the element and say it's countable. But what if the set have infinite many elements?
 Mathematicians believe that natural numbers can be counted and is the smallest infinite set. In this section we formally treat infinity, before which we introduce the axiom of choice.
 \subsection{The Axiom of Choice}
-The axiom of choice states that for a family of non-empty sets $\{A_i\}_{i\in I}$, the Cartesian product $\prod_{i\in I} A_i$ is non-empty.
+\begin{axiom}[the Axiom of Choice] \namedlabel{axm: Axiom_of_Choice}{the Axiom of Choice}
+    For a family of non-empty sets $\{A_i\}_{i\in I}$, the Cartesian product $\prod_{i\in I} A_i$ is non-empty.
+\end{axiom}
 
-That is to say there exists a choice function $f$ such that $\forall i \in I, f(i) \in A_i.$ 
+That is equivalent to say there exists a choice function $f$ such that $\forall i \in I, f(i) \in A_i.$ 
 
 \subsection{Cardinality}
 The cardinality of a finite set is defined as the number of elements, that is $|A|=\# A$. For infinite sets, the definition is complicated and we turn to compare the cardinality
@@ -14,7 +16,7 @@ of 2 sets.
     If there exists a subsection of $B$ and a bijection from $A$ to that subsection, we say $|A|\leq |B|$.
 \end{definition}
 
-\begin{proposition}
+\begin{proposition} \label{prop: cardinality_equivalence}
     Let $X, Y$ be sets, the following statements are equivalent:
     \begin{enumerate}
         \item $|X|\leq|Y|$
@@ -33,13 +35,13 @@ $$h(y)= \begin{cases}
 \,which is a surjection from $Y$ to $X$.
 
 $(3)\implies (1)$ needs the axiom of choice. Let $A_x := \{y \in Y : f(y) = x \}$ and $A_x$ is non-empty as $f$ is surjective. 
-By the axiom of choice, there exists a choice function $h$ such that $h(x) \in A_x$. Notice that
+By \axiomref{axm: Axiom_of_Choice}, there exists a choice function $h$ such that $h(x) \in A_x$. Notice that
 $$x\neq x^\prime \implies (A_x \cap A_{x^{\prime}})=\emptyset \implies h(x) \neq h(x^\prime)$$
 \,Then $h$ is an injection from $X$ to $Y$.
 \end{proof}
 
 Actually, $(|\cdot|, \leq)$ is a total ordered set. See the following theorems.
-\begin{theorem}[Anti-symmetry and Completeness of Cardinality]
+\begin{theorem}[Anti-symmetry and Completeness of Cardinality] \namedlabel{thm: cardinality_anti-symmetry}{Bernstein-Schroeder theorem}
 Let $X,Y$ be sets.
 \begin{description}
     \item[Bernstein-Schroeder] $(|Y|\leq |X| \land |X|\leq |Y|) \implies |X|=|Y|$
@@ -54,4 +56,63 @@ Let $X,Y$ be sets.
 \begin{definition}[Countability]
     A set $X$ is countable if $|X|=|\mathbb{N}|$.
 \end{definition}
+
+\begin{theorem}[Existence of Countable Subsets]
+    There exists an infinite countable subset for any infinite set.
+\end{theorem}
+\begin{proof}
+    Let $X$ be an infinite set. Denote $\mathcal{A}_n=\{A \subset X : |A| = 2^n\}$, $\forall n \in \mathbb{N}$. By \axiomref{axm: Axiom_of_Choice}, there exists a family of 
+    non-empty sets $\{B_n\}_{n=1}^{\infty}$ such that $B_n \in \mathcal{A}_n$. 
+
+    We now use \axiomref{axm: Axiom_of_Choice}, again to construct a series $\{c_n\}_{n=1}^{\infty}$ such that $c_n \neq c_{n^{\prime}}$. To do that, we construct a family of pairwise disjoint sets $\{C_n\}$ from $B_n$.
+    An intuitive way to do so is to extract $c_n$ from the new part of $B_n$, that is to construct $C_n = B_n \setminus \bigcup_{i=1}^{n-1} B_i$.
+
+    By construction, $f(n):\mathbb{N}\mapsto c_n$ is an injection and by \propref{prop: cardinality_equivalence}, $|\mathbb{N}|\leq |\{c_n\}|$. Thus $\{c_n\}$ is a countable subset of $X$.
+\end{proof}
+
+\begin{theorem}
+    A countable union of countable sets is countable.
+\end{theorem}
+\begin{proof}
+    Let $\{A_n\}_{n=1}^{\infty}$ be a countable family of countable sets and denote $A_i = \{a_{ij}\}_{j=1}^{\infty}$. We try to find an injection from $\bigcup_{n=1}^{\infty} A_n$ to $\mathbb{N}$.
+
+    Suppose $\{A_n\}_{n=1}^{\infty}$ is pairwise disjoint, define $f:a_{mn}\mapsto m + \frac{(m+n-1)(m+n-2)}{2}$, the construction is illustrated below:
+    \begin{center}
+\begin{tikzpicture}
+    \matrix (m) [matrix of math nodes, 
+                 nodes={minimum size=1cm, anchor=center}, 
+                 row sep=-\pgflinewidth, 
+                 column sep=-\pgflinewidth] {
+        a_{11} & a_{12} & \cdots & a_{1n} & \cdots \\
+        a_{21} & a_{22} & \cdots & a_{2n} & \cdots\\
+        \vdots & \vdots & \ddots & \vdots & \vdots \\
+        a_{m1} & a_{m2} & \cdots & a_{mn} & \cdots\\
+        \vdots & \vdots & \vdots & \vdots & \vdots \\
+    };
+
+    \draw[red, thick, ->] (m-1-1.north east) -- (m-1-1.south west); 
+    \draw[red, thick, ->] (m-1-2.north east) -- (m-2-1.south west); 
+    \draw[red, thick, ->] (m-1-3.north east) -- (m-3-1.south west); 
+    \draw[red, thick, ->] (m-1-4.north east) -- (m-4-1.south west);
+    \draw[red, thick, ->] (m-2-4.north east) -- (m-4-2.south west); 
+    \draw[red, thick, ->] (m-3-4.north east) -- (m-4-3.south west); 
+    \draw[red, thick, ->] (m-4-4.north east) -- (m-4-4.south west); 
+\end{tikzpicture}
+    \end{center}
+
+    Otherwise, denote $C_n = A_n \setminus \bigcup_{i=1}^{n-1} A_i$. Then $C_n$ is a countable set and is pairwise disjoint. It's done with the result of the previous case.
+\end{proof}
+
+\begin{proposition}
+    A finite product of countable sets is countable.
+\end{proposition}
+\begin{proof}
+        Notice that $\mathcal{A}_1 \times \mathcal{A}_2 = \bigcup_{a \in \mathcal{A}_2} \{(a,a^{\prime}):a^{\prime} \in \mathcal{A}_1\}$, which is a countable union of countable sets. Therefore, $\prod_{i = 1}^n \mathcal{A}_i$ is countable by the deductive relation $\prod_{i=1}^n \mathcal{A}_i =\prod_{i=1}^{n-1} \mathcal{A}_i \times \mathcal{A}_n$.
+\end{proof}
+\begin{corollary}
+    $\mathbb{N}^n$ and $\mathbb{Q}$ is countable.
+\end{corollary}
+\begin{proof}
+    Only have to show $\mathbb{Q}$ is countable. We can construct the surjection $f(m,n) =m/n$. Notice it maps $\mathbb{N}^2$ to $\mathbb{Q}$, thus $|\mathbb{Q}| \leq |\mathbb{N}^2| = |\mathbb{N}|$. Therefore, $\mathbb{Q}$ is countable by \thmref{thm: cardinality_anti-symmetry}.
+\end{proof}
 

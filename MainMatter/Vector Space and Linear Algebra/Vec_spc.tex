@@ -1,6 +1,160 @@
-\chapter{Vector Space and Linear Mapping}
+\chapter{Vector Space}
+From this chapter we start to formally introduce linear algebra. We'll see that linear algebra is similar to a ring but with some fine properties so that we can achieve more powerful results.
+To study linear algebra, we start with the vector space and gradually add more structures to it.
 
+\section{the Definition of Vector Space and Subspaces}
+\begin{definition}[Vector Space]
+    A vector space over a field $\mathcal{F}$ is a triple $(V,+,\cdot)$ consisting of a nonempty set $V$ whose elements are called \textbf{vectors}, and two operations called \textbf{vector addition} and \textbf{scalar multiplication} respectively, defined as
+    $$+:(u,v)\in V^2 \mapsto u+v,\quad \cdot:(a,v)\in \mathcal{F} \times V \mapsto a\cdot v$$
+    \,which satisfy the following axioms:
+    \begin{enumerate}
+        \item $(V,+)$ is an Abelian group.
+        \item Identity element: $\exists 1 \in \mathcal{F}$ such that $\forall v \in V, 1 \cdot v = v$.
+        \item Associativity: $\forall a,b \in \mathcal{F}, \forall v \in V, (ab)\cdot v = a \cdot (b \cdot v)$.
+        \item Distributivity: $\forall a \in \mathcal{F}, \forall u,v \in V, a \cdot (u + v) = a \cdot u + a \cdot v$ and $\forall a,b \in \mathcal{F},\forall v\in V, (a+b)\cdot v = a\cdot v + b\cdot v$.
+    \end{enumerate}
+\end{definition}
 
+We can define the concept of subspace similar to that of subgroup and subring.
+\begin{definition}[Subspace of a Vector Space]
+    Let $U$ be a nonempty subset of a $\mathcal{F}$-vector space $(V,+,\cdot)$. If $U$ is closed under vector addition and scalar multiplication, then we say $U$ is a subspace of $V$.
+\end{definition} 
 
+\section{Operation of Subspaces}
+\subsection{Sum}
+\begin{definition}[Sum]
+    Let $V_1, \cdots, V_m$ be vector spaces over the same field $\mathcal{F}$. We define their sum by
+    $$V_1 + V_2 + \cdots + V_m := \{v_1 + v_2 + \cdots + v_m : v_i \in V_i, i=1,2,\ldots,m\}.$$
+\end{definition}
 
+\begin{remark}
+    Note that $V_1 + V_2 + \cdots + V_m$ is also a subspace of $V$ and is the smallest subspace containing all $V_1,\cdots,V_m$.
+\end{remark}
 
+\subsection{Direct Sum}
+For an element $v$ in the sum of subspaces, suppose that  
+$$v = v_1 + v_2 + \cdots + v_m = u_1 + u_2 + \cdots + u_m .$$
+Then  
+$$
+(v_1 - u_1) + \cdots + (v_m - u_m) = 0.
+$$
+\,The most special case is when \( v_i = u_i \; (\forall i \in \{1,2,\dots ,m\}) \). This special case is defined as a direct sum.
+
+\begin{definition}[Direct Sum of Subspaces]
+    If every element in the sum of subspaces can be represented uniquely, then the sum is called the \textbf{direct sum} of the subspaces, denoted by  
+     $V_{1} \oplus V_{2} \oplus \cdots \oplus V_{m}$ .
+\end{definition}
+
+\begin{theorem}[Equivalent definition of direct sum] \label{thm:directsum}
+    $V_{1} + \cdots + V_{m}$ is a direct sum  
+    $\iff$  
+    the equation $v_{1} + v_{2} + \cdots + v_{m} = 0$ holds only when $v_{i} = 0$ for all $i$.
+\end{theorem}
+\begin{proof}
+    It follows directly from the above discussion.
+\end{proof}
+
+For the case of 2 subspaces, we have a more specific result.
+\begin{theorem}[Direct Sum of 2 Subspaces]
+    Let \( U \) and \( W \) be subspaces of \( V \). Then \( U+W \) is a direct sum if and only if \( U \cap W = \{0\} \).
+\end{theorem} 
+
+\begin{proof}
+    \( (\Rightarrow) \) For any \( u \in U \cap W \), there exists \( (-u) \in W \) such that \( 0 = u + (-u) \). Since the representation is unique, we must have \( u = 0 \).  
+    
+    \( (\Leftarrow) \) Suppose \( u \in U \), \( w \in W \) satisfy \( u + w = 0 \), i.e., \( u = -w \in W \). Then \( u \in U \cap W \), which implies \( u = w = 0 \). By the equivalent definition, \( U+W \) is a direct sum.
+\end{proof}
+
+\section{Subspace Spanned by Vectors}
+\subsection{Span}
+We now turn to the elements of the vector space. For any $v\in V$, we can find a list of $a_1,\cdots,a_n\in \mathcal{F}$ and $v_1,\cdots,v_n \in V$ such that $v=a_1 v_1 +\cdots+a_n v_n$. In this way, given a list of vectors, we can construct a vector space by 
+generating vectors with all $(a_1,\cdots,a_n)\in \mathcal{F}^{n}$. We call such a space a \textbf{span}, defined by $$\operatorname{span}(v_1,\cdots,v_n):=\{a_1 v_1 +\cdots+a_n v_n: a_i \in \mathcal{F},v_i \in V\}.$$
+If $\operatorname{span}(v_1, \cdots, v_n) = V$, we say that $v_1, \cdots, v_n$ spans $V$.
+
+Notice that $x^0,\cdots,x^n$ can span $\mathcal{P}_n(\mathcal{F})$ and $x^0,\cdots,x^n,2x^n$ can do it as well. This inspires us to find out which is the smallest one that can span a vector space.
+
+\subsection{Linear Independence}
+In this section, we introduce the concept of linear independence and we'll find out that the smallest spanning list is linearly independent. Consider the elements in the spanned subspace. Let  
+$$
+v = a_{1} v_{1} + \cdots + a_{m} v_{m} = b_{1} v_{1} + \cdots + b_{m} v_{m},
+$$
+then  
+$$
+(a_{1} - b_{1}) v_{1} + \cdots + (a_{m} - b_{m}) v_{m} = 0.
+$$  
+The most special case is when $a_{i} = b_{i}$ (for all $i \in \{1, \dots, m\}$). To characterize this situation, we introduce linear independence.
+
+\begin{definition}[Linear Independence]
+    If $ a_{1} v_{1} + \cdots + a_{m} v_{m} = 0 $ holds only when $ a_{i} = 0,\forall i \in\{1,\cdots,m\} $, then the vectors $ v_{1}, \dots, v_{m} $ are said to be \textbf{linearly independent}.
+\end{definition}
+
+This following propositions directly follow from the above discussion.
+\begin{proposition}
+    Removing vectors from a linearly independent list does not change the linear independence of the list.
+\end{proposition}
+\begin{proposition}
+    The vectors $v_{1}, \dots, v_{m}$ are linearly independent if and only if every element in $\operatorname{span}(v_{1}, \dots, v_{m})$ can be represented uniquely.
+\end{proposition}
+
+We know proceed to study the length of a spanning list and a linearly independent list and we first do some preperations. Intuitively, a spanning list should be longer than a linearly independent list. The following lemma formalizes this idea.
+\begin{lemma} \label{lem: removing_from_spanning}
+    Suppose $v_{1}, \dots, v_{m}$ are linearly dependent. Then there exists $k \in \{1, 2, \dots, m\}$ such that $v_{k} \in \operatorname{span}(v_{1}, \dots, v_{k-1})$. Furthermore, removing $v_{k}$ does not change the spanned subspace, i.e.,  
+    $$
+    \operatorname{span}(v_{1}, \dots, v_{k-1}, v_{k+1}, \dots, v_{m}) = \operatorname{span}(v_{1}, \dots, v_{m}).
+    $$
+\end{lemma}
+\begin{proof}
+    By definition, we have $a_1 v_1 +\cdots +a_m v_m=0$ where $a_1 ,\cdots, a_m$ are not all zeros. Suppose that $a_{k+1}=\cdots = a_m = 0$ and $a_{1} a_{2} \cdots a_{k} \neq 0$. We have $v_k = -\frac{a_1}{a_k}v_1 -\cdots - \frac{a_{k-1}}{a_{k}} v_k$, implying that $v_k \in \operatorname{span}(v_1, \cdots, v_{k-1})$.
+
+    For any vector in $\operatorname{span}(v_{1}, \dots, v_{m})$, it can be expressed as the linear combination of $v_1, \dots, v_m$. By substituting the expression of $v_k$ into this linear combination, we can express it solely in terms of $v_1, \dots, v_{k-1}, v_{k+1}, \dots, v_m$. Thus, the spanned subspace remains unchanged.
+\end{proof}
+
+\begin{theorem} \label{thm: spanning_vs_independent}
+    Let $v_1, \dots, v_m$ be a spanning list of a vector space $V$. Then any linearly independent list of vectors in $V$ has length at most $m$.
+\end{theorem}
+\begin{proof}
+       Let $u_1,\cdots, u_m$ be a linearly independent list. Consider adding $u_1$ to $v_1,\cdots, v_n$ and by \ref{lem: removing_from_spanning} we know $u_1,v_1,\cdots, v_n$ is linearly dependent and 
+    we can remove one of the vectors without changing the spanned space. Notice that we can choose one vector from $v_1, \cdots , v_n$ since $u_1$ is none-zero.
+
+    We now proceed to add $u_2$ to the previous list. Since $u_2 \notin \operatorname{span}(u_1)$ by linear independence, we can choose a vector from the $v$'s and remove it. We continue doing so until no vectors are left in the linearly independent list. We now get
+    a list with $n$ vectors which contains $u_1,\cdots, u_m$, implying $m \leq n$.
+\end{proof}
+
+\section{Finite Dimensional Vector Space}
+In the previous section, we've discovered that the smallest spanning list is linearly independent. This inspire us to present a vector space with the help of a linearly independent spanning list.
+In this section, we move on to discover the properties of the subspace spanned by a linearly independent list with finite length.
+
+\subsection{Basis}
+\begin{definition}[Basis]
+    A \textbf{basis} of a vector space $V$ is a linearly independent list of vectors that spans $V$.
+\end{definition}
+
+The most important result is the following, which shows how to construct a basis.
+\begin{theorem}[Steinitz] \namedlabel{thm: steinitz}{the Steinitz exchange lemma}
+    Suppose $v_1, \dots, v_m$ is a spanning list of a vector space $V$, then there exists a subset of $\{v_1, \dots, v_m\}$ that forms a basis of $V$. Similarly, if $u_1, \dots, u_n$ is a linearly independent list in $V$, then there exists a list $u_{n+1}, \dots, u_m$ in $V$ such that $u_1, \dots, u_m$ forms a basis of $V$.
+\end{theorem}
+\begin{proof}
+    For the first part, if $v_1, \dots, v_m$ is linearly independent, then it is a basis. Otherwise, by lemma \ref{lem: removing_from_spanning}, we can remove one vector without changing the spanned space. Continuing this process, we will eventually obtain a linearly independent list that spans $V$, which is a basis.
+
+    For the second part, if $u_1, \dots, u_n$ spans $V$, then it is a basis. Otherwise, there exists $v \in V$ such that $v \notin \operatorname{span}(u_1, \dots, u_n)$. We can add $v$ to the list to form $u_1, \dots, u_n, v$. Repeating this process, we will eventually obtain a spanning list that contains $u_1, \dots, u_n$. By the first part, we can extract a basis from this spanning list.    
+\end{proof}
+
+\subsection{Dimension}
+It's natural to define the length of the basis as the dimension of the vector space. Before we present the definition, we need to show that the length of the basis is unique. 
+\begin{theorem}
+    Any two basis of a vector space $V$ have the same length.
+\end{theorem}
+\begin{proof}
+    Suppose $B_1$ and $B_2$ are two basis of $V$. We can view $B_1$ as a spanning list and $B_2$ as a linearly independent list. By \thmref{thm: spanning_vs_independent}, we know that the length of $B_2$ is at most that of $B_1$. By symmetry, the length of $B_1$ is at most that of $B_2$. Thus, they have the same length.
+\end{proof}
+
+\begin{definition}[Dimension]
+    The \textbf{dimension} of a vector space $V$, denoted by $\dim V$, is defined as the length of any basis of $V$.
+\end{definition}
+
+\begin{theorem}[Criterion for Basis of a Finite-dimensional Vector Space]
+    A spanning or linearly independent list of a vector space $V$ is a basis if and only if its length equals $\dim V$.
+\end{theorem}
+\begin{proof}
+    It's done with \thmref{thm: steinitz}.
+\end{proof}
