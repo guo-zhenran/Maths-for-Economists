@@ -32,3 +32,13 @@ The definition here is similar to that of group homomorphism and isomorphism.
 \end{definition}
 
 Note that if $\varphi$ is a ring homomorphism, then it's a group homomorphism for $(R,+)$ and $(S,+)$ and the kernel is defined by $\operatorname{Ker}(\varphi)=\{r\in R: \varphi(r)=0_S\}$.
+
+\subsection{Ordered Field}
+In this subsubsection, we add an order relation to a field and make it an ordered field.
+\begin{definition}[Ordered Field]
+    An ordered field is a field $(F,+,\cdot)$ equipped with a total order relation $\leq$, if the following statements hold for all $a,b,c \in F$:
+    \begin{enumerate}
+        \item If $a \leq b$, then $a + c \leq b + c$.
+        \item If $0 \leq a$ and $0 \leq b$, then $0 \leq a \cdot b$.
+    \end{enumerate}
+\end{definition}   
