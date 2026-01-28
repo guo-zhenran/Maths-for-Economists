@@ -1,0 +1,83 @@
+\chapter{Linear Mapping and Matrix}
+By definition, for a vector sapce $V$, we know $(V,+)$ is an Abelian group. It's natural to consider the group homomorphisms and isomorphisms on vector spaces.
+We'll see linear mapping as a group homomorphism and discover some more fine properties in this chapter.
+
+\section{Linear Mapping}
+\subsection{the Definitions}
+\begin{definition}[Linear Mapping]
+    For a function $\varphi$ from the vector space $V$ to the vector space $W$, if the following statements hold, we call it a linear mapping\footnote{One may ask if such a mapping exists. 
+    The answer is yes as there exists a unique linear mapping that takes the basis of $V$ to the basis of $W$, see \cite[p.~54]{Axler_2024} for proof of this proposition.}.
+    \begin{itemize}
+        \item $\varphi(v_1+v_2) = \varphi(v_1) +\varphi(v_2),\forall v_1,v_2 \in V.$
+        \item $\varphi(\lambda v) =\lambda \varphi(v),\forall \lambda \in \mathcal{F}.$
+    \end{itemize}
+    We denote the set of all linear mappings from $V$ to $W$ as $\mathcal{L}(V,W)$.
+\end{definition}
+
+It's clear that a linear mapping is indeed a homomorphism, so we can easily translate some of the definitions and propositions from group homomorphisms to linear mappings.
+\begin{definition}[Kernel]
+    The kernel of a linear mapping $\varphi \in \mathcal{L}(V,W)$ is defined as $$\operatorname{Ker} \varphi = \{v \in V : \varphi(v) = 0\}$$
+\end{definition}
+
+\begin{proposition}
+    Suppose $\varphi \in \mathcal{L}(V,W)$, then the following holds:
+    \begin{itemize}
+        \item $\varphi(0) = 0$
+        \item $\varphi$ is injective $\iff \operatorname{Ker} (\varphi)$ is trivial. 
+    \end{itemize}
+\end{proposition}
+
+We can also define the operations on $\mathcal{L}(V,W)$.
+\begin{definition}[Operations on $\mathcal{L}(V,W)$]
+    Let $\mathcal{L}(V,W)$ be the set of all linear mappings from $V$ to $W$, we have 3 operations on it:
+    \begin{description}
+        \item[Addition] $\forall \varphi, \varpi \in \mathcal{L}(V,W), (\varphi+ \varpi)(v) = \varphi(v) + \varpi(v)$
+        \item[Scalar Multiplication] $\forall \lambda \in \mathcal{F}, (\lambda \varphi)(v) = \lambda (\varphi(v))$
+        \item[Product (Combination)]  $\forall \varphi, \varpi \in \mathcal{L}(V,W), (\varphi \varpi)(v) = \varphi\circ \varpi(v)$
+    \end{description}
+    \,Then $\mathcal{L}(V,W)$ is a vector space.
+\end{definition}
+
+\subsection{Isomorphic Linear Mapping}
+Before we start to deal with isomorphisms, we first dig deeper into the linear mappings of finite-dimensional vector spaces.
+\begin{theorem}[Fundamental Theorem of Linear Mappings] \namedlabel{thm: Fundamental_Linear_Mapping}{the fundamental theorem of linear mappings}
+    Suppose $\varphi \in \mathcal{L}(V,W)$, then $$\dim V = \dim \operatorname{Im}\varphi + \dim \operatorname{Ker} \varphi$$
+\end{theorem}
+\begin{proof}
+    Let $u_1,\cdots,u_n$ be a basis of $\operatorname{Ker} \varphi$. By \lemmaref{lem: steinitz}, we can extend them as $u_1,\cdots,u_n, v_1,\cdots, v_m$ so that
+    it becomes a basis of $V$. We close the proof by showing $\varphi(v_1) ,\cdots,\varphi(v_n)$ is a basis of $\operatorname{Im}\varphi$.
+
+    We first show that $\varphi(v_1) ,\cdots,\varphi(v_n)$ spans $\operatorname{Im} \varphi$. Notice that $\forall v \in V$, we can rewrite it as $a_1 u_1+\cdots+a_m u_m +b_1 v_1 +\cdots + b_n v_n = v$. Thus
+    $$\varphi(v) = b_1 \varphi(v_1) +\cdots +b_n \varphi(v_n)$$
+    \,implying $\varphi(v) \in \operatorname{span}(\varphi(v_1) ,\cdots,\varphi(v_n)).$
+
+    Now we show the linear independence\footnote{From this part we can also show that an isomorphic linear mapping maps a linearly independent list to a linearly independent list.}. Suppose $c_1 v_1+\cdots+c_nv_n=0$, then $\varphi(c_1 v_1+\cdots+c_nv_n)=0$, meaning $c_1 v_1+\cdots+c_nv_n \in \operatorname{Ker} \varphi.$
+    We can rewrite it with the linear combination of $u_1,\cdots,u_m$, say $c_1 v_1+\cdots+c_nv_n = d_1 u_1 +\cdots +d_m u_m$. Since $u_1,\cdots,u_n, v_1,\cdots, v_m$ is linearly independent, all $c$'s and $d$'s are zero.
+\end{proof}
+
+\begin{corollary} \label{cor: mapping}
+    Suppose $V$ and $W$ are vector spaces. If $\dim V < \dim W$, $\varphi \in \mathcal{L}(V,W)$ is NOT surjective. If $\dim V > \dim W$, $\varphi \in \mathcal{L}(V,W)$ is NOT injective
+\end{corollary}
+
+With these results, we can depict an isomorphism with ease.
+\begin{definition}[Isomorphic Linear Mapping]
+    If a linear mapping is bijective, we say it's isomorphic.
+\end{definition}
+
+We know by \corref{cor: mapping} that a necessary condition for a linear mapping to be isomorphic is that the finite-dimensional vector spaces have the same dimension.
+\begin{corollary}
+    Suppose $\varphi \in \mathcal{L}(V,W)$ with $\dim V = \dim W$, the followings are equivalent:
+    \begin{itemize}
+        \item $\varphi$ is isomorphic.
+        \item $\operatorname{Ker} \varphi$ is trivial.
+        \item $\operatorname{Im} \varphi = W$.
+        \item $\varphi$ is invertible. 
+    \end{itemize}
+\end{corollary}
+\begin{proof}
+    Use \thmref{thm: Fundamental_Linear_Mapping}, we have 
+    $$\varphi \text{ is surjective} \iff \operatorname{Im} \varphi = W \iff \dim \operatorname{Ker} \varphi = 0 \iff \varphi \text{ is injective}$$
+\end{proof}
+
+\section{Matrix}
+\subsection{From Linear Mapping to Matrix}

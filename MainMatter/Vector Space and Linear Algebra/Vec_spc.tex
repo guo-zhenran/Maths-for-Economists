@@ -113,7 +113,7 @@ We know proceed to study the length of a spanning list and a linearly independen
     Let $v_1, \dots, v_m$ be a spanning list of a vector space $V$. Then any linearly independent list of vectors in $V$ has length at most $m$.
 \end{theorem}
 \begin{proof}
-       Let $u_1,\cdots, u_m$ be a linearly independent list. Consider adding $u_1$ to $v_1,\cdots, v_n$ and by \ref{lem: removing_from_spanning} we know $u_1,v_1,\cdots, v_n$ is linearly dependent and 
+       Let $u_1,\cdots, u_m$ be a linearly independent list. Consider adding $u_1$ to $v_1,\cdots, v_n$ and by \lemmaref{lem: removing_from_spanning} we know $u_1,v_1,\cdots, v_n$ is linearly dependent and 
     we can remove one of the vectors without changing the spanned space. Notice that we can choose one vector from $v_1, \cdots , v_n$ since $u_1$ is none-zero.
 
     We now proceed to add $u_2$ to the previous list. Since $u_2 \notin \operatorname{span}(u_1)$ by linear independence, we can choose a vector from the $v$'s and remove it. We continue doing so until no vectors are left in the linearly independent list. We now get
@@ -130,11 +130,11 @@ In this section, we move on to discover the properties of the subspace spanned b
 \end{definition}
 
 The most important result is the following, which shows how to construct a basis.
-\begin{theorem}[Steinitz] \namedlabel{thm: steinitz}{the Steinitz exchange lemma}
+\begin{lemma}[Steinitz] \namedlabel{lem: steinitz}{the Steinitz exchange lemma}
     Suppose $v_1, \dots, v_m$ is a spanning list of a vector space $V$, then there exists a subset of $\{v_1, \dots, v_m\}$ that forms a basis of $V$. Similarly, if $u_1, \dots, u_n$ is a linearly independent list in $V$, then there exists a list $u_{n+1}, \dots, u_m$ in $V$ such that $u_1, \dots, u_m$ forms a basis of $V$.
-\end{theorem}
+\end{lemma}
 \begin{proof}
-    For the first part, if $v_1, \dots, v_m$ is linearly independent, then it is a basis. Otherwise, by lemma \ref{lem: removing_from_spanning}, we can remove one vector without changing the spanned space. Continuing this process, we will eventually obtain a linearly independent list that spans $V$, which is a basis.
+    For the first part, if $v_1, \dots, v_m$ is linearly independent, then it is a basis. Otherwise, by \lemmaref{lem: removing_from_spanning}, we can remove one vector without changing the spanned space. Continuing this process, we will eventually obtain a linearly independent list that spans $V$, which is a basis.
 
     For the second part, if $u_1, \dots, u_n$ spans $V$, then it is a basis. Otherwise, there exists $v \in V$ such that $v \notin \operatorname{span}(u_1, \dots, u_n)$. We can add $v$ to the list to form $u_1, \dots, u_n, v$. Repeating this process, we will eventually obtain a spanning list that contains $u_1, \dots, u_n$. By the first part, we can extract a basis from this spanning list.    
 \end{proof}
@@ -156,5 +156,18 @@ It's natural to define the length of the basis as the dimension of the vector sp
     A spanning or linearly independent list of a vector space $V$ is a basis if and only if its length equals $\dim V$.
 \end{theorem}
 \begin{proof}
-    It's done with \thmref{thm: steinitz}.
+    It's done with \lemmaref{lem: steinitz}.
 \end{proof}
+
+We close this subsection with the following results concerning operations of vector spaces and their dimension.
+\begin{theorem}[the Dimension Inequality]
+    For vector space $V$ and its subspace $U$, suppose $U \subset V$. Then $0 \leq \dim U \leq \dim V$ and it becomes an equation only when $U$ is trivial or $U=V$.
+\end{theorem}
+
+\begin{theorem}For vector space $V$ and $U$,
+    $$\dim (U+V) = \dim U +\dim V -\dim(U\cap V).$$
+\end{theorem}
+
+\begin{theorem}
+    Let $V_1,\cdots,V_m$ be vector spaces, then $V_1 +\cdots +V_m$ is a direct sum $\iff \dim (V_1 +\cdots+V_m)=\dim V_1 +\cdots +V_m$.  
+\end{theorem}
