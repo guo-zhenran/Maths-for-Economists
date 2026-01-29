@@ -66,18 +66,29 @@ With these results, we can depict an isomorphism with ease.
 
 We know by \corref{cor: mapping} that a necessary condition for a linear mapping to be isomorphic is that the finite-dimensional vector spaces have the same dimension.
 \begin{corollary}
-    Suppose $\varphi \in \mathcal{L}(V,W)$ with $\dim V = \dim W$, the followings are equivalent:
-    \begin{itemize}
-        \item $\varphi$ is isomorphic.
-        \item $\operatorname{Ker} \varphi$ is trivial.
-        \item $\operatorname{Im} \varphi = W$.
-        \item $\varphi$ is invertible. 
-    \end{itemize}
+    Suppose $\varphi \in \mathcal{L}(V,W)$ with $\dim V = \dim W$, Then
+    $$\varphi \text{ is isomorphic} \iff \operatorname{Ker} \varphi \text{ is trivial} \iff \operatorname{Im} \varphi = W \iff \varphi \text{ is invertible}$$
 \end{corollary}
 \begin{proof}
     Use \thmref{thm: Fundamental_Linear_Mapping}, we have 
     $$\varphi \text{ is surjective} \iff \operatorname{Im} \varphi = W \iff \dim \operatorname{Ker} \varphi = 0 \iff \varphi \text{ is injective}$$
 \end{proof}
 
+If there exists an isomorphism from $V$ to $W$, we say $V$ and $W$ are isomorphic.
+\begin{theorem} \label{thm: isomorphic_spaces}
+    $V$ and $W$ are isomorphic $\iff \dim V = \dim W$. 
+\end{theorem}
+
 \section{Matrix}
+\subsection{From Vector to Coordinate}
+From \thmref{thm: isomorphic_spaces}, we know that $V$, whose dimension is $n$, and $\mathcal{F}^{n}$ is isomorphic. That is to say there exists a bijection
+$\mathcal{M}:V\to \mathcal{F}^{n}$. For a basis of $V$, denoted by $v_1,\cdots, v_n$, we construct the isomorphism as follows: 
+$$v_i \mapsto (\underbrace{0,\cdots, 1,\cdots, 0}_{\text{the } i\text{th slot equals to 1}}).$$
+Then, for $v \in V$, we can write it as $v = a_1 v_1 +\cdots +a_n v_n$ and $$\mathcal{M}(v) = a_1 \mathcal{M}(v_1) +\cdots +a_n \mathcal{M}(v_n)$$
+\,this leads us to the definition of coordinate.
+\begin{definition}[Coordinate]
+    Suppose for $v \in V$, we have $v = a_1 v_1 +\cdots +a_n v_n$, then its coordinate is defined as 
+    $$\mathcal{M}(v) = (a_1, a_2,\cdots, a_n).$$
+\end{definition}
+
 \subsection{From Linear Mapping to Matrix}
