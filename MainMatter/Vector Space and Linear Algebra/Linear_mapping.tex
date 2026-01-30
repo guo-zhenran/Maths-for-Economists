@@ -92,3 +92,132 @@ Then, for $v \in V$, we can write it as $v = a_1 v_1 +\cdots +a_n v_n$ and $$\ma
 \end{definition}
 
 \subsection{From Linear Mapping to Matrix}
+Note that we can also write $(f_1, \cdots, f_n)$ in a column, that is 
+$$\begin{pmatrix}
+    f_1  \\ \vdots  \\ f_n 
+\end{pmatrix}$$
+\,or simply denote it by $(f_1,\cdots, f_n)^{t}$. Wether to write a vector in $\mathcal{F}^n$ in a row or in a column is basically for simplicity of the notation.
+We'll see the benefits when presenting the $m$-direct product of $\mathcal{F}^n$. Suppose $\mathbf{f}_1,\cdots \mathbf{f}_m \in \mathcal{F}^n$, elements of the direct product $\mathcal{F}^{n,m}$
+can be written as $(\mathbf{f}_1,\cdots \mathbf{f}_m)$ and we drop the brackets of $\mathbf{f}$'s, that is 
+$$\begin{pmatrix}
+f_{11}  &\cdots  & f_{1m}\\
+\vdots  & \ddots & \vdots\\
+f_{n1} &\cdots & f_{nm}
+\end{pmatrix}.$$
+
+A similar result of the previous example is that $\mathcal{F}^{n,m}$ is a vector space with dimension $nm$. 
+
+Notice that $\dim \mathcal{L}(V,W) = nm$ if $\dim V = m$ and $\dim W = n$. So it's natural to construct an isomorphism to give a specific representation of linear mappings.
+Suppose $\varphi \in \mathcal{L}(V,W)$ with $\dim V = n$ and $\dim W = m$. Let $v_1,\cdots,v_m$ be a basis of $V$ and $w_1,\cdots, w_n$ be a basis of $W$.
+We try to calculate $\mathcal{M}( \varphi(v_i))$ so that we can know the coordinate of any vectors in $\varphi(V)$ by linear combination. Suppose $ \varphi(v_i) = a_{1i} w_1+ a_{2i}w_2 +\cdots +a_{ni} w_n$, then 
+$$\mathcal{M}( \varphi(v_i)) = (a_{1i} , a_{2i} ,\cdots ,a_{ni})^{t}.$$ 
+Thus, we can present $\varphi$ by 
+$$\begin{pmatrix}
+a_{11}  &\cdots  & a_{1m}\\
+\vdots  & \ddots & \vdots\\
+a_{n1} &\cdots & a_{nm}
+\end{pmatrix}.$$
+
+\begin{definition}[Matrix]
+    Suppose $\varphi \in \mathcal{L}(V,W)$ and the basis of $V$ and $W$ are $(v_1,\cdots,v_m)$ and $(w_1,\cdots, w_n)$ respectively, then the matrix of $\varphi$ with respect to the basis $(v_1,\cdots,v_m)$ and $(w_1,\cdots, w_n)$ is defined as
+    $$\mathcal{M}(\varphi,(v_1,\cdots,v_m),(w_1,\cdots, w_n)) \footnote{Simply use the notation $\mathcal{M}(\varphi)$ when the basis is clear from the context.} = \begin{pNiceMatrix}[first-row,first-col]
+    & v_1 & \cdots & v_k & \cdots & v_m \\
+    w_1 & & & a_{1k} & & \\
+    \Vdots & & & \Vdots & & \\
+    w_n & & & a_{nk} & & 
+    \end{pNiceMatrix}$$
+    where $\{a_{ij}\}_{(i,j) = (1,1)}^{(n,m)}$ satisfy $ \varphi(v_k) = a_{1k} w_1+ a_{2k}w_2 +\cdots +a_{nk} w_n$ for $k = 1,\dots,m$. We denote the set of matrix with $n$ rows and $m$ columns as $\mathcal{F}^{n,m}$.
+\end{definition}
+
+\subsection{Operations of Matrix}
+As mentioned before, a matrix is basically a linear mapping. In this way we define the operations of matrixes analogous to the operations of linear mappings.
+\begin{description}
+    \item[Addition] Suppose $\varphi,\varpi \in \mathcal{L}(V, W)$ and we have $\varphi \left(v_{k}\right)=a_{1 k} w_{1}+\cdots+a_{n k} w_{n}$ and $\varpi\left(v_{k}\right)=b_{1 k} w_{1}+\cdots+b_{n k} w_{n}$.
+    $$(\varphi+\varpi)\left(v_{k}\right)=\varphi\left(v_{k}\right)+\varpi \left(v_{k}\right)=\left(a_{1 k}+b_{1 k}\right) w_{1}+\cdots+\left(a_{n k}+b_{n k}\right) w_{n}$$ 
+    
+    \item[Scalar Multiplication] Suppose $\varphi \in \mathcal{L}(V, W)$ and $\varphi\left(v_{k}\right)=a_{1 k} w_{1}+\cdots+a_{n k} w_{n}$. For $\lambda \in \mathbb{F}$,
+    $$(\lambda \varphi)\left(v_{k}\right)=\lambda\left(\varphi\left(v_{k}\right)\right)=\lambda a_{1 k} w_{1}+\cdots+\lambda a_{n k} w_{n}$$
+    
+    \item[Product (Composition)] Suppose $\varphi \in \mathcal{L}(V, W)$ and $\psi \in \mathcal{L}(W, U)$, with $\varphi\left(v_{k}\right)=a_{1 k} w_{1}+\cdots+a_{n k} w_{n}$ and $\psi\left(w_{k}\right)=b_{1 k} u_{1}+\cdots+b_{p k} u_{p}$. Then the composition $\psi \circ \varphi$ satisfies:
+    $$\begin{aligned}
+    (\psi \circ \varphi)\left(v_{k}\right)=\psi\left(\varphi\left(v_{k}\right)\right) & =a_{1 k} \psi\left(w_{1}\right)+\cdots+a_{n k} \psi\left(w_{n}\right) \\
+    & =a_{1 k} \sum_{i=1}^{p} b_{i 1} u_{i}+\cdots+a_{n k} \sum_{i=1}^{p} b_{i n} u_{i} \\
+    & =\left(\sum_{j=1}^{n} b_{1 j} a_{j k}\right) u_{1}+\cdots+\left(\sum_{j=1}^{n} b_{p j} a_{j k}\right) u_{p}
+    \end{aligned}$$
+\end{description}
+
+This leads us to the following definitions.
+\begin{definition}[Operations of Matrix]
+    In the space of matrices, we can define the following operations:
+    \begin{itemize}
+        \item \textbf{Addition:} For matrices $A = \mathcal{M}(\varphi)$ and $B = \mathcal{M}(\varpi)$ in $\mathcal{F}^{n,m}$ (with respect to the same bases),
+        $$\mathcal{M}(\varphi+\varpi) = \mathcal{M}(\varphi) + \mathcal{M}(\varpi),$$
+        that is,
+        $$\begin{aligned}
+        \begin{pNiceMatrix}[first-row,first-col]
+        & v_1 & \cdots & v_k & \cdots & v_m \\
+        w_1 & & & a_{1k} & & \\
+        \Vdots & & & \Vdots & & \\
+        w_n & & & a_{nk} & & 
+        \end{pNiceMatrix}
+        &+
+        \begin{pNiceMatrix}[first-row,first-col]
+        & v_1 & \cdots & v_k & \cdots & v_m \\
+        w_1 & & & b_{1k} & & \\
+        \Vdots & & & \Vdots & & \\
+        w_n & & & b_{nk} & & 
+        \end{pNiceMatrix} \\
+        &=
+        \begin{pNiceMatrix}[first-row,first-col]
+        & v_1 & \cdots & v_k & \cdots & v_m \\
+        w_1 & & & a_{1k}+b_{1k} & & \\
+        \Vdots & & & \Vdots & & \\
+        w_n & & & a_{nk}+b_{nk} & & 
+        \end{pNiceMatrix}
+        \end{aligned}$$
+        
+        \item \textbf{Scalar Multiplication:} For a matrix $A = \mathcal{M}(\varphi)$ in $\mathcal{F}^{n,m}$ and a scalar $\lambda \in \mathbb{F}$,
+        $$\mathcal{M}(\lambda\varphi) = \lambda\mathcal{M}(\varphi),$$
+        that is,
+        $$\lambda
+        \begin{pNiceMatrix}[first-row,first-col]
+        & v_1 & \cdots & v_k & \cdots & v_m \\
+        w_1 & & & a_{1k} & & \\
+        \Vdots & & & \Vdots & & \\
+        w_n & & & a_{nk} & & 
+        \end{pNiceMatrix}
+        =
+        \begin{pNiceMatrix}[first-row,first-col]
+        & v_1 & \cdots & v_k & \cdots & v_m \\
+        w_1 & & & \lambda a_{1k} & & \\
+        \Vdots & & & \Vdots & & \\
+        w_n & & & \lambda a_{nk} & & 
+        \end{pNiceMatrix}$$
+        
+        \item \textbf{Multiplication (Composition):} For matrices $A = \mathcal{M}(\varphi) \in \mathcal{F}^{n,m}$ (with respect to bases of $V$ and $W$) and $B = \mathcal{M}(\psi) \in \mathcal{F}^{p,n}$ (with respect to bases of $W$ and $U$),
+        $$\mathcal{M}(\psi \circ \varphi) = \mathcal{M}(\psi)\mathcal{M}(\varphi) = BA,$$
+        that is,
+        $$\begin{aligned}
+        \begin{pNiceMatrix}[first-row,first-col]
+        & w_1 & \cdots & w_k & \cdots & w_n \\
+        u_1 & & & b_{1k} & & \\
+        \Vdots & & & \Vdots & & \\
+        u_p & & & b_{pk} & & 
+        \end{pNiceMatrix} \cdot
+        &\begin{pNiceMatrix}[first-row,last-col]
+        v_1 & \cdots & v_k & \cdots & v_m & \\
+        & & a_{1k} & & & w_1 \\
+        & & \Vdots & & & \Vdots \\
+        & & a_{nk} & & & w_n 
+        \end{pNiceMatrix} \\
+        &=
+        \begin{pNiceMatrix}[first-row,first-col]
+        & v_1 & \cdots & v_k & \cdots & v_m \\
+        u_1 & & & \sum_{j=1}^{n} b_{1j} a_{jk} & & \\
+        \Vdots & & & \Vdots & & \\
+        u_p & & & \sum_{j=1}^{n} b_{pj} a_{jk} & & 
+        \end{pNiceMatrix}
+        \end{aligned}$$
+        Note that the product matrix $BA$ is in $\mathcal{F}^{p,m}$, corresponding to the linear mapping $\psi \circ \varphi: V \to U$.
+    \end{itemize}
+\end{definition}

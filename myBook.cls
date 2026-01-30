@@ -227,6 +227,7 @@
 \usepackage{multirow}
 \usepackage{pdfpages,tikz}
 \usetikzlibrary{matrix, positioning}
+\usepackage{nicematrix}
 
 % ================ 页眉页脚设置 ================
 \pagestyle{fancy}
