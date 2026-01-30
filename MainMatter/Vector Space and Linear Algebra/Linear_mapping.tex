@@ -80,18 +80,17 @@ If there exists an isomorphism from $V$ to $W$, we say $V$ and $W$ are isomorphi
 \end{theorem}
 
 \section{Matrix}
-\subsection{From Vector to Coordinate}
-From \thmref{thm: isomorphic_spaces}, we know that $V$, whose dimension is $n$, and $\mathcal{F}^{n}$ is isomorphic. That is to say there exists a bijection
-$\mathcal{M}:V\to \mathcal{F}^{n}$. For a basis of $V$, denoted by $v_1,\cdots, v_n$, we construct the isomorphism as follows: 
-$$v_i \mapsto (\underbrace{0,\cdots, 1,\cdots, 0}_{\text{the } i\text{th slot equals to 1}}).$$
-Then, for $v \in V$, we can write it as $v = a_1 v_1 +\cdots +a_n v_n$ and $$\mathcal{M}(v) = a_1 \mathcal{M}(v_1) +\cdots +a_n \mathcal{M}(v_n)$$
-\,this leads us to the definition of coordinate.
-\begin{definition}[Coordinate]
-    Suppose for $v \in V$, we have $v = a_1 v_1 +\cdots +a_n v_n$, then its coordinate is defined as 
-    $$\mathcal{M}(v) = (a_1, a_2,\cdots, a_n).$$
-\end{definition}
+We have already explored the abstract concept of linear mappings and we know that isomorphic linear mappings are of great importance as they maintain the structure of a certain vector space.
+We now turn to a more concrete representation of linear mappings, that is matrix, before which we consider a specific vector space, $\mathcal{F}^{n}$.
 
-\subsection{From Linear Mapping to Matrix}
+\begin{example}[$\mathcal{F}^{n}$ as a Vector Space]
+    For a field $\mathcal{F}$, you may verify that the direct product $\mathcal{F}^{n}$\footnote{What we mean here is to see the field $\mathcal{F}$ as a group $(\mathcal{F},+)$.} is a $\mathcal{F}$-vector space with the group addition and scalar multiplication defined by $\cdot:(\lambda, (f_1,\cdots,f_n))\in \mathbb{F}\times \mathcal{F}^n \mapsto (\lambda f_1,\cdots,\lambda f_n)$. We have $\dim \mathcal{F}^{n} = n$ and its basis is given by 
+    $$\underbrace{(1,0,\cdots,0), (0,1,\cdots,0), \cdots, (0,0,\cdots,1)}_{n \text{ vectors}}.$$
+\end{example}
+\begin{proof}
+    We show the basis part. It's clear that these $n$ vectors span $\mathcal{F}^{n}$. Now we show the linear independence. Suppose $a_1 (1,0,\cdots,0) + a_2 (0,1,\cdots,0) +\cdots + a_n (0,0,\cdots,1) = 0$, then we have $(a_1, a_2, \cdots, a_n) = 0$, implying all $a_i$'s are zero.
+\end{proof}
+
 Note that we can also write $(f_1, \cdots, f_n)$ in a column, that is 
 $$\begin{pmatrix}
     f_1  \\ \vdots  \\ f_n 
@@ -104,9 +103,20 @@ f_{11}  &\cdots  & f_{1m}\\
 \vdots  & \ddots & \vdots\\
 f_{n1} &\cdots & f_{nm}
 \end{pmatrix}.$$
+A similar result of the previous example is that $\mathcal{F}^{n,m}$ is a vector space with dimension $nm$.
 
-A similar result of the previous example is that $\mathcal{F}^{n,m}$ is a vector space with dimension $nm$. 
+\subsection{From Vector to Coordinate}
+From \thmref{thm: isomorphic_spaces}, we know that $V$, whose dimension is $n$, and $\mathcal{F}^{n}$ is isomorphic. That is to say there exists a bijection
+$\mathcal{M}:V\to \mathcal{F}^{n}$. For a basis of $V$, denoted by $v_1,\cdots, v_n$, we construct the isomorphism as follows: 
+$$v_i \mapsto (\underbrace{0,\cdots, 1,\cdots, 0}_{\text{the } i\text{th slot equals to 1}}).$$
+Then, for $v \in V$, we can write it as $v = a_1 v_1 +\cdots +a_n v_n$ and $$\mathcal{M}(v) = a_1 \mathcal{M}(v_1) +\cdots +a_n \mathcal{M}(v_n)$$
+\,this leads us to the definition of coordinate.
+\begin{definition}[Coordinate]
+    Suppose for $v \in V$, we have $v = a_1 v_1 +\cdots +a_n v_n$, then its coordinate is defined as 
+    $$\mathcal{M}(v) = (a_1, a_2,\cdots, a_n).$$
+\end{definition}
 
+\subsection{From Linear Mapping to Matrix}
 Notice that $\dim \mathcal{L}(V,W) = nm$ if $\dim V = m$ and $\dim W = n$. So it's natural to construct an isomorphism to give a specific representation of linear mappings.
 Suppose $\varphi \in \mathcal{L}(V,W)$ with $\dim V = n$ and $\dim W = m$. Let $v_1,\cdots,v_m$ be a basis of $V$ and $w_1,\cdots, w_n$ be a basis of $W$.
 We try to calculate $\mathcal{M}( \varphi(v_i))$ so that we can know the coordinate of any vectors in $\varphi(V)$ by linear combination. Suppose $ \varphi(v_i) = a_{1i} w_1+ a_{2i}w_2 +\cdots +a_{ni} w_n$, then 
