@@ -231,3 +231,40 @@ This leads us to the following definitions.
         Note that the product matrix $BA$ is in $\mathcal{F}^{p,m}$, corresponding to the linear mapping $\psi \circ \varphi: V \to U$.
     \end{itemize}
 \end{definition}
+\begin{remark}
+    There're several ways to understand product oa matrix. Let $\operatorname{Col}_k$ and $\operatorname{Row}_k$ denote the $k$th column and row respectively. Consider the matrix multiplication $C=AB$:
+    \begin{itemize}
+        \item entry of matrix product equals row times column: $c_{ij} = \operatorname{Row}_i (A) \cdot \operatorname{Col}_j (B)$.
+        \item column(row) of matrix product equals matrix times column(row): $\operatorname{Col}_k (C) = A \operatorname{Col}_k(B)$.
+        \item matrix multiplication as linear combinations of columns(rows): Notice that, suppose $b$ is a vector presented by $(b_1,\cdots,b_n)$, $Ab = \sum_{i=1}^{n} b_i \operatorname{Col}_i (A).$ Thus, if we see columns of $B$ as vectors, $$\operatorname{Col}_k (C) =\sum_{i=1}^{n} b_{ik}\operatorname{Col}_i (A).$$
+    \end{itemize}
+\end{remark}
+
+The third one leads to the CR factorization, which plays a crucial role in the definition of rank.
+
+\subsection{Change of Basis}
+The definition implies that matrix may change if we choose a diiferent basis. In this section, we're going to find a formula for changing the basis, which can help us find the simplist matrix to present a certain linear mapping.
+
+Before the matrix version, we consider changing the basis of a vector.
+Let $e_1, \dots, e_n$ be a basis of $V$. For any $\alpha \in V$, we write $\alpha = \lambda_1 e_1 + \cdots + \lambda_n e_n$, which can be represented as an $n \times 1$ matrix (column vector):$\alpha = (\lambda_1, \cdots, \lambda_n )^{\prime}$
+
+Let $f_1, \dots, f_n$ be another basis of $V$. We investigate how to express $\alpha$ with respect to the new basis $f$, starting from its representation in the basis $e$. Write each $f_i$ in terms of $e$:
+$$f_i = \sum_{k=1}^{n} a_{ik} e_k, \quad i = 1, 2, \dots, n.$$
+Now suppose $\alpha$ is expressed in the $f$-basis as $\alpha = \mu_1 f_1 + \cdots + \mu_n f_n$. Then
+\begin{align*}
+\alpha &= \mu_1 \left( \sum_{k=1}^{n} a_{1k} e_k \right) + \cdots + \mu_n \left( \sum_{k=1}^{n} a_{nk} e_k \right) \\
+&= \left( \sum_{k=1}^{n} \mu_k a_{k1} \right) e_1 + \cdots + \left( \sum_{k=1}^{n} \mu_k a_{kn} \right) e_n \\
+&= \bigl( a_{11}, \dots, a_{n1} \bigr) \begin{pmatrix} \mu_1 \\ \vdots \\ \mu_n \end{pmatrix} e_1
+      + \cdots + \bigl( a_{1n}, \dots, a_{nn} \bigr) \begin{pmatrix} \mu_1 \\ \vdots \\ \mu_n \end{pmatrix} e_n \\
+&= \begin{pmatrix}
+    a_{11} & \cdots & a_{n1} \\
+    \vdots & \ddots & \vdots \\
+    a_{1n} & \cdots & a_{nn}
+   \end{pmatrix}
+   \begin{pmatrix}
+    \mu_1 \\
+    \vdots \\
+    \mu_n
+   \end{pmatrix}.
+\end{align*}
+Thus, the coordinates of $\alpha$ in the $e$-basis are obtained by multiplying the transition matrix by its coordinate vector in the $f$-basis.
