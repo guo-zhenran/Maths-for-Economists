@@ -1,57 +1,156 @@
 \chapter{Metric Space and Convergence}
 \section{Metric Space}
-\subsection{the Definition}
+The introduction of metric space is to formally state the concept of distance. Consider the distance between 2 points, we naturally require 
+it to be non-negative and it equals to 0 if and only if the two points are exactly the same. It should also be symmetric, meaning the distance of $A$ to $B$ is the same as the one of $B$ to $A$.
+Moreover, the triangle inequality should also hold, which is a formal illustration of "a straight line is the shortest distance between 2 points". This leads to the definition of metric.
+\subsection{the Definitions}
 \begin{definition}[Metric Space]
-    
+    Let $X$ be a set and we define the metric, a mapping from $X\times X \to \mathbb{R}$, such that 
+    \begin{enumerate}
+        \item $d(x,y) = 0 \iff x = y.$
+        \item Symmetry: $\forall x,y \in X : d(x,y) = d(y,x).$
+        \item Triangle inequality: $\forall x,y,z \in X :d(x,y) \leq d(x,z)+d(z,y).$
+    \end{enumerate}
 \end{definition}
+\begin{remark}
+    The third axiom can be extended as $$\forall x,y,z \in X :d(x,y) \geq |d(x,z)-d(z,y)|.$$
+    This holds by noticing that $d(x,y) \geq d(x,z) - d(y,z)$ and interchanging $x$ and $y$, then
+    $$d(x,y) = d(y,x) \geq d(y,z) - d(x,z) = - [d(x,z) - d(y,z)]$$
+    \,This leads to the result.
+\end{remark}
 
+We show some special metrics.
 \begin{example}[the Discrete and Natural Metric]
-    
+    We call the following metrics discrete metric and natural metric respectively,
+    $$d_D : (x,y) \in X\times X \mapsto \delta_{x,y} \qquad d_N : (x,y) \in X\times X \mapsto |x-y|$$
+    \,where $\delta_{x,y}$ is the Dirichlet notation, meaning 
+    $$\delta_{x,y} = \begin{cases}
+        0, & x=y \\
+        1, & x\neq y
+    \end{cases}$$
 \end{example}
 
-\begin{proposition}[the Reversed Triangle Inequality]
-    $$d(x,y) \geq |d(x,z)-d(z,y)|.$$
-\end{proposition}
-
+\subsubsection{Diameter}
+The previous defition is concerning 2 points, we now extend it to the sets.
 \begin{definition}[Diameter]
-    
+    For a subset $Y$ of $X$,
+    $$\diam(Y) := \sup_{x,y \in Y} d(x,y).$$
+    \,If it's finite, we say $Y$ is $d$-bounded or simply bounded when the metric is clear form the context.
 \end{definition}
 
-\subsection{Neighborhood and Cluster Point}
+
+\subsubsection{Neighborhood}
+We introduce the concept of neighborhood for a metric space, before which we introduce ball. We'll see the general definition of neighborhood when encontering topology.
 \begin{definition}[Ball]
-    
+    An open ball with center at $a$ and radius $r$ is defined as $$\oball(a,r):= \{x\in X : d(a,x) < r\}$$
+    \,and a closed ball with center at $a$ and radius $r$ is defined as $$\cball(a,r):= \{x\in X : d(a,x) \leq r\}$$
 \end{definition}
 
 \begin{definition}[Neighborhood]
-    
+    We say $U\subset X$ is a neighborhood of $a\in X$ if $\exists r \in \R : \oball(a,r)\subset U.$ And we denote $\mathcal{U}(a)$ as the set of all neighborhoods of $a$.
 \end{definition}
 
-\begin{definition}[Cluster Point]
-    
+\subsubsection{Cluster Point}
+We can define cluster point for a sequence.
+\begin{definition}[Cluster Point of a Sequence]
+    Suppose $a\in X$, we call it a cluster point of $\{x_n\}_{n=1}^{\infty}$ if $\forall U \in \mathcal{U}(a): U$ contains infinitely many terms of $\{x_n\}_{n=1}^{\infty}$.
 \end{definition}
 
+The following proposition is straightforward by definition.
 \begin{proposition}
-    \cite[p.~134]{Amann_2005}
+    The followings are equivalent:
+    \begin{enumerate}
+        \item $a$ is a cluster point of $\{x_n\}_{n=1}^{\infty}$.
+        \item $\forall U\in \mathcal{U}(a)$ and $m\in \N: \exists n>m$ such that $x_n\in U$.
+        \item $\forall \varepsilon \in \R$ and $m\in \N: \exists n>m$ such that $x_n\in \oball(a,\varepsilon)$.
+    \end{enumerate}
 \end{proposition}
+
+This can be extended to a set as well.
+\begin{definition}[Cluster Point of a Set]
+    Let $E \subset X$ and we say $x_0$ is a cluster point of $E$ if $\forall \delta \in \R^+ : \exists x\in E\setminus \{x_0\}$ such that $d(x_0,x)< \delta$. 
+    Or equivalently, $\forall \delta \in \R^+ : \exists r\in \R$ such that $(E\setminus \{x_0\}) \cap \oball(x_0,r) \neq \emptyset.$
+\end{definition}
+
 
 \subsection{Induced Metric}
 
 
-\section{Convergence and Infinite Limit}
+\section{Convergence}
 \subsection{Convergence of a Sequence}
+What is convergence? An intuitive explaination is that when $n$ goes large enough, the sequence gets closer and closer to a certain number $a$.
+
 \begin{definition}[Convergence of a Sequence]
-    
+    For a sequence $\{x_n\}_{n=1}^{\infty} \subset X$, suppose there exists $x\in X$ such that 
+    $$\forall \varepsilon>0 : \exists N= N(\varepsilon)\in \N \text{ such that } d(x_n, x) <\varepsilon,\forall n >N.\footnote{Or equivalently, $x_n \in \oball(x,\varepsilon),\forall n >N.$}$$
+    In such case we say $x$ is the limit of $\{x_n\}$, denoted by $x_n\to x(n\to \infty)$ or $\lim_{n\to \infty} x_n = x.$
 \end{definition}
 
-\begin{proposition}[Every Convergent Sequence is Bounded]
-    
+The following proposition is trivial by definition.
+\begin{proposition}
+    Suppose $\{x_n\} \subset X$, the followings are equivalent:
+    \begin{enumerate}
+        \item $x_n \to x (n\to \infty)$
+        \item Each neighborhood of $x$ contains almost all terms of $\{x_n\}$, that is the complement of each neighborhood contains at most finite terms of $\{x_n\}$.
+        \item $\forall U \in \mathcal{U}(x) : \exists N = N(U)$ such that $x_n \in U, \forall n > N$.
+    \end{enumerate}
 \end{proposition}
+
+\begin{remark}
+    It's clear that a limit is a cluster point, but a cluster point is not necessarily a limit. It's sometimes easier 
+    to show a sequence doesn't converge to $a$ by showing $a$ is not a cluster point.
+\end{remark}
+
+
+The following 2 propositions are proved using the triangle inequality.
+\begin{proposition}[Every Convergent Sequence is Bounded]
+    Suppose $x_n \to x (n\to \infty)$, then $\{x_n\}$ is bounded.
+\end{proposition}
+\begin{proof}
+    By definition, there exists $N\in\N$ such that $\forall n >N : d(x_n,x)<1$. Thus,
+    $$d(x_n,x_m) < d(x_n,x) +d(x_m,x) <2,\quad \forall n,m \geq N$$
+    \,Let $M:=\max_{i,j \leq N}\{2,d(x_i,x_j)\}$, then $2M$ is a bound by noticing that 
+    $d(x_n,x_m) < d(x_n,x_N) +d(x_m,x_N)$.
+\end{proof}
 
 \begin{proposition}[Uniqueness of Limit]
-    
+    Suppose $x_n \to x (n\to \infty)$, then $x$ is the unique cluster point of $\{x_n\}$.
 \end{proposition}
+\begin{proof}
+    Suppose there exists $x^{\prime}$ such that $x_n \to x (n\to \infty)$. We try to construct a ball which contains finite terms of $\{x_n\}$.
 
+    Let $\epsilon := d(x,x^{\prime})/2$. Since $x_n \to x (n\to \infty)$, we have $\exists N = N(\epsilon): d(x,x_n) < \epsilon,\forall n>N$ dy definition. Then 
+    $$\forall n > N : d(x_n,x^{\prime}) \geq |d(x,x_n) - d(x,x^{\prime})| > \epsilon$$ 
+    \,meaning there exists at most finitely many terms of $\{x_n\}$ in $\oball(x^{\prime}, \epsilon)$.
+\end{proof}
+
+\begin{corollary}
+    Every convergent sequence has a unique limit.
+\end{corollary}
+With this corollary, we show our definition is well-defined.
+
+\section{Improper Convergence}
 \subsection{Infinite Limit}
+From now on we narrow it down and consider sequences defined on real lines.
+
+We calculate an example to show how to categorize sequence in terms of convergence and divergence.
+\begin{example}
+    Consider the following 3 sequences.
+    $$a_n = \frac{1}{n},\quad b_n = n, \quad c_n = \begin{cases}
+        a_n,& n = 2m\\
+        a_n + 1,& n \neq 2m
+    \end{cases}$$
+\end{example}
+It's trivial that $a_n$ converge to $0$ and $a_n+1$ converge to $1$. This leads to $c_n$ being divergent since a convergent sequence should have a unique limit.
+However, we can't find a suitable limit for $b_n$. Thus, we're to extend the metric on $\R$ so that sequences like $b_n$ can be given a limit.
+\begin{definition}[Extended Concepts Related to $\pm \infty$]
+    Let $\bar{\R} := \R \cup \{\pm \infty\}$, the extended concepts are defined as:
+    \begin{description}
+        \item[Neighborhood] a subset $U$ is called a neighborhood of $+ \infty$ if there exists $K\in \R^+$ such that $(K,+\infty) \subset U$ (or $(-\infty,-K)$ for $-\infty$). 
+        \item[Cluster Point] $\pm \infty$ is called the cluster point of $\{x_n\}$ if each neighborhood of $\pm \infty$ contains infinitely many terms of $\{x_n\}$.
+        \item[Convergence to $\pm \infty$] $x_n\to \pm \infty (n\to \infty)$ is defined as: $$\forall \varepsilon>0 : \exists K\in \R^+ \text{ such that } |x_n|\geq \varepsilon, \forall n >K.$$
+    \end{description} 
+\end{definition}
 
 \subsection{Limit Superior and Limit Inferior}
 
@@ -68,4 +167,6 @@
 \subsubsection{Subsequence}
 
 
+\section{Completeness}
+\subsection{Cauchy Sequence}
 \subsection{Banach Space}
