@@ -71,7 +71,17 @@ a_{21} & a_{22} & a_{23} \\
 a_{31} & a_{32} & a_{33}
 \end{pmatrix}}$$
 
-In this way can we define determinant in a deductive way and achieve the important Cramer's Law easily. However, this definition arises only as a notation, lacking the geometric understanding of determinants. To do this, we start from the concept of \textbf{multilinear form}.
+In this way can we define determinant in a deductive way and achieve the important Cramer's Law easily. 
+\begin{definition}
+    Suppose $A = (a_{ij})_{n\times n}$, the determinant of $A$ is defined as 
+    $$\det A = \sum_{i = 1}^{n} (-1)^{i+1} a_{1i} \det \begin{pmatrix}
+        a_{22} &\cdots &a_{2,i-1} & a_{2,i+1} & \cdots & a_{2n}\\
+        \vdots &&\vdots&\vdots&& \vdots \\
+        a_{n2} &\cdots &a_{n,i-1} & a_{n,i+1} & \cdots & a_{nn}
+    \end{pmatrix}$$
+\end{definition}
+
+However, this definition arises only as a notation, lacking the geometric understanding of determinants. To do this, we start from the concept of \textbf{multilinear form}.
 
 \section{Multilinear Form}
 \subsection{Bilinear Form}
@@ -187,8 +197,78 @@ $$\operatorname{sign}(j_1, \ldots, j_k) = (-1)^N$$
 \end{definition}
 
 The next result is straightforward.
-\begin{proposition}[Generalization of the Swapping]
+\begin{proposition}[Generalization of the Swapping] \label{prop: gene_swapping}
 Given a permutation $(j_1, \ldots, j_k) \in \operatorname{perm} k$ and an alternating multilinear form $\alpha \in V_{alt}^{(k)}$, we have
 $$\alpha(v_{j_1}, \ldots, v_{j_k}) = \operatorname{sign}(j_1, \ldots, j_k) \alpha(v_1, \ldots, v_k)$$
 \end{proposition}
 
+\subsection{From Alternating Multilinear Form to Determinant}
+We now turn to multilinear forms in $V_{alt}^{(\dim V)}$. The following 2 theorems are of the most significance in defining determinants and calculating them.
+\begin{theorem}[Calculation of Alternating $\dim V$-linear Forms] \namedlabel{thm: cal_alter}{fomular of alternating $\dim V$-linear forms}
+    Let $\dim V =n$ and $e_1,\cdots,e_n$ is a basis of $V$. For any vectors $v_1,\cdots,v_n$, suppose $v_i = b_{1i}e_1 +\cdots+ b_{ni} e_n$, then 
+    $$\alpha(v_1, \ldots, v_n) = \alpha(e_1, \ldots, e_n) \sum_{(j_1,\cdots, j_n) \in \operatorname{perm} n} \operatorname{sign}(j_1, \ldots, j_n) b_{j_1 1}\cdots b_{j_n n}.$$
+\end{theorem}
+\begin{proof}
+    Notice that 
+    $$\begin{aligned}
+        \alpha(v_1, \ldots, v_n) &= \sum_{j_1 =1}^{n} b_{j_11} \alpha(e_{j_1}, \ldots, v_n) \\
+        & = \cdots = \sum_{j_1 =1}^{n} \sum_{j_2 =1}^{n} \cdots \sum_{j_n =1}^{n} b_{j_11} b_{j_22}\cdots b_{j_nn} \alpha(e_{j_1}, \ldots, e_{j_n})\\
+        & = \alpha(e_1, \ldots, e_n) \sum_{(j_1,\cdots, j_n) \in \operatorname{perm} n} \operatorname{sign}(j_1, \ldots, j_n) b_{j_1 1}\cdots b_{j_n n}.
+    \end{aligned}$$
+    \,where the last equation holds by \propref{prop: gene_swapping}.
+\end{proof}
+
+\begin{theorem}
+    Let $\dim V =n$, then $\dim V_{alt}^{(n)} = 1$.
+\end{theorem}
+\begin{proof}
+    Suppose $\alpha\neq 0$ and for a basis $e_1,\cdots,e_n$, we have $\alpha(e_1,\cdots,e_n)\neq 0$. For any $\alpha^{\prime} \in V_{alt}^{(n)}$, there exists $c\in \mathcal{F}$ such that 
+    $\alpha^{\prime} (e_1,\cdots,e_n) = c \alpha(e_1,\cdots,e_n)$. For any list $v_1,\cdots,v_n \in V$, use  \thmref{thm: cal_alter}, we have 
+    $$\begin{aligned}
+        \alpha^{\prime}(v_1, \ldots, v_n) &= \alpha^{\prime}(e_1, \ldots, e_n) \sum_{(j_1,\cdots, j_n) \in \operatorname{perm} n} \operatorname{sign}(j_1, \ldots, j_n) b_{j_1 1}\cdots b_{j_n n} \\
+    &= c\alpha(v_1, \ldots, v_n)
+    \end{aligned}$$
+    \,meaning $\alpha$ and $\alpha^{\prime}$ are linearly dependent, thus $\dim V_{alt}^{(n)} \leq 1.$
+
+    We now show that there exists a nonzero $\alpha \in V_{alt}^{(n)}$.
+\end{proof}
+
+\section{Determinant}
+We can construct a new alternating $\dim V$-linear form with a linear mapping $\varphi \in \mathcal{L}(V)$. Consider 
+$$\alpha_{\varphi}(v_1,\cdots,v_n) := \alpha (\varphi(v_1),\cdots,\varphi(v_n)).$$
+Since $\dim V_{alt}^{(\dim V)} = 1$, there exists a unique number $D \in \mathcal{F}$ such that $\alpha_{\varphi}= D\alpha$. We call the unique number determinant of an operator.
+
+\begin{definition}[Determinant]
+    Suppose $\varphi \in \mathcal{L}(V)$, the unique number such that $\alpha_{\varphi}= (\det \varphi)\alpha$ is called the determinant of $\varphi$. 
+    This notation can also be applied to matrix, let $A$ denote the matrix of $\varphi$, define $\det A := \det \varphi$.
+\end{definition}
+\begin{note}
+    Note that this definition hasn't done yet. Recall that the definition of a matrix has something to do with the choice of basis.
+    We may first choose the standard basis of $\mathcal{F}^{n}$ and after showing the multiplicative property of determinants, we will know this definition is well-defined by the change-of-basis formular. 
+\end{note}
+
+\subsection{Calculation of Determinants}
+By the next theorem we can view determinants as alternating multilinear forms and then apply \propref{prop: gene_swapping} to calculate them. 
+\begin{theorem}[Determinant as Alternating Multilinear Form]
+Suppose $v_1,\cdots,v_n \in \mathcal{F}^n$ and $(v_1,\cdots, v_n)$ is a $n\times n$ matrix. The mapping $(v_1,\cdots, v_n) \mapsto \det (v_1,\cdots, v_n)$ is an alternating multilinear form.
+\end{theorem}
+\begin{proof}
+    Let $e_1,\cdots,e_n$ be the standard basis of $\mathcal{F}^n$ and $\alpha$ be an alternating $n$-linear form in $\mathcal{F}^n$ such that
+    $\alpha(e_1,\cdots,e_n) = 1$. Suppose $(v_1,\cdots,v_n)$ is the matrix of $\varphi$ with respect to the standard basis. Then for any list $v_1,\cdots,v_n$ in $\mathcal{F}^n$,
+    $$\begin{aligned}
+        \det (v_1,\cdots, v_n) &= \det \varphi \\
+        & =(\det \varphi) \alpha(e_1,\cdots,e_n) \\
+        &= \alpha(\varphi(e_1),\cdots,\varphi(e_n)) = \alpha(v_1,\cdots, v_n)
+    \end{aligned}$$
+    \,then $\det (v_1,\cdots, v_n)$ is alternating since $\alpha$ is alternating.
+\end{proof}
+
+By \propref{prop: gene_swapping}, we can calculate a determinant as follows.
+\begin{theorem}[Formular of Determinants]
+    Suppose $A = (a_{ij})_{n\times n}$, then
+    $$\det A = \sum_{(j_1,\cdots, j_n) \in \operatorname{perm} n} \operatorname{sign}(j_1, \ldots, j_n) a_{j_1 1}\cdots a_{j_n n} .$$ 
+\end{theorem}
+
+One may verify the equivalence between the deductive way and the above way.
+
+\subsection{Property of Determinants}

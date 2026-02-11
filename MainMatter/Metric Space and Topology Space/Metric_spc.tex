@@ -23,7 +23,7 @@ We show some special metrics.
 \begin{example}[the Discrete and Natural Metric]
     We call the following metrics discrete metric and natural metric respectively,
     $$d_D : (x,y) \in X\times X \mapsto \delta_{x,y} \qquad d_N : (x,y) \in X\times X \mapsto |x-y|$$
-    \,where $\delta_{x,y}$ is the Dirichlet notation, meaning 
+    \,where $\delta_{x,y}$ means
     $$\delta_{x,y} = \begin{cases}
         0, & x=y \\
         1, & x\neq y
@@ -130,7 +130,6 @@ The following 2 propositions are proved using the triangle inequality.
 With this corollary, we show our definition is well-defined.
 
 \section{Improper Convergence}
-\subsection{Infinite Limit}
 From now on we narrow it down and consider sequences defined on real lines.
 
 We calculate an example to show how to categorize sequence in terms of convergence and divergence.
@@ -142,17 +141,17 @@ We calculate an example to show how to categorize sequence in terms of convergen
     \end{cases}$$
 \end{example}
 It's trivial that $a_n$ converge to $0$ and $a_n+1$ converge to $1$. This leads to $c_n$ being divergent since a convergent sequence should have a unique limit.
-However, we can't find a suitable limit for $b_n$. Thus, we're to extend the metric on $\R$ so that sequences like $b_n$ can be given a limit.
-\begin{definition}[Extended Concepts Related to $\pm \infty$]
+However, we can't find a suitable limit for $b_n$.
+\subsection{Infinite Limit}
+In this subsection, we're to extend the metric on $\R$ so that sequences like $b_n$ can be given a limit.
+\begin{definition}[Extended Concepts Concerning $\pm \infty$]
     Let $\bar{\R} := \R \cup \{\pm \infty\}$, the extended concepts are defined as:
     \begin{description}
         \item[Neighborhood] a subset $U$ is called a neighborhood of $+ \infty$ if there exists $K\in \R^+$ such that $(K,+\infty) \subset U$ (or $(-\infty,-K)$ for $-\infty$). 
         \item[Cluster Point] $\pm \infty$ is called the cluster point of $\{x_n\}$ if each neighborhood of $\pm \infty$ contains infinitely many terms of $\{x_n\}$.
-        \item[Convergence to $\pm \infty$] $x_n\to \pm \infty (n\to \infty)$ is defined as: $$\forall \varepsilon>0 : \exists K\in \R^+ \text{ such that } |x_n|\geq \varepsilon, \forall n >K.$$
+        \item[Convergence to $\pm \infty$(Improper Convergence)] $x_n\to \pm \infty (n\to \infty)$ is defined as: $$\forall \varepsilon>0 : \exists K\in \R^+ \text{ such that } |x_n|\geq \varepsilon, \forall n >K.$$
     \end{description} 
 \end{definition}
-
-\subsection{Limit Superior and Limit Inferior}
 
 \subsection{Some Special Sequences}
 \subsubsection{Monotone Sequence}
@@ -165,7 +164,40 @@ However, we can't find a suitable limit for $b_n$. Thus, we're to extend the met
 \end{theorem}
 
 \subsubsection{Subsequence}
+\begin{theorem}[Bolzano-Weierstrass]
+    
+\end{theorem}
 
+\subsection{Limit Superior and Limit Inferior}
+This subsection is to describe sequences like $b_n$, with which we can give it a limit.
+
+\begin{definition}[Limit Superior and Limit Inferior]
+    We construct the following 2 sequences:
+    $$
+        \bar{x}_n := \sup_{k\geq n} x_n \qquad \underline{x}_{n} := \inf_{k\geq n} x_n
+    $$
+    \,We know by definition that they are monotone, thus converge in $\bar{\R}$, whose limit is defined by 
+    $$\limsup_{n\to \infty} x_n := \lim_{n \to \infty} \bar{x}_n \qquad \liminf_{n\to \infty} x_n := \lim_{n \to \infty} \underline{x}_{n}.$$
+\end{definition}
+
+The next theorem shows how limit inferior and superior dipict cluster points.
+\begin{theorem}[Limit Inferior(Superior) is the Smallest(Greatest) Cluster Point]
+    Let $x_*$ and $x^*$ be the smallest and greatest cluster point. Then
+    $$\limsup_{n\to \infty} x_n = x^* \qquad \liminf_{n\to \infty} x_n = x_*.$$
+\end{theorem}
+\begin{proof}
+    
+\end{proof}
+
+Suppose $\{x_n\}$ converges in $\R$, it must have a unique cluster point, meaning $\limsup_{n\to \infty} x_n = \liminf_{n\to \infty} x_n$. 
+We'll show that the converse statement also holds in the next theorem.
+\begin{theorem}
+    Suppose $\{x_n\}$ is a sequence in $\R$, then 
+    $$x_n\to x (n\to \infty) \iff \limsup_{n\to \infty} x_n = \liminf_{n\to \infty} x_n = x.$$
+\end{theorem}
+\begin{proof}
+    
+\end{proof}
 
 \section{Completeness}
 \subsection{Cauchy Sequence}

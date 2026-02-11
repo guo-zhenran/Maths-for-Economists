@@ -22,6 +22,46 @@ Complete   & $\forall x,y \in X, (xRy) \lor (yRx)$ \\* \bottomrule
 \end{longtable}
 
 We now turn to some special relations.
+\subsection{Equivalence}
+We say a relation is a equivalence relation if it's reflexive, symmetric and transitive, a conventional notation for an equivalence relation is $\sim$.
+For each $x\in X$, $$[x] := \{y\in X : x\sim y\}$$
+\,is called the equivalence class of $x$ and each $y \in [x]$ is called a representative of $[x]$. It follows to define 
+$$X/\sim := \{[x] : x\in X\}$$
+\,called "$X$ modulo $\sim$".
+
+Before we proceed to give the definition of partition and quotient function, we calculate the example concerning function.
+\begin{example}
+    Suppose $f:X\to f(X)$. We may define an equivalence relation as follows:
+    $$x\sim_{f} y \iff f(x) = f(y).$$
+    The equivalence class of $x$ is given by the set $f^{-1}(f(x))$. We may add a restriction $A$ on $f$ such that $\tilde{f}: =f|_{A}$ is a bijection, then
+    $$\bigcup_{x\in A} [\tilde{f}^{-1} (f(x))] = X$$
+    \,and $[\tilde{f}^{-1} (f(x))]$ is pairwise disjoint. Notice that 
+    $X/\sim_{f} = \{[x] : x\in A\}$. This means that $\operatorname{Im} f$ is partitioned by $[\tilde{f}^{-1} (f(x))]$ and we have a unique surjection
+    $\pi: X \to X/\sim_{f}$ which maps $x\in X$ to $[x]$. 
+\end{example}
+
+We will see the generality of how an equivalence relation partitions a set, before which we give the definition.
+\begin{definition}[Partition]
+    A partition of $X$ is a subset $\mathcal{A}$ of $2^{X}$ such that $\mathcal{A}$ consists of pairwise dijoint subsets of $X$ whose union is $X$.
+\end{definition}
+
+\begin{proposition}
+    Suppose $\sim$ is an equivalence relation, then $X/\sim$ is a partition of $X$.
+\end{proposition}
+\begin{proof}
+    Notice that $\bigcup_{x\in X} [x] = X$. We only have to show that $\forall X_1, X_2 \in X/\sim: X_1 = X_2 \lor X_1 \cap X_2 = \emptyset.$
+    
+    Suppose $[x] \neq [y]$ and $z \in [x] \cap [y]$, then by transitivity of $\sim$, $$z\sim x \land y\sim z \implies x \sim y$$
+    \,contradicting with $[x] \neq [y]$.
+\end{proof}
+
+This leads to the former coonstruction of quotient functions.
+\begin{theorem}
+    For an equivalence relation $\sim$, there exists a unique surjection $$\pi: X \to X/\sim \qquad x \mapsto [x]$$
+    \,called the quotient function. 
+\end{theorem}
+
+
 \subsection{Order}
 A relation $\leq$ on a set $X$ is a partial order if it's reflexive, transitive, and anti-symmetric\footnote{Anti-symmetry means $(x \leq y) \land (y \leq x) \implies x = y$}.
 We call the pair $(X,\leq)$ a partially ordered set. If, in addition to reflexiveness, transitivity, and anti-symmetric, completeness also holds for $\leq$, we say it's a total order and $(X,\leq)$ is a total ordered set.
