@@ -1,9 +1,81 @@
 \chapter{Topology Space}
+Topology space concerns with the structure of open sets. The first understanding of a open set is from the open ball we defined in the metric space chapter, where we also define the concept of neighborhood.
+We'll see that most of the definitions arise from previous concepts, this is how we generalize things.
+However, the topology not necessarily relies on metric. We'll see the generality of open sets and return to the topology induced by a metric, where we'll see some interestong results.
+
 \section{the Definition}
+\begin{definition}[Topology]
+    Given a set $X$ and a family of subsets $\tau$. We say $\tau$ is a topology on $X$ if the followings hold:
+    \begin{enumerate}
+        \item $\emptyset, X \in \tau$.
+        \item $\tau$ is closed under countable union.
+        \item $\tau$ is closed under finitie intersection.
+    \end{enumerate}
+    \,Then we say $\tau$ is a topology and $(X,\tau)$ is a topology space.
+\end{definition}
+
+\begin{example}
+    We define the following 2 topologies:
+    $$\tau_{D}:= \{\emptyset, X\} \qquad \tau_{T} := 2^{X}$$
+    \,which is called the discrete topology and the trivial topology.
+\end{example}
+
+Notice that $\tau_{D} \subset \tau_{T}$, we say $\tau_{D}$ is (strictly) finer. It's not always the case that we can compare two topology.
+
+Similar to other spaces, we can define its subspace. 
+\begin{definition}[Topology Subspace]
+    Suppose $Y\subset X$, let $\tau_Y := \{U\cap Y : U \in \tau\}$, then $(Y,\tau_Y)$ is a topology space.
+\end{definition}
+
 
 \subsection{Open Set and Closed Set}
+As mentioned before, elements of $\tau$ are called open sets and we define that a closed set has an open complement.
+
+We can now generalize the definition of neighborhood.
+\begin{definition}[Neighborhood]
+    Suppose $x\in A \subset X$, if there exists an open set $U$ such that $x\in U\subset A$, then we say $A$ is a neighborhood of $x$. If $A$ is an open set itself, we say $A$ is an open neighborhood of $x$.
+\end{definition}
+
+Using the language of neighborhood, we can characterize open sets in a diferent way.
+\begin{theorem} 
+    Suppose $A$ is a subset of $X$, then $A$ is open $\iff \forall x\in A:$ there exists a neighborhood $U_x$ of $x$ such that $x\in U_x$.
+\end{theorem}
+\begin{proof}
+    ($\Rightarrow$) This side is trivial since $A$ is a neighborhood of each $x$ of $X$.
+
+    ($\Leftarrow$) For this side, notice that by definition, there exists an open set $O_x \subset U_x$ for each $x\in X$ such that $x\in O_x$, then 
+    $$A=\bigcup_{x\in A} \{x\} \subset \bigcup_{x\in A} O_x \subset \bigcup_{x\in A} U_x \subset A$$
+    \,implying $\bigcup_{x\in A} O_x = A$ and it's open.
+\end{proof}
+
+
+We now turn to closed set, by De-Morgan's law, we know that the set $\mathcal{F}$ of all closed sets satisfies:
+\begin{enumerate}
+    \item $\emptyset,X \in\mathcal{F} $
+    \item $\mathcal{F}$ is closed under countable intersection.
+    \item $\mathcal{F}$ is closed under finite union.
+\end{enumerate}
 
 \subsection{Interior, Closure and Boundary}
+Given a set in $X$, it may be open, closed or rather open or closed. This subsection shows how to decompose a certain set to several parts.
+\begin{definition}[Interior and Closure]
+    Suppose $(X,\tau)$ is a topology space and $A \subset X$, the interior of $A, \Int{A}$, is the biggest open set contained in $A$ and the closure of $A$, $\bar{A}$, 
+    is the smallest closed set containing $A$.
+\end{definition}
+
+It's equivalent to define $\Int{A}$ as the union of all open subset of $A$ and $\bar{A}$ as the intersection of all closed supersets of $A$. We list the following propositions.
+\begin{proposition}
+    Suppose $X$ is a topology space and $A,B\subset X$
+    \begin{enumerate}
+        \item $\Int{A} \subset A \subset \bar{A}$
+        \item $x \in A \iff $ there exists a neighborhood $U_x$ of $x$ such that $U_x \in A$.
+        \item $A$ is open $\iff A = \Int{A}$; and $B$ is closed $\iff B = \bar{B}$.
+        \item $A\subset B \implies \Int{A} \subset \Int{B}, \bar{A} \subset \bar{B}$.
+        \item $\Int{(X\setminus A)} = X - \bar{A};\quad \overline{(X\setminus A)} = X - \Int{A}$.
+        \item 111 
+    \end{enumerate}
+\end{proposition}
+
 
 \subsection{Basis}
 

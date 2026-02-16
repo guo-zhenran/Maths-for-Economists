@@ -298,6 +298,7 @@
 \newcommand{\diam}{\operatorname{diam}}
 \newcommand{\cball}{\bar{\mathbb{B}}}
 \newcommand{\oball}{\mathbb{B}}
+\newcommand{\Int}[1]{\overset{\circ}{#1}}
 \newcommand{\col}{\operatorname{Col}}
 \newcommand{\row}{\operatorname{Row}}
 \newcommand{\R}{\mathbb{R}}

@@ -5,7 +5,7 @@ it to be non-negative and it equals to 0 if and only if the two points are exact
 Moreover, the triangle inequality should also hold, which is a formal illustration of "a straight line is the shortest distance between 2 points". This leads to the definition of metric.
 \subsection{the Definitions}
 \begin{definition}[Metric Space]
-    Let $X$ be a set and we define the metric, a mapping from $X\times X \to \mathbb{R}$, such that 
+    Let $X$ be a set and we define the metric, a mapping from $X\times X \to \mathbb{R}+$, such that 
     \begin{enumerate}
         \item $d(x,y) = 0 \iff x = y.$
         \item Symmetry: $\forall x,y \in X : d(x,y) = d(y,x).$
@@ -78,7 +78,7 @@ This can be extended to a set as well.
 
 \section{Convergence}
 \subsection{Convergence of a Sequence}
-What is convergence? An intuitive explaination is that when $n$ goes large enough, the sequence gets closer and closer to a certain number $a$.
+What is convergence? An intuitive explaination is that when $n$ goes large enough, the sequence gets close enough to a certain number $a$. We can use the distance to describe "close enough".
 
 \begin{definition}[Convergence of a Sequence]
     For a sequence $\{x_n\}_{n=1}^{\infty} \subset X$, suppose there exists $x\in X$ such that 
@@ -155,6 +155,7 @@ In this subsection, we're to extend the metric on $\R$ so that sequences like $b
 
 \subsection{Some Special Sequences}
 \subsubsection{Monotone Sequence}
+A sequence is monotonic if $\forall n \in \N : x_n \leq(\geq) x_{n+1}$. 
 \begin{theorem}[Monotone and Bounded]
     
 \end{theorem}
