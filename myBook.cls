@@ -228,6 +228,7 @@
 \usepackage{pdfpages,tikz}
 \usetikzlibrary{matrix, positioning}
 \usepackage{nicematrix}
+\usepackage{wrapfig}
 
 % ================ 页眉页脚设置 ================
 \pagestyle{fancy}
