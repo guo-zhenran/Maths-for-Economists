@@ -1,50 +1,49 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{myBook}[2024/07/10 Custom book class with math and code environments]
 
-% 基于 book 类
+% Based on book class
 \LoadClass[11pt]{book}
 
-% ================ 字体设置 (PDFLaTeX 兼容) ================
-% 使用 newpx 系列字体（与 Palatino 兼容的改进版）
-\usepackage{newpxtext}      % 文本字体
-\usepackage{newpxmath}      % 数学字体
+% ================ Font settings (PDFLaTeX compatible) ================
+% Use newpx fonts
+\usepackage{newpxtext}      % text font
+\usepackage{newpxmath}      % math font
 
-% 等宽字体配置
-\usepackage{courier}        % 使用 Courier 作为等宽字体
+% Monospaced font configuration
+\usepackage{courier}        % Use Courier as monospaced font
 
-% ================ 页面布局 (使用 ptmt 中的配置) ================
+% ================ Page layout (using configuration from ptmt) ================
 \usepackage[rmargin=3.85cm, lmargin=3.85cm, bmargin=4cm, tmargin=4cm]{geometry}
 
-% ================ 避免包冲突的解决方案 ================
-% 先加载核心数学包，避免后续冲突
+% ================ Solution to avoid package conflicts ================
+% Load core math packages first to avoid later conflicts
 \usepackage{amsmath}
 \usepackage{amsfonts}
 
-% 特殊处理 amsthm：在加载前释放可能冲突的命令
+% Special handling for amsthm: release potentially conflicting commands before loading
 \makeatletter
 \@ifpackageloaded{amssymb}{}{
-  % 如果 amssymb 尚未加载，释放可能冲突的命令
   \let\openbox\undefined
   \let\Bbbk\undefined
 }
 \makeatother
 
-% 加载 amsthm 但避免重新定义 openbox
+% Load amsthm but avoid redefining openbox
 \RequirePackage{amsthm}
 
-% 现在安全地加载 amssymb
+% Now safely load amssymb
 \usepackage{amssymb}
 
-% ================ 其他基本包 ================
+% ================ Other basic packages ================
 \usepackage{array}
 \usepackage{graphicx}
 \usepackage{xcolor}
 \usepackage{longtable}
 
-% ================ 颜色定义 ================
+% ================ Color definitions ================
 \definecolor{ecolor}{RGB}{0,0,0}
 
-% Python 代码颜色
+% Python code colors
 \definecolor{python-blue}{RGB}{27,142,224}
 \definecolor{python-red}{RGB}{186,33,33}
 \definecolor{python-green}{RGB}{0,128,0}
@@ -52,8 +51,8 @@
 \definecolor{python-black}{RGB}{0,0,0}
 \definecolor{python-background}{RGB}{248,248,248}
 
-% ================ 定理环境设置 ================
-% 自定义定理样式
+% ================ Theorem environment settings ================
+% Custom theorem style
 \newtheoremstyle{namedthm}
 {3pt}
 {3pt}
@@ -66,13 +65,13 @@
 
 \theoremstyle{namedthm}
 
-% 定义所有定理环境
+% Define all theorem environments
 \theoremstyle{plain}
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{proposition}[theorem]{Proposition}
 \newtheorem{corollary}[theorem]{Corollary}
-\newtheorem{axiom}{Axiom}[section]  % 添加 axiom 环境
+\newtheorem{axiom}{Axiom}[section]  % add axiom environment
 \theoremstyle{definition}
 \newtheorem{definition}{Definition}[section]
 \newtheorem{conjecture}{Conjecture}[section]
@@ -83,11 +82,10 @@
 \newcommand\ebibname{Bibliography}
 \newtheorem{case}{Case}
 
-% ================ 定理引用命令 ================
-% 最简单的方法：使用自定义标签命令
+% ================ Theorem reference commands ================
 \makeatletter
 
-% 定义一个新的标签命令，可以接受名称
+% Define a new label command that can accept a name
 \newcommand{\namedlabel}[2]{%
   \label{#1}%
   \ifx\\#2\\%
@@ -96,7 +94,7 @@
   \fi
 }
 
-% 重新定义引用命令
+% Redefine reference commands
 \newcommand{\thmref}[1]{%
   \@ifundefined{name@#1}{%
     \textbf{theorem~\ref{#1}}%
@@ -140,7 +138,7 @@
 \makeatother
 
 
-% ================ 代码环境 ================
+% ================ Code environments ================
 \usepackage{listings}
 \usepackage{tcolorbox}
 \tcbuselibrary{listings, breakable}
@@ -205,18 +203,18 @@
     bottom=1pt
 }
 
-% ================ 其他包 ================
+% ================ Other packages ================
 \usepackage[algoruled]{algorithm2e}
 \usepackage[british]{babel}
 \usepackage{booktabs}
 \usepackage[2.0, compress]{bxpdfver}
+\usepackage[utf8]{inputenc}
 \usepackage{csquotes}
 \usepackage[onehalfspacing]{setspace}
 \usepackage{enumitem}
 \usepackage{fancyhdr}
 \usepackage{float}
 \usepackage[bottom, hang, symbol]{footmisc}
-\usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{mdframed}
 \usepackage[babel=true, final]{microtype}
@@ -230,7 +228,8 @@
 \usepackage{nicematrix}
 \usepackage{wrapfig}
 
-% ================ 页眉页脚设置 ================
+% ================ Header and footer settings ================
+\setlength{\headheight}{14pt}
 \pagestyle{fancy}
 \renewcommand{\sectionmark}[1]{\markright{#1}}
 \fancyfoot{}
@@ -238,7 +237,7 @@
 \fancyhead[LO, RE]{\normalfont\rightmark}
 \renewcommand{\headrulewidth}{0.5pt}
 
-% ================ 章节格式 ================
+% ================ Chapter format ================
 \titleformat{\chapter}[display]
   {\bfseries\huge}
   {\filright \bf{\chaptertitlename} \Huge\thechapter}
@@ -246,7 +245,7 @@
   {\titlerule\vspace{1ex}\filleft}
   [\vspace{1ex}\titlerule]
 
-% ================ 列表设置 ================
+% ================ List settings ================
 \setlist[itemize]{leftmargin=*, nosep, noitemsep}
 \setlist[enumerate]{leftmargin=*, nosep, noitemsep, label=(\arabic*)}
 \setlist{
@@ -258,7 +257,7 @@
   topsep=2pt
 }
 
-% Case 环境专用列表
+% Special list for Case environment
 \newlist{casenv}{enumerate}{4}
 \setlist[casenv]{leftmargin=*,align=left,widest={iiii}}
 \setlist[casenv,1]{label={{\itshape\ \casename} \arabic*.},ref=\arabic*}
@@ -266,7 +265,7 @@
 \setlist[casenv,3]{label={{\itshape\ \casename\ \alph*.}},ref=\alph*}
 \setlist[casenv,4]{label={{\itshape\ \casename} \arabic*.},ref=\arabic*}
 
-% ================ 超链接设置 ================
+% ================ Hyperlink settings ================
 \hypersetup{
   pdfborder={0 0 0},
   colorlinks,
@@ -274,7 +273,6 @@
   filecolor=python-purple,
   linkcolor=python-purple,
   urlcolor=python-purple,
-  bookmarks=true,
   frenchlinks=true,
   pdfencoding=unicode,
   pdftitle={Name of the Book},
@@ -283,11 +281,11 @@
   pdfkeywords={computer science}
 }
 
-% ================ 深度设置 ================
+% ================ Depth settings ================
 \setcounter{secnumdepth}{5}
 \setcounter{tocdepth}{5}
 
-% ================ 自定义命令 ================
+% ================ Custom commands ================
 \newcommand{\undersign}{
     \begin{flushright}
         \vfill
@@ -299,17 +297,17 @@
 \newcommand{\diam}{\operatorname{diam}}
 \newcommand{\cball}{\bar{\mathbb{B}}}
 \newcommand{\oball}{\mathbb{B}}
-\newcommand{\Int}[1]{\overset{\circ}{#1}}
-\newcommand{\col}{\operatorname{Col}}
-\newcommand{\row}{\operatorname{Row}}
+\newcommand{\Int}[1]{{#1}^{\circ}}
+\newcommand{\col}[1]{\operatorname{Col}_{#1}}
+\newcommand{\row}[1]{\operatorname{Row}_{#1}}
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\Q}{\mathbb{Q}}
 
-% ================ 证明环境修正 ================
+% ================ Proof environment adjustment ================
 \renewcommand{\proofname}{\normalfont\bfseries\color{ecolor} Proof}
 
-% ================ 定理环境名称 ================
+% ================ Theorem environment names ================
 \providecommand{\casename}{Case}
 \providecommand{\claimname}{Claim}
 \providecommand{\conjecturename}{Conjecture}
@@ -324,11 +322,11 @@
 \providecommand{\remarkname}{Remark}
 \providecommand{\solutionname}{Solution}
 \providecommand{\theoremname}{Theorem}
-\providecommand{\axiomname}{Axiom}  % 添加 axiom 名称
+\providecommand{\axiomname}{Axiom}  % add axiom name
 
-% ================ 参考文献支持 ================
+% ================ Bibliography support ================
 \usepackage{natbib}
-% 默认参考文献样式
+% Default bibliography style
 \providecommand{\bibstyleoption}{apalike}
 \newcommand{\setbibstyle}[1]{\renewcommand{\bibstyleoption}{#1}}
 

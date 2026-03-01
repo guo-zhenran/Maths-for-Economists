@@ -1,5 +1,5 @@
 \chapter{Topology Space}
-Topology space concerns with the structure of open sets. The first understanding of a open set is from the open ball we defined in the metric space chapter, where we also define the concept of neighborhood.
+Topology space concerns the structure of open sets. The first understanding of a open set is from the open ball we defined in the metric space chapter, where we also define the concept of neighborhood.
 We'll see that most of the definitions arise from previous concepts, this is how we generalize things.
 However, the topology not necessarily relies on metric. We'll see the generality of open sets and return to the topology induced by a metric, where we'll see some interestong results.
 
@@ -8,25 +8,19 @@ However, the topology not necessarily relies on metric. We'll see the generality
     Given a set $X$ and a family of subsets $\tau$. We say $\tau$ is a topology on $X$ if the followings hold:
     \begin{enumerate}
         \item $\emptyset, X \in \tau$.
-        \item $\tau$ is closed under countable union.
-        \item $\tau$ is closed under finitie intersection.
+        \item $\tau$ is closed under any union.
+        \item $\tau$ is closed under finite intersection.
     \end{enumerate}
     \,Then we say $\tau$ is a topology and $(X,\tau)$ is a topology space.
 \end{definition}
 
 \begin{example}
     We define the following 2 topologies:
-    $$\tau_{D}:= \{\emptyset, X\} \qquad \tau_{T} := 2^{X}$$
-    \,which is called the discrete topology and the trivial topology.
+    $$\tau_{trivial}:= \{\emptyset, X\} \qquad \tau_{discrete} := 2^{X}$$
+    \,which is called the trivial topology and the discrete topology.
 \end{example}
 
-Notice that $\tau_{D} \subset \tau_{T}$, we say $\tau_{D}$ is (strictly) finer. It's not always the case that we can compare two topology.
-
-Similar to other spaces, we can define its subspace. 
-\begin{definition}[Topology Subspace]
-    Suppose $Y\subset X$, let $\tau_Y := \{U\cap Y : U \in \tau\}$, then $(Y,\tau_Y)$ is a topology space.
-\end{definition}
-
+Notice that $\tau_{trivial} \subset \tau_{discrete}$, we say $\tau_{discrete}$ is (strictly) finer. It's not always the case that we can compare two topology.
 
 \subsection{Open Set and Closed Set}
 As mentioned before, elements of $\tau$ are called open sets and we define that a closed set has an open complement.
@@ -38,7 +32,7 @@ We can now generalize the definition of neighborhood.
 
 Using the language of neighborhood, we can characterize open sets in a diferent way.
 \begin{theorem} 
-    Suppose $A$ is a subset of $X$, then $A$ is open $\iff \forall x\in A:$ there exists a neighborhood $U_x$ of $x$ such that $x\in U_x$.
+    Suppose $A$ is a subset of $X$, then $A$ is open $\iff \forall x\in A:$ there exists a neighborhood $U_x$ of $x$ such that $U_x \subset A$.
 \end{theorem}
 \begin{proof}
     ($\Rightarrow$) This side is trivial since $A$ is a neighborhood of each $x$ of $X$.
@@ -52,37 +46,238 @@ Using the language of neighborhood, we can characterize open sets in a diferent 
 We now turn to closed set, by De-Morgan's law, we know that the set $\mathcal{F}$ of all closed sets satisfies:
 \begin{enumerate}
     \item $\emptyset,X \in\mathcal{F} $
-    \item $\mathcal{F}$ is closed under countable intersection.
+    \item $\mathcal{F}$ is closed under any intersection.
     \item $\mathcal{F}$ is closed under finite union.
 \end{enumerate}
 
-\subsection{Interior, Closure and Boundary}
-Given a set in $X$, it may be open, closed or rather open or closed. This subsection shows how to decompose a certain set to several parts.
-\begin{definition}[Interior and Closure]
-    Suppose $(X,\tau)$ is a topology space and $A \subset X$, the interior of $A, \Int{A}$, is the biggest open set contained in $A$ and the closure of $A$, $\bar{A}$, 
-    is the smallest closed set containing $A$.
+Similarly, we can generalize the concept of cluster point.
+\begin{definition}[Limit Point(Accumulation Point)]
+    Suppose $X$ is a topology space and $A$ is a subset of $X$. We say $x \in X$ is a limit point of $A$ if for any neighborhood $U_x$ of $x$,
+    we have $U_x \cap (A\setminus \{x\}) \neq \emptyset$. And we denote the set of all limit points of $A$ as $A^{\prime}$, called the derived set of $A$.
 \end{definition}
 
-It's equivalent to define $\Int{A}$ as the union of all open subset of $A$ and $\bar{A}$ as the intersection of all closed supersets of $A$. We list the following propositions.
+\begin{theorem}
+    Suppose $X$ is a topology space and $A$ is a subset of $X$. We have $A$ is closed $\iff A^{\prime} \subset A$.
+\end{theorem}
+\begin{proof}
+    We'll see this theorem is a simple corollary of \thmref{thm: closure_decomposition_II}.
+\end{proof}
+
+\subsection{Interior, Closure and Boundary}
+
+Given a set in $X$, it may be open, closed or neither open nor closed. If open/ closed, its structure is clear. If neither, we hope we can decompose it into the union of an open set and a closed set so that we can have a full picture of the structure of the set. 
+To do that, we first define the interior and closure of a set.
+\begin{definition}[Interior and Closure]
+    Suppose $(X,\tau)$ is a topology space and $A \subset X$, the interior of $A, \Int{A}$, is the biggest open set contained in $A$ and the closure of $A$, $\bar{A}$, 
+    is the smallest closed set containing $A$. If $X = \bar{A}$, we say $A$ is dense in $X$.
+\end{definition}
+
+\begin{remark}
+    \begin{enumerate}
+        \item It's equivalent to define $\Int{A}$ as the union of all open subset of $A$ and $\bar{A}$ as the intersection of all closed supersets of $A$.
+        \item The saying that $\mathbb{Q}$ is dense in $\R$ comes to us a lot, which is a good example for the definition of dense. 
+    \end{enumerate}
+\end{remark}
+
+We list the following propositions.
 \begin{proposition}
     Suppose $X$ is a topology space and $A,B\subset X$
     \begin{enumerate}
         \item $\Int{A} \subset A \subset \bar{A}$
-        \item $x \in A \iff $ there exists a neighborhood $U_x$ of $x$ such that $U_x \in A$.
-        \item $A$ is open $\iff A = \Int{A}$; and $B$ is closed $\iff B = \bar{B}$.
+        \item $\Int{(X\setminus A)} = X \setminus \bar{A};\quad \overline{(X\setminus B)} = X \setminus \Int{B}$.
+        \item $\Int{A} \cup \Int{B} \subset \Int{(A\cup B)};\quad \Int{A} \cap \Int{B} = \Int{(A\cap B)}$
+        \item $A$ is open $\iff A = \Int{A}$; $B$ is closed $\iff B = \bar{B}$.
         \item $A\subset B \implies \Int{A} \subset \Int{B}, \bar{A} \subset \bar{B}$.
-        \item $\Int{(X\setminus A)} = X - \bar{A};\quad \overline{(X\setminus A)} = X - \Int{A}$.
-        \item 111 
+        \item $x \in \Int{A} \iff \exists U_x \in \mathcal{U}(x): U_x \subset A$.
+        \item $x\in \bar{A} \iff \forall U_x \in \mathcal{U}(x): U_x \cap A \neq \emptyset$.
     \end{enumerate}
 \end{proposition}
 
+To see how the decomposition works, we consider the following example.
+\begin{example}
+    Consider the usual topology on $\mathbb{R}$ and let $I = [0,1)$. Then we have:
+    \[
+    \bar{I} = [0,1], \quad \Int{I} = (0,1), \quad I' = [0,1].
+    \]
+    The boundary of $I$ is defined as $\partial I = \bar{I} \setminus \Int{I} = \{0,1\}$. Notice that the derived set $I'$ contains points that belong to $I$ (namely $[0,1)$) and points that do not (namely $\{1\}$). The boundary consists of two types of points: $1$ is a limit point not in $I$, while $0$ is a limit point in $I$ but not an interior point. Then we have the following decompositions:
+    \[
+    \bar{I} = I \cup I^{\prime} = [0,1) \cup [0,1] = [0,1],
+    \]
+    and
+    \[
+    \bar{I} = \Int{I} \cup \partial I = (0,1) \cup \{0,1\} = [0,1].
+    \]
+    Thus $I$ is neither open nor closed, and its closure can be expressed either as the union of $I$ and its limit points, or as the union of its interior and its boundary.
+\end{example}
 
-\subsection{Basis}
+Actually, this is not a special case\footnote{You may also notice that $\bar{I} =\Int{I} \cup I^{\prime}$, but it's not always the case. A counterexample is $\{0\} \cup [1,2]$, as you may verify.}, we have the following results.
+\begin{definition}[Boundary]
+    Suppose $X$ is a topology space and $A$ is a subset of $X$. We define the boundary of $A$ as $\partial A := \bar{A} \setminus \Int{A}$.
+\end{definition}
+\begin{note}
+    An intuitive understanding of the boundary is that it contains the points that are "close" to $A$ but not necessarily in $A$. The meaning of "close" is that the point is almost in the set, which is clearer in the context of metric space.
+    An equivalent definition of the boundary is the set of points such that for any neighborhood of the point, it intersects both $A$ and $X\setminus A$.
+\end{note}
 
-\subsection{Topology Induced by Metric}
+\begin{theorem}[Decomposition I of Closure] 
+    Suppose $X$ is a topology space and $A$ is a subset of $X$. We have
+    $\bar{A} = \Int{A} \cup \partial A$.
+\end{theorem}
+
+\begin{theorem}[Decomposition II of Closure] \label{thm: closure_decomposition_II}
+    Suppose $X$ is a topology space and $A$ is a subset of $X$. We have
+    $\bar{A} = A \cup A^{\prime}.$
+\end{theorem}
+\begin{proof}
+    We first show that $A \cup A^{\prime} \subset \bar{A}$. It's trivial that $A \subset \bar{A}$, we only need to show $A^{\prime} \subset \bar{A}$. 
+    For any $x \in A^{\prime}$ and its neighborhood $U_x$, we have $U_x \cap (A\setminus \{x\}) \neq \emptyset$, which implies $U_x \cap A \neq \emptyset$. 
+    Since $x$ is a limit point of $A$, we know that $x \in \bar{A}$.
+
+    We now show that $\bar{A} \subset A \cup A^{\prime}$. For any $x \in \bar{A}$, if $x \in A$, then we are done. If $x \notin A$, then for any neighborhood $U_x$ of $x$, we have $U_x \cap A \neq \emptyset$. Since $x \notin A$, we have $U_x \cap (A\setminus \{x\}) \neq \emptyset$, which implies that $x$ is a limit point of $A$. Thus $x \in A^{\prime}$ and we are done.
+\end{proof}
+
+We close this subsection by listing some important properties of the boundary.
+
+
+\subsection{Topological Basis}
+We've encountered the concept of basis before. The idea of basis is to find some elements to characterize elements with operations in the space. 
+An example of this idea is the vector space, where we use the linear combination. Now, the operations concerning sets is union and intersection. 
+We try to find a set of open sets such that we can construct all open set using union and intersection. This is the idea of basis in topology space.
+\begin{definition}[Basis]
+    Let $X$ be a topology set and $\mathcal{B}$ is set of open sets. If $\forall U \in \tau: \exists \mathcal{U} \subset \mathcal{B} \text{ s.t. } U = \bigcup_{B\in \mathcal{U}} B$, then we say $\mathcal{B}$ is a topological basis and
+     induces a topology $\tau$ on $X$:
+     \begin{equation} \label{equ: induced_top}
+        \tau := \left\{\bigcup_{B \in \mathcal{U}} B : \mathcal{U} \subset \mathcal{B}\right\}
+     \end{equation}
+\,One should verify that $\tau$ is indeed a topology. 
+\end{definition}
+
+We also have an equivalent definition.
+\begin{definition}[an Equivalent Definition of Topological Basis]
+    Let $X$ be a topology set and $\mathcal{B}$ is set of nonempty subsets of $X$. We say $\mathcal{B}$ is a basis for the topology $\tau$ if the followings hold:
+    \begin{enumerate}
+        \item $\forall x\in X : \exists B\in \mathcal{B} \text{ s.t. } x\in B$
+        \item $\forall B_1,B_2\in \mathcal{B} : \exists B\in \mathcal{B} \text{ s.t. } B\subset B_1\cap B_2$ 
+    \end{enumerate}
+    (2) has an equivalent form: $\forall B_1,B_2\in \mathcal{B}, \forall x \in B_1\cap B_2 : \exists B\in \mathcal{B} \text{ s.t. } x\in B\subset B_1\cap B_2$.
+\end{definition}
+\begin{remark}
+    To prove the equivalence, we only have to show the induced topology is the same with \eqref{equ: induced_top}. 
+
+    The proof is trivial as we only use definition. Here we consider what the 2 conditions mean. We consider the induced topology $\tau^{\prime}$. 
+    The first condition ensures that $X\in \tau^{\prime}$. And the second one actually ensures that $\tau^{\prime}$ is closed under finite intersection. 
+    Consider $U,V \in \tau^{\prime}$, we have $U = \bigcup_{i = 1}^{n_{U}} U_i$ and $V = \bigcup_{i = 1}^{n_{V}} V_i$ where $U_i,V_i \in \mathcal{B}$. Then we have
+    $$U\cap V = \bigcup_{i=1}^{n_U} \bigcup_{j=1}^{n_V} (U_i \cap V_j)$$
+    \,Since $U_i \cap V_j \in \mathcal{B}$ by (2) again, we have $U\cap V \in \tau^{\prime}$.
+\end{remark}
+
+For a topology space, there may be many different basis. Take $\R^{2}$ as an example, the open balls and the open rectangles are both basis for the usual topology on $\R^{2}$. 
+The following theorem shows which basis may induce the same topology.
+\begin{definition}[Equivalence of Basis]
+    Let $X$ be a set and $\mathcal{B}_1, \mathcal{B}_2$ be two basis on $X$. We say they are equivalent if:
+\begin{itemize}
+    \item $\forall B\in \mathcal{B}_1$ and $x\in B : \exists B^{\prime} \in \mathcal{B}_2 \text{ s.t. } x\in B^{\prime}\subset B$.
+    \item$ \forall B\in \mathcal{B}_2$ and $x\in B : \exists B^{\prime} \in \mathcal{B}_1 \text{ s.t. } x\in B^{\prime}\subset B$.
+\end{itemize}    
+\end{definition}
+
+\begin{theorem}
+    Let $X$ be a set and $\mathcal{B}_1, \mathcal{B}_2$ be two basis on $X$. If $\mathcal{B}_1, \mathcal{B}_2$ are equivalent, they induce the same topology.
+\end{theorem}
+\begin{proof}
+    Suppose the topology induced by $\mathcal{B}_1$ is $\tau_1$ and the topology induced by $\mathcal{B}_2$ is $\tau_2$. We try to show $\tau_1 = \tau_2$ by showing that $\tau_1 \subset \tau_2$ and $\tau_2 \subset \tau_1$.
+
+    We first show that $\tau_1 \subset \tau_2$. For any $U \in \tau_{1}$, by the definition of equivalent basis, we have $U = \bigcup_{x\in U} B_x$ where $B_x \in \mathcal{B}_2$. Thus $U \in \tau_2$. $\tau_2 \subset \tau_1$ can be shown similarly.
+\end{proof}
+
 
 \section{Continuous Function}
+\subsection{Continuity in Metric Space}
+\begin{definition}[Point-wise Continuity]
+    Let $(X,d_X)$ and $(Y,d_Y)$ be metric spaces. A function $f: X \to Y$ is continuous at a point $x_0 \in X$ if 
+    $$\forall \varepsilon > 0, \exists \delta = \delta(x_0,\varepsilon) > 0: d_X(x,x_0) < \delta \implies d_Y(f(x),f(x_0)) < \varepsilon.$$
+\end{definition}
 
+
+Using the language of neighborhood, we can give an equivalent definition of continuity.
+\begin{proposition}
+    Let $(X,d_X)$ and $(Y,d_Y)$ be metric spaces. A function $f: X \to Y$ is continuous at a point $x_0 \in X$ if for every neighborhood $V \subset Y$ of $f(x_0)$,
+    there exists a neighborhood $U \subset X$ of $x_0$ such that $f(U) \subset V$. You may also use balls to characterize the neighborhood. 
+\end{proposition}
+
+If a function is continuous at every point of a subset $A$, we say the function is continuous on $A$. 
+\begin{definition}[Lipschitz Continuity]
+    Let $(X,d_X)$ and $(Y,d_Y)$ be metric spaces. A function $f: X \to Y$ is Lipschitz continuous if there exists a constant $l > 0$ such that for any $x_1,x_2 \in X$, we have
+    $$d_Y(f(x_1),f(x_2)) \leq  l d_X(x_1,x_2),\qquad x_1,x_2 \in X.$$
+\,We call the smallest $l$ the Lipschitz constant of $f$.
+\end{definition}
+
+We'll see in the next proposition that Lipschitz continuity is a stronger condition than continuity.
+\begin{proposition}
+    Every Lipschitz continuous function is continuous.
+\end{proposition}
+\begin{proof}
+    For any given $x_0$, let $\delta(\varepsilon) = \varepsilon/l$. Then for any $x$ such that $d_X(x,x_0) < \delta(\varepsilon)$, we have
+    $$d_Y(f(x),f(x_0)) \leq l \cdot d_X(x,x_0) < l \cdot \delta(\varepsilon) = \varepsilon.$$
+    This shows that $f$ is continuous at $x_0$. Since $x_0$ is arbitrary, $f$ is continuous on $X$.
+\end{proof}
+\begin{remark}
+    Notice that in the proof, the choice of $\delta(\varepsilon)$ has nothing to do with $x_0$. This is stronger than continuity and we call it \textbf{uniform continuity}. Thus, every Lipschitz continuous function is uniformly continuous.
+    This is a first touch on the concept of "uniformity", we'll see more about it in the following context.
+\end{remark}
+
+\begin{definition}[Uniform Continuity]
+    Let $(X,d_X)$ and $(Y,d_Y)$ be metric spaces. A function $f: X \to Y$ is uniformly continuous if 
+        $$\forall \varepsilon > 0, \exists \delta = \delta(\varepsilon) > 0: d_X(x,x_0) < \delta \implies d_Y(f(x),f(x_0)) < \varepsilon.$$
+\end{definition}
+
+\subsection{Continuity}
+The above definitions rely on the metric. However, metric is not necessary and we turn to the definition of continuity in topology space. The definition is constructed similarly.
+\begin{definition}[Continuity]
+    Let $(X,\tau_X)$ and $(Y,\tau_Y)$ be topology spaces. A function $f: X \to Y$ is continuous at a point $x_0 \in X$ if for every neighborhood $V \subset Y$ of $f(x_0)$,
+    there exists a neighborhood $U \subset X$ of $x_0$ such that $f(U) \subset V$. We say $f$ is continuous on $X$ if it's continuous at every point of $X$.
+\end{definition}
+
+We list some characterizations of continuity.
+\begin{proposition}
+    Let $(X,\tau_X)$ and $(Y,\tau_Y)$ be topology spaces. The followings are equivalent:
+    \begin{enumerate}
+        \item $f$ is continuous on $X$.
+        \item For any open set $U \subset Y$, $f^{-1}(U)$ is open in $X$.
+        \item For any closed set $V \subset Y$, $f^{-1}(V)$ is closed in $X$.
+        \item For a basis $\mathcal{B}_{Y}$ of $\tau_Y$ and any $B \in \mathcal{B}_{Y}$, $f^{-1}(B)$ is open in $X$.
+    \end{enumerate}
+\end{proposition}
+\begin{proof}
+
+    (1)$\Rightarrow$(2) For any open set $U \subset Y$ and $x\in f^{-1}(U)$, $U$ is a neighborhood of $f(x)$. Then by definition, there exists a neighborhood $V\in \mathcal{U}(x)$ such that $f(V) \subset U$, implying that $x$ is an interior point. Since $x$ is arbitrary, $f^{-1}(U)$ is open in $X$.
+ 
+    (2)$\Rightarrow$(3) First, notice that $f^{-1}(Y\setminus V) = X\setminus f^{-1}(V)$ for any $V\subset Y$. If $V$ is closed in $Y$, then $Y\setminus V$ is open in $Y$. By (2), we have that $f^{-1}(Y\setminus V)$ is open in $X$. Therefore, $f^{-1}(V) = X\setminus f^{-1}(Y\setminus V)$ is closed in $X$.
+
+    (3)$\Rightarrow$(4) Suppose $B\in \mathcal{B}_{Y}$, then $Y\setminus B$ is closed in $Y$. By (3), we have that $f^{-1}(Y\setminus B)$ is closed in $X$. Therefore, $f^{-1}(B) = X\setminus f^{-1}(Y\setminus B)$ is open in $X$.
+
+    (4)$\Rightarrow$(1) Only have to notice that any open set can be written as the union of basis elements and the preimage of a union is the union of preimages.
+\end{proof}
+
+Now we list some important properties of continious function.
+\begin{theorem}
+    Suppose $f:X\to Y$ is continuous and $A\subset X$, then $$x\in \bar{A} \implies f(x)\in \overline{f(A)}.$$  
+\end{theorem}
+\begin{proof}
+    We prove by contradiiction. 
+\end{proof}
+
+\begin{theorem}[Sequential Continuity]
+    $f:X\to Y$ is continuous $\implies f(x_n) \to f(x_0)$ when $x_n \to x_0$.     
+\end{theorem}
+\begin{remark}
+    The reverse proposition also holds, i.e., if for any sequence in $X$ converging to $x_0$, the sequence $\{f(x_n)\}$ converges to $f(x_0)$, then $f$ is continuous.
+\end{remark}
+\begin{proof}
+    
+\end{proof}
+
+\subsection{Homomorphism}
 
 \section{Compactness}
 \subsection{the Basics}
@@ -93,7 +288,18 @@ It's equivalent to define $\Int{A}$ as the union of all open subset of $A$ and $
 
 \section{Connectedness}
 
+\section{Constructing Topology}
+\subsection{Topology Subspace}
+Similar to other spaces, we can define its subspace. 
+\begin{definition}[Topology Subspace]
+    Suppose $Y\subset X$, let $\tau_Y := \{U\cap Y : U \in \tau\}$, then $(Y,\tau_Y)$ is a topology space. We say a set is open in the subspace if it is an element of $\tau_Y$ and a set is closed in the subspace if its complement in $Y$ is open in the subspace.
+\end{definition}
 
+\subsection{Product Space}
+
+\subsection{Quotient Space}
+
+\subsection{Topology Space Induced by Metric}
 
 
 
