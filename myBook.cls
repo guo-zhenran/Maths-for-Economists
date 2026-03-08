@@ -71,7 +71,8 @@
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{proposition}[theorem]{Proposition}
 \newtheorem{corollary}[theorem]{Corollary}
-\newtheorem{axiom}{Axiom}[section]  % add axiom environment
+\newtheorem{axiom}{Axiom}[section] 
+\newtheorem{assumption}{Assumption}[section] 
 \theoremstyle{definition}
 \newtheorem{definition}{Definition}[section]
 \newtheorem{conjecture}{Conjecture}[section]
@@ -303,6 +304,14 @@
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\Q}{\mathbb{Q}}
+
+\newcommand{\mat}[1]{\mathbf{#1}}      
+\newcommand{\vct}[1]{\boldsymbol{#1}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\Prob}{\mathbb{P}}
+\newcommand{\Var}{\operatorname{Var}}
+\newcommand{\Cov}{\operatorname{Cov}}
+\newcommand{\tp}{^{\prime}}
 
 % ================ Proof environment adjustment ================
 \renewcommand{\proofname}{\normalfont\bfseries\color{ecolor} Proof}

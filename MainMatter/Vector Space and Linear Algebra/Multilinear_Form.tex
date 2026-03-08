@@ -83,8 +83,7 @@ In this way can we define determinant in a deductive way and achieve the importa
 
 However, this definition arises only as a notation, lacking the geometric understanding of determinants. To do this, we start from the concept of \textbf{multilinear form}.
 
-\section{Multilinear Form}
-\subsection{Bilinear Form}
+\section{Bilinear Form}
 A bilinear form on $V$ is a function on $V\times V$ and is linear in each slot while holding the other one fixed.
 \begin{definition}[Bilinear Form]
     Let $V$ be a vector space over field $\mathbb{F}$. A function $\beta: V\times V \to \mathbb{F}$ is called a bilinear form on $V$ if 
@@ -97,7 +96,7 @@ An example of bilinear form is the inner product.
     Let $\beta$ be the inner product $\langle \cdot, \cdot \rangle$. Recall the linearity of inner product in each slot and we can verify by definition that inner product is indeed a bilinear form.
 \end{example}
 
-\subsubsection{Symmetric and Alternating Bilinear Form}
+\subsection{Symmetric and Alternating Bilinear Form}
 However, though the inner product is symmetric, that is $\beta(u,v) = \beta(v,u)$, symmetry does not always hold for bilinear forms. There is a special kind of bilinear form called \textbf{symmetric bilinear form}.
 \begin{definition}[Symmetric Bilinear Form]
     A bilinear form $\beta$ from $V^{(2)}$ is called symmetric if 
@@ -140,10 +139,67 @@ Given a vector space $V$, we have $$V^{(2)}= V_{sym}^{(2)} \oplus V_{alt}^{(2)}.
 \end{proof}
 
 
-\subsubsection{Matrix of a Bilinear Form}
+\subsection{Matrix of a Bilinear Form}
+The definition is similar to the definition of matrix of a linear mapping.
+\begin{definition}[Matrix of a Bilinear Form]
+    Suppose $\beta \in V^{(2)}$ and $e_1,\cdots,e_n$ is a basis. Then the matrix of $\beta$ is defined as $\{\beta(e_i,e_j)\}_{i,j = 1}^{n}$. 
+\end{definition}
 
+The operation of bilinear forms can be represented by the operation of their matrix. The addition and scalar multiplication is similar to the case of linear mapping. 
+The following theorem shows the case of composition.
+\begin{theorem}
+    Let $$\beta_{\varphi}(v,w) = \beta(\varphi(v),w) \qquad \beta^{\varphi}(v,w) = \beta(v,\varphi(w))$$
+    \,Then $$\mathcal{M}(\beta_{\varphi}) = \mathcal{M}(\varphi) \tp \mathcal{M}(\beta) \qquad \mathcal{M}(\beta^{\varphi}) = \mathcal{M}(\beta) \mathcal{M}(\varphi)$$
+\end{theorem} 
 
-\subsection{Multilinear Form}
+The change of basis formular also holds if we use the transpose instead of the inverse.
+\begin{theorem}[Change-of-basis Formular]
+    Suppose $e_1,\cdots,e_n$ and $f_1,\cdots, f_n$ are two bases of $V$ and let $C= \mathcal{M}(I,(e_1,\cdots,e_n),(f_1,\cdots, f_n))$. Then for any $\beta \in V^{(2)}$, we have
+    $$\mathcal{M}(\beta,(e_1,\cdots,e_n)) = C^T \mathcal{M}(\beta,(f_1,\cdots,f_n)) C$$
+\end{theorem}
+
+Suppose $\beta \in V^{(2)}_{sym}$. We know by definition that 
+\begin{equation} \label{equ: symmatrix}
+    \beta(e_i,e_j) = \beta(e_j,e_i)
+\end{equation}
+\,for all $i,j$. For a matrix satifying this condition, we call it a symmetric one.
+\begin{definition}[Symmetric Matrix]
+    A matrix $A$ is called symmetric if $A\tp = A$.
+\end{definition}
+
+We know that the matrix of a symmtric bilinear form is a symmetric matrix by \eqref{equ: symmatrix} and it has nothing to do with the choice of basis. The converse statement also holds.
+\begin{theorem}
+    Suppose $\beta \in V^{(2)}$. The followings are equivalent:
+    \begin{enumerate}
+        \item $\beta$ is symmetric.
+        \item The matrix of $\beta$ is symmetric with respect to any basis.
+        \item The matrix of $\beta$ is symmetric with respect to some basis.
+    \end{enumerate}
+\end{theorem}
+\begin{proof}
+    We've already shown that (1) $\implies$ (2). It's trivial that (2) $\implies$ (3). We now show that (3) $\implies$ (1). Suppose $\mathcal{M}(\beta, (e_1,\cdots,e_n))= \{a_{ij}\}$ with $a_{ij} = a_{ji}$ for all $i,j$.
+    For any $u = \sum_{i=1}^{n} u_i e_i$ and $v = \sum_{i=1}^{n} v_i e_i$, we have
+    $$\begin{aligned}
+        \beta(u,v) &= \sum_{i=1}^{n} \sum_{j=1}^{n} u_i v_j \beta(e_i,e_j)\\
+        & = \sum_{i=1}^{n} \sum_{j=1}^{n} u_i v_j a_{ij}\\
+        & = \sum_{i=1}^{n} \sum_{j=1}^{n} u_i v_j a_{ji} = \beta(v,u)
+    \end{aligned}$$
+    This shows that $\beta$ is symmetric.
+\end{proof}
+
+Notice that any diagonal matrix is symmetric, we're inspired to consider the relationship between symmetric bilinear forms and diagonal matrices.
+ The following theorem shows that we can always find a basis such that the matrix of a symmetric bilinear form is diagonal.
+ \begin{theorem}
+    Suppose $\beta \in V^{(2)}$, then $\beta \in V_{sym}^{(2)} \iff \exists (e_1,\cdots,e_n)$  such that $$\mathcal{M}(\beta, (e_1,\cdots,e_n))$$ is diagonal.
+    And moreover, if $V$ is a real inner product space, then we can find an orthonormal basis such that the matrix of $\beta$ is diagonal.
+ \end{theorem}
+
+ So what are the diagonal elements? We can show that the diagonal elements are exactly the eigenvalues of $\beta$.
+
+\subsection{Quadratic Form}
+ 
+
+\section{Multilinear Form}
 We now turn to define determinants and this subsection is for preparation. The definition of multilinear form is a natural extension of bilinear form.
 
 \begin{definition}[Multilinear Form]
@@ -152,7 +208,7 @@ We now turn to define determinants and this subsection is for preparation. The d
     \,are all linear mapping on $V$ for each $i = 1, 2, \ldots, k$. We denote $V^{(k)}$ as the set of all $k$-multilinear forms in $V$.
 \end{definition}
 
-\subsubsection{Alternating Multilinear Form}
+\subsection{Alternating Multilinear Form}
 For multilinear forms, we only concern about alternating ones.
 \begin{definition}[Alternating Multilinear Form]
     A multilinear form $\beta$ from $V^{(k)}$ is called alternating if 
@@ -166,7 +222,7 @@ The counterpositive satement implies that if $\alpha(v_1, \ldots, v_k) \neq 0$ f
     For a nonzero $\alpha \in V_{alt}^{(k)} $, $\alpha(v_1, \ldots, v_k) \neq 0 \iff \{v_1, \ldots, v_k\}$ is linearly independent.
 \end{theorem}
 
-\subsubsection{Swapping the Entries}
+\subsection{Swapping the Entries}
 \begin{theorem}[Swapping 2 Slots of an Alternating Multilinear Form]
     For alternating multilinear form $\alpha$ and distinct $i,j \in \{1,2,\ldots,k\}$, we have
     $$\alpha(v_1, \ldots, v_i, \ldots, v_j, \ldots, v_k) = -\alpha(v_1, \ldots, v_j, \ldots, v_i, \ldots, v_k)$$
@@ -202,6 +258,7 @@ Given a permutation $(j_1, \ldots, j_k) \in \operatorname{perm} k$ and an altern
 $$\alpha(v_{j_1}, \ldots, v_{j_k}) = \operatorname{sign}(j_1, \ldots, j_k) \alpha(v_1, \ldots, v_k)$$
 \end{proposition}
 
+\section{Determinant}
 \subsection{From Alternating Multilinear Form to Determinant}
 We now turn to multilinear forms in $V_{alt}^{(\dim V)}$. The following 2 theorems are of the most significance in defining determinants and calculating them.
 \begin{theorem}[Calculation of Alternating $\dim V$-linear Forms] \namedlabel{thm: cal_alter}{fomular of alternating $\dim V$-linear forms}
@@ -233,7 +290,6 @@ We now turn to multilinear forms in $V_{alt}^{(\dim V)}$. The following 2 theore
     We now show that there exists a nonzero $\alpha \in V_{alt}^{(n)}$.
 \end{proof}
 
-\section{Determinant}
 We can construct a new alternating $\dim V$-linear form with a linear mapping $\varphi \in \mathcal{L}(V)$. Consider 
 $$\alpha_{\varphi}(v_1,\cdots,v_n) := \alpha (\varphi(v_1),\cdots,\varphi(v_n)).$$
 Since $\dim V_{alt}^{(\dim V)} = 1$, there exists a unique number $D \in \mathcal{F}$ such that $\alpha_{\varphi}= D\alpha$. We call the unique number determinant of an operator.
