@@ -3,10 +3,11 @@ One good way to introduce determinant is through solving equation systems and de
 $$\begin{cases}
     a_{11}x_{1}+a_{12}x_2=b_1 \\
     a_{21}x_{1}+a_{22}x_2=b_2
-\end{cases}$$
-\,then we have
+\end{cases}.$$
+
+Then we have
 $$x_1=\frac{b_1 a_{22}- b_2 a_{12}}{a_{11} a_{22}- a_{12} a_{21}}, x_2=\frac{b_2 a_{11}- b_1 a_{21}}{a_{11} a_{22}- a_{12} a_{21}}$$
-\,and denote $$\operatorname{det} \begin{pmatrix} a_{11} & a_{12} \\ a_{21} & a_{22} \end{pmatrix} = a_{11} a_{22}- a_{12} a_{21}$$ 
+\,and denote $$\operatorname{det} \begin{pmatrix} a_{11} & a_{12} \\ a_{21} & a_{22} \end{pmatrix} = a_{11} a_{22}- a_{12} a_{21},$$ 
 We can rewrite the solution as
 $$x_1=\frac{\operatorname{det} \begin{pmatrix} b_{1} & a_{12} \\ b_{2} & a_{22} \end{pmatrix}}{\operatorname{det} \begin{pmatrix} a_{11} & a_{12} \\ a_{21} & a_{22} \end{pmatrix}}, x_2=\frac{\operatorname{det} \begin{pmatrix} a_{11} & b_{1} \\ a_{21} & b_{2} \end{pmatrix}}{\operatorname{det} \begin{pmatrix} a_{11} & a_{12} \\ a_{21} & a_{22} \end{pmatrix}}$$
 

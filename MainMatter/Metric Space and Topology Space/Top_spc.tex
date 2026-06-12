@@ -144,7 +144,7 @@ We've encountered the concept of basis before. The idea of basis is to find some
 An example of this idea is the vector space, where we use the linear combination. Now, the operations concerning sets is union and intersection. 
 We try to find a set of open sets such that we can construct all open set using union and intersection. This is the idea of basis in topology space.
 \begin{definition}[Basis]
-    Let $X$ be a topology set and $\mathcal{B}$ is set of open sets. If $\forall U \in \tau: \exists \mathcal{U} \subset \mathcal{B} \text{ s.t. } U = \bigcup_{B\in \mathcal{U}} B$, then we say $\mathcal{B}$ is a topological basis and
+    Let $X$ be a topology and $\mathcal{B}$ is set of open sets. If $\forall U \in \tau: \exists \mathcal{U} \subset \mathcal{B} \text{ s.t. } U = \bigcup_{B\in \mathcal{U}} B$, then we say $\mathcal{B}$ is a topological basis and
      induces a topology $\tau$ on $X$:
      \begin{equation} \label{equ: induced_top}
         \tau := \left\{\bigcup_{B \in \mathcal{U}} B : \mathcal{U} \subset \mathcal{B}\right\}
@@ -191,7 +191,7 @@ The following theorem shows which basis may induce the same topology.
 \end{proof}
 
 
-\section{Continuous Function}
+\section{Continuity}
 \subsection{Continuity in Metric Space}
 \begin{definition}[Point-wise Continuity]
     Let $(X,d_X)$ and $(Y,d_Y)$ be metric spaces. A function $f: X \to Y$ is continuous at a point $x_0 \in X$ if 
@@ -279,14 +279,48 @@ Now we list some important properties of continious function.
 
 \subsection{Homomorphism}
 
-\section{Compactness}
-\subsection{the Basics}
+\subsection{Continuity of Correspondence}
 
-\subsection{Compactness of Product Space}
+\section{Properties of Topology Space}
+\subsection{Separability}
 
-\subsection{Compactness of Induced Topology Space}
+\subsection{Countability}
 
-\section{Connectedness}
+\subsection{Compactness}
+\subsubsection{the Basics}
+We say $\{O_i\}_{i\in I}$ is an open cover of $X$ if $\bigcup_{i\in I} O_i = X$. And for a subset $I\tp$ of $I$, if $\bigcup_{i\in I\tp} O_i = X$, we say $\{O_i\}_{i\in I\tp}$ is a subcover.
+
+\begin{definition}[Compactness]
+    Suppose $A$ is a subset of a topology space $(X,\tau)$. We say $A$ is compact if, for any open cover of $A$, there exists a finite subcover. If $X$ is compact, we say $X$ is a compact topology space.
+\end{definition}
+
+\begin{theorem}
+    Suppose $f : (X,\tau) \to (Y, \tau\tp)$ is continuous, for any compact set $A$ of $X$, $f(A)$ is compact in $Y$.
+\end{theorem}
+
+\subsubsection{Compactness of Product Space}
+\begin{theorem}[Tychonoff]
+    Suppose $X_i \subset X$, then $\prod_{i\in I} X_i$ is compact $\iff \{X_i\}_{i\in I}$ is compact.
+\end{theorem}
+
+\subsubsection{Compactness of Induced Topology Space}
+In metric space, we can define some other compactness using the metric structure.
+\begin{definition}[Sequential Compactness]
+    Suppose $A\subset (X,\tau)$, we say $A$ is sequentially compact if $\forall \{x_n\} \subset A: \exists \{x_{n_k}\} \text{ s.t. } x_{n_k} \to x\in A (k\to \infty)$.
+\end{definition}
+
+\begin{theorem}
+    Suppose $(X,d)$ is a metric space, then the followings are equivalent:
+    \begin{enumerate}
+        \item $X$ is compact.
+        \item $X$ is sequentially compact.
+        \item $X$ is complete and totally bounded\footnote{$A$ is totally bounded: $\forall \varepsilon >0 : \exists \{x_1, \cdots, x_n\} \subset X \text{ s.t. } A \subset \bigcup_{i=1}^n \oball (x_i,\varepsilon)$.}.
+    \end{enumerate}
+\end{theorem}
+
+\subsection{Connectedness}
+
+\subsection{Application: from Preference to Utility Representation}
 
 \section{Constructing Topology}
 \subsection{Topology Subspace}
@@ -304,6 +338,26 @@ Similar to other spaces, we can define its subspace.
 
 
 
+\section{the Fixed Point Theorems}
+\begin{definition}[Fixed Point]
+    We say a topology space $(X,\tau)$ has fixed point property if for any continuous function $f:X\to X$, there exists $x\in X$ such that $f(x) = x$.
+\end{definition}
+
+\begin{theorem}
+    The fixed point property is a topological property, i.e., homomorphisms preserve the fixed point property.
+\end{theorem}
+\subsection{General Results}
+\subsection{Different Versions}
+\subsubsection{Contracting Mapping Version}
+\subsubsection{Contracting Correspondence Version}
+\subsubsection{Brower's Version}
+\subsubsection{Takutani's Version}
+
+\subsection{Application: Nash Equiliberium in Finite Games}
+\subsubsection{Existence of a Pure-strategy Nash Equiliberium}
+\subsubsection{Existence of a Mixed-strategy Nash Equiliberium}
+\subsubsection{Refinement}
+lecture 35, 26 mins.
 
 
 

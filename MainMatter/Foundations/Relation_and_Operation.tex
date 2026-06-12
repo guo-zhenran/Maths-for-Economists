@@ -162,3 +162,27 @@ Two important kinds of operation we often meet are associative and commutative o
 \begin{proof}
     We prove by contradiction. Suppose there're two identity elements $e$ and $e^{\prime}$. Then $e =e \circledast e^{\prime} = e^{\prime}$, contradicting with $e \neq e^{\prime}$.
 \end{proof}
+
+
+\subsection{Lattice}
+Suppose $A=\{a,b\}$, denote joint $a \land b:= \sup A$ and meet $a \lor b:= \inf A$.
+\begin{definition}[Lattice]
+    Suppose $(X,\preceq)$ is a partially ordered set. For arbitary $a,b\in X$, we say $X$ is a lattice if $a \land b, a\lor b \in X$. Also, for a subset $K\subseteq X$, if $\forall a, b \in K : a \land b, a\lor b \in K$, we say $K$ is a sublattice of $X$.
+\end{definition}
+
+
+\begin{definition}[Completeness]
+    Suppose $(X,\preceq)$ is a partially ordered set. We say $X$ is complete if for any subset $K$ of $X$, $\sup K$ and $\inf K$ exist, i.e., $\sup K, \inf K \in X$.
+\end{definition}
+
+\subsubsection{Tarski's Fixed Point Theorem}
+\begin{theorem}[Tarski]
+    Suppose $(X,\preceq)$ is a complete lattice and $f: X\to X$ is increasing. Let $X^*$ be the set of all fixed points, i.e., $X^* := \{x\in X: f(x) = x\}$.
+    We have
+    \begin{enumerate}
+        \item Let $\bar{x}^* := \sup\{x\in X: x\preceq f(x)\}$ and $\underbar{x}^* := \inf\{x\in X : f(x)\preceq x\}$. Then $\bar{x}^*, \underbar{x}^* \in X^*$ and $\forall x^* \in X^*: \bar{x}^*\preceq x^* \preceq \underbar{x}^* $.
+        \item $(X^*,\preceq)$ is complete.
+    \end{enumerate}
+\end{theorem}
+
+\subsubsection{Application: Supermodularity and Static Comparitive}
