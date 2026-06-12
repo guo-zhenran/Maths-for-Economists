@@ -78,7 +78,7 @@ This can be extended to a set as well.
 
 \section{Convergence}
 \subsection{Convergence of a Sequence}
-What is convergence? An intuitive explaination is that when $n$ goes large enough, the sequence gets close enough to a certain number $a$. We can use the distance to describe "close enough".
+What is convergence? An intuitive explaination is that when $n$ goes large enough, the sequence gets close enough to a certain number $a$. We can use the distance to describe ``close enough''.
 
 \begin{definition}[Convergence of a Sequence]
     For a sequence $\{x_n\}_{n=1}^{\infty} \subset X$, suppose there exists $x\in X$ such that 
@@ -202,4 +202,17 @@ We'll show in the next theorem that the converse statement also holds.
 
 \section{Completeness}
 \subsection{Cauchy Sequence}
+Suppose $\{x_n\}$ converges to $x_0$, we have $d(x_m,x_n) \leq d(x_m,x_0) +d(x_n,x_0)$. For any give $\varepsilon$, as $m$, $n$ are sufficiently large, we'll have $d(x_m,x_0)< \varepsilon/2$ and $d(x_n,x_0)< \varepsilon /2$, which imply
+$d(x_m,x_n) \leq \varepsilon$. That is to say, for any convergent sequence $\{x_n\}$,
+$$\forall \varepsilon>0 : \exists N\in \N \text{ s.t. } d(x_m,x_n) < \varepsilon (\forall m,n > N).$$ 
+
+\begin{definition}[Cauchy Sequence]
+    For a sequence $\{x_n\}$, we say it's a Cauchy sequence if $$\forall \varepsilon>0 : \exists N\in \N \text{ s.t. } d(x_m,x_n) < \varepsilon (\forall m,n > N).$$ 
+\end{definition}
+
+However, the converse statement doesn't always hold. A counterexample is $\{x_n\} = \left\lfloor 10^n \pi\right\rfloor /10^n$, which is divergent in $\Q$.
+
+\begin{definition}[Completeness]
+    For a metric space $(X,d)$, if every Cauchy sequence is convergent, we say $X$ is complete.
+\end{definition}
 \subsection{Banach Space}

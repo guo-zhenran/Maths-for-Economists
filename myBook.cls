@@ -50,6 +50,7 @@
 \definecolor{python-purple}{RGB}{128,0,128}
 \definecolor{python-black}{RGB}{0,0,0}
 \definecolor{python-background}{RGB}{248,248,248}
+\definecolor{elegant-blue}{RGB}{98,121,142}
 
 % ================ Theorem environment settings ================
 % Custom theorem style
@@ -270,10 +271,10 @@
 \hypersetup{
   pdfborder={0 0 0},
   colorlinks,
-  citecolor=python-purple,
-  filecolor=python-purple,
-  linkcolor=python-purple,
-  urlcolor=python-purple,
+  citecolor=elegant-blue,
+  filecolor=elegant-blue,
+  linkcolor=elegant-blue,
+  urlcolor=elegant-blue,
   frenchlinks=true,
   pdfencoding=unicode,
   pdftitle={Name of the Book},

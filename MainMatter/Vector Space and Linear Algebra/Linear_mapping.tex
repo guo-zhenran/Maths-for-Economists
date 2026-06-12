@@ -95,7 +95,7 @@ Note that we can also write $(f_1, \cdots, f_n)$ in a column, that is
 $$\begin{pmatrix}
     f_1  \\ \vdots  \\ f_n 
 \end{pmatrix}$$
-\,or simply denote it by $(f_1,\cdots, f_n)^{t}$. Wether to write a vector in $\mathcal{F}^n$ in a row or in a column is basically for simplicity of the notation.
+\,or simply denote it by $(f_1,\cdots, f_n)\tp$. Wether to write a vector in $\mathcal{F}^n$ in a row or in a column is basically for simplicity of the notation.
 We'll see the benefits when presenting the $m$-direct product of $\mathcal{F}^n$. Suppose $\mathbf{f}_1,\cdots \mathbf{f}_m \in \mathcal{F}^n$, elements of the direct product $\mathcal{F}^{n,m}$
 can be written as $(\mathbf{f}_1,\cdots \mathbf{f}_m)$ and we drop the brackets of $\mathbf{f}$'s, that is 
 $$\begin{pmatrix}
@@ -120,7 +120,7 @@ Then, for $v \in V$, we can write it as $v = a_1 v_1 +\cdots +a_n v_n$ and $$\ma
 Notice that $\dim \mathcal{L}(V,W) = nm$ if $\dim V = m$ and $\dim W = n$. So it's natural to construct an isomorphism to give a specific representation of linear mappings.
 Suppose $\varphi \in \mathcal{L}(V,W)$ with $\dim V = n$ and $\dim W = m$. Let $v_1,\cdots,v_m$ be a basis of $V$ and $w_1,\cdots, w_n$ be a basis of $W$.
 We try to calculate $\mathcal{M}( \varphi(v_i))$ so that we can know the coordinate of any vectors in $\varphi(V)$ by linear combination. Suppose $ \varphi(v_i) = a_{1i} w_1+ a_{2i}w_2 +\cdots +a_{ni} w_n$, then 
-$$\mathcal{M}( \varphi(v_i)) = (a_{1i} , a_{2i} ,\cdots ,a_{ni})^{t}.$$ 
+$$\mathcal{M}( \varphi(v_i)) = (a_{1i} , a_{2i} ,\cdots ,a_{ni})\tp.$$ 
 Thus, we can present $\varphi$ by 
 $$\begin{pmatrix}
 a_{11}  &\cdots  & a_{1m}\\
