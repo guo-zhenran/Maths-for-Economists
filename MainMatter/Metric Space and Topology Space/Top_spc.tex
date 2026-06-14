@@ -280,6 +280,51 @@ Now we list some important properties of continious function.
 \subsection{Homomorphism}
 
 \subsection{Continuity of Correspondence}
+Notice that a correspondence $\varphi : X\twoheadrightarrow Y$ can be viewed as a function from $X$ to $2^Y$. In this subsection, we extend the definition of continuity to correspondence.
+
+First, we are to define a proper notation of inverse as the general definition of continuity of functions rely on the inverse set. Recall for function: for a given $y$ in the range,
+$$f^{-1}(y) = \{x\in X: f(x) = y\}.$$
+\,We should replace $=$ and $y$ with something else. We define the following, for $A\subset Y$, $$\varphi^{u} (A):=\{x\in X: \varphi(x) \subset A\} \qquad \varphi^{l} (A):=\{x\in X: \varphi(x) \cap A \neq \emptyset\},$$
+\,called the upper inverse image and the lower inverse image.
+
+\begin{definition}[Upper and Lower Hemicontinuity]
+    Let $(X,\tau_X)$ and $(Y,\tau_Y)$ be topological spaces. $\varphi: X\twoheadrightarrow Y$ is a correspondence,
+    \begin{itemize}
+        \item $\varphi$ is upper hemicontinuous at a point $x_0 \in X$ if for every open set $U \subseteq Y$ with $\varphi(x_0) \subseteq U$, there exists a neighborhood $V$ of $x_0$ such that $\varphi(V) \subseteq U$.
+        \item $\varphi$ is lower hemicontinuous at a point $x_0 \in X$ if for every open set $U \subseteq Y$ with $\varphi(x_0) \cap U \neq \emptyset$, there exists a neighborhood $V$ of $x_0$ such that $\varphi(V) \cap U \neq \emptyset$.
+    \end{itemize}
+If $\varphi$ is both upper hemicontinuous and lower hemicontinuous, we say it's continuous.
+\end{definition}
+
+\begin{theorem}
+    For any open subset $U$ of $Y$, $\varphi$ is 
+    \begin{itemize}
+        \item upper hemicontinuous if $\varphi^{u} (U)$ is open.
+        \item lower hemicontinuous if $\varphi^{l} (U)$ is open.
+    \end{itemize}
+    The theorem also works for closed sets, as you may verify.
+\end{theorem}
+
+\begin{theorem}
+    For a single-valued correspondence, it's upper hemicontinuous $\iff$ it's lower hemicontinuous.
+\end{theorem}
+
+Now we provide some characterizations for continuity of correspondence in metric space.
+\begin{theorem}
+    For metric spaces $(X,d)$ and $(Y,\rho)$, $\varphi$ is
+    \begin{itemize}
+        \item upper hemicontinuous at $x_0$ $\iff$ for any open subset $U$ of $Y$, there exists $\delta>0$ such that $\forall x $ s.t. $d(x,x_0) <\delta$, $\varphi(x) \subset U$.
+        \item lower hemicontinuous at $x_0$ $\iff$ for any open subset $U$ of $Y$ such that $\varphi(x_0) \cap U \neq \emptyset$, there exists $\delta>0$ such that $\forall x $ s.t. $d(x,x_0) <\delta$, $\varphi(x) \cap U \neq \emptyset$.
+    \end{itemize} 
+\end{theorem}
+
+\begin{theorem}
+    Suppose $\varphi: (X,d)\twoheadrightarrow (Y,\rho)$, $\varphi$ is
+    \begin{itemize}
+        \item (suppose $\varphi(x_0)$ is compact) upper hemicontinuous at $x_0$ $\iff$ for any sequence $\{x_n\}$ such that $x_n\to x_0(n\to \infty)$ and any $y_n\in \varphi(x_n)$, there exists a subsequence $\{y_{n_k}\}$ such that $y_{n_k} \to y_0 \in \varphi(x_0)$.
+        \item lower hemicontinuous at $x_0 \iff$ for any sequence $\{x_n\}$ such that $x_n\to x_0(n\to \infty)$ and any $y_0 \in \varphi(x_0)$, there exists a $\{y_n\}$ such that $y_n\in \varphi(x_n)$ and $y_n\to y_0(n\to \infty)$.
+    \end{itemize}
+\end{theorem}
 
 \section{Properties of Topology Space}
 \subsection{Separability}
@@ -339,23 +384,94 @@ Similar to other spaces, we can define its subspace.
 
 
 \section{the Fixed Point Theorems}
-\begin{definition}[Fixed Point]
+\subsection{General Results}
+\begin{definition}[Fixed Point Property]
     We say a topology space $(X,\tau)$ has fixed point property if for any continuous function $f:X\to X$, there exists $x\in X$ such that $f(x) = x$.
 \end{definition}
 
 \begin{theorem}
     The fixed point property is a topological property, i.e., homomorphisms preserve the fixed point property.
 \end{theorem}
-\subsection{General Results}
+
+However, in this section, we emphasize on a looser concept.
+\begin{definition}[Fixed Point]
+    Suppose $(X,\tau)$ is a topology space,
+    \begin{itemize}
+        \item for $f:X\to X$, we say $x_0$ is a fixed point if $f(x_0) = x_0$.
+        \item for $\varphi: X\twoheadrightarrow X$, we say $x_0$ is a fixed point if $x_0\in \varphi (x_0)$.
+    \end{itemize}
+\end{definition}
+
 \subsection{Different Versions}
 \subsubsection{Contracting Mapping Version}
+This version is constructed in metric space. We first define the concept of contracting mapping.
+\begin{definition}[Contracting Mapping]
+    If there exists a $k\in [0,1)$ such that $\forall x,y\in X: d(f(x),f(y))\leq k d(x,y)$, , we say $f$ is a contracting mapping.
+\end{definition}
+\begin{remark}
+    Notice that $f$ such that $ d(f(x),f(y))< d(x,y)$ is NOT a contracting mapping. An example is $X=[1,+\infty), d = |\cdot|, f(x)=x+\frac{1}{x}$.
+\end{remark}
+\begin{theorem}[the Contracting Mapping Fixed Point Theorem]
+    For a complete metric space $(X,d)$, $f$ is a contracting mapping, then there exists only one fixed point.
+\end{theorem}
 \subsubsection{Contracting Correspondence Version}
-\subsubsection{Brower's Version}
+To define contracting correspondence, we need a fair definition of distance between two set. Here we define the Hausdoff distance.
+\begin{definition}[Hausdoff Distance]
+    Let $d(x,A) = \inf \{d(x,y): y\in A\}$, the Hausdoff distance of $A$ and $B$ is defined as 
+    $$H_d (A,B) = \max \{d(x,A),d(y,B):x\in B, y\in A\}.$$ 
+    \,We further define $H_d(\emptyset,\emptyset) = 0 $ and $H_d(\emptyset,A) = \infty.$
+\end{definition}
+
+\begin{definition}[Contracting Correspondence]
+    If there exists a $k\in [0,1)$ such that $\forall x,y\in X: d(\varphi(x),\varphi(y))\leq k d(x,y)$, we say $\varphi$ is a contracting correspondence.
+\end{definition}
+
+\begin{theorem}[the Contracting Correspondence Fixed Point Theorem]
+    For a complete metric space $(X,d)$, $\varphi$ is a contracting correspondence, then there exists fixed point.
+\end{theorem}
+
+\subsubsection{Brouwer's Version}
+\begin{theorem}[Brouwer]
+    Suppose $A$ is a subset of $\R^n$ and $A$ is a nonempty and compact convex set. For a continuous function $f:A\to A$, there exists a fixed point.
+\end{theorem}
+
 \subsubsection{Takutani's Version}
+\begin{theorem}[Takutani]
+    Suppose $A\subset \R^n$ is a nonempty and compact convex set. For an upper hemicontinuous correspondence $\varphi:A\twoheadrightarrow A$ such that $\varphi(A)$ is nonempty, closed and convex, there exists a fixed point.
+\end{theorem}
 
 \subsection{Application: Nash Equiliberium in Finite Games}
+In this subsection, we introduce some applications concerning finite games. We first briefly introduce some concepts and then move on to some results.
+
+A game is triple $\langle N,\mathcal{A}, \{\preceq_i\}_{i\in N}\rangle$, where
+\begin{itemize}
+    \item $N$ is the set of player index, e.g., $N = \{1,2,\cdots, n\}$,
+    \item $\mathcal{A}= \prod_{i\in N} \mathcal{A}_i$ is the de Cartesian product of the action set,
+    \item $\{\preceq_i\}_{i\in N}$ is the set of players' preference.
+\end{itemize}
+\,In a finite game, we have a finite $N$. For simplicity, we suppose $u_i: \mathcal{A} \to \R$ is the payoff function of player $i$ induced by his/her preference.
+
+We now introduce the Nash equiliberium(NE).
+\begin{definition}[Nash Equiliberium]
+    Let $BR_i(a_{-i})$ be the best response of player $i$ given the actions taken by other players, i.e.,
+    $$BR_i(a_{-i})=\arg \max_{a_i\in \mathcal{A}_i} u_i(a_i,a_{-i}).$$
+    \,Denote $BR(a) := \prod_{i\in I} BR_i(a_{-i})$. We say $a^*$ is a NE if $a^* \in BR(a^*)$.
+\end{definition}
+
+The definition of NE inspires us to use fixed point theorem to study its existence.
 \subsubsection{Existence of a Pure-strategy Nash Equiliberium}
+\begin{definition}[Pure Strategy]
+    A pure strategy is a strategy from $\mathcal{A}$.
+\end{definition}
+
+To validate the Kakutani's fixed point theorem, we assume $\mathcal{A}_i$ is a nonempt compact convex set and $\preceq_i$ is continuous and quasi-concave on $\mathcal{A}_i$.
+\begin{theorem}
+    Assume $\mathcal{A}_i$ is a nonempt compact convex set and $\preceq_i$ is continuous and quasi-concave on $\mathcal{A}_i$, there exists a pure-strategy NE.
+\end{theorem}
 \subsubsection{Existence of a Mixed-strategy Nash Equiliberium}
+\begin{definition}[Mixed Strategy]
+    
+\end{definition}
 \subsubsection{Refinement}
 lecture 35, 26 mins.
 
