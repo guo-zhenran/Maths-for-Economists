@@ -299,8 +299,8 @@ If $\varphi$ is both upper hemicontinuous and lower hemicontinuous, we say it's 
 \begin{theorem}
     For any open subset $U$ of $Y$, $\varphi$ is 
     \begin{itemize}
-        \item upper hemicontinuous if $\varphi^{u} (U)$ is open.
-        \item lower hemicontinuous if $\varphi^{l} (U)$ is open.
+        \item upper hemicontinuous $\iff$ $\varphi^{u} (U)$ is open.
+        \item lower hemicontinuous $\iff$ $\varphi^{l} (U)$ is open.
     \end{itemize}
     The theorem also works for closed sets, as you may verify.
 \end{theorem}
@@ -366,7 +366,35 @@ In metric space, we can define some other compactness using the metric structure
 \subsection{Connectedness}
 
 \subsection{Application: from Preference to Utility Representation}
+In this section, we introduce the Debreu's representation theorem, which relates a continious preference to a continuous utility representation.
+\begin{theorem}[Debreu]  \namedlabel{thm: Debreu_rep}{Debreu's representation theorem}
+    Suppose $X$ is second-countable and connected, and $\precsim$ is a complete, transitive and continuous preference on $X$. Then, there exists a continuous function $u:X \to \R$ such that $x\precsim y \iff u(x) \leq u(y)$.
+\end{theorem}
 
+\subsubsection{Continuity of Preference}
+Before the proof, we first define a fair concept for the continuity of a preference, where the intuition is that a preference with a continuous utility representation should be continuous. Suppose there exists a continuous function $u:X \to \R$ such that $x\precsim y \iff u(x) \leq u(y)$. Notice that, for any $x_0\in X$,
+$$\begin{aligned}
+    \{x\in X:x\precsim x_0\}&= u^{-1}((-\infty,u(x_0)])\\
+\{x\in X:x_0\precsim x\}&= u^{-1}([u(x_0),+\infty)).
+\end{aligned}$$
+\,Continuity of $u$ ensures that $u^{-1}((-\infty,u(x_0)])$ and $u^{-1}([u(x_0),+\infty))$ are both closed. 
+\begin{definition}[Continuity of Preference]
+    We say a preference $\precsim$ is continuous if and only if all of its weak upper and lower countour sets are closed (or, equivalently, all upper and lower countour sets are open).
+\end{definition}
+
+By the property of closed sets, we know that for any sequence $\{x_n\} \subset X$ such that $x_n\precsim x_0$, if $x_n\to x(n\to \infty)$, $x\precsim x_0$.
+\begin{proposition}[a Sequential Definition]
+    Suppose $\{x_n\},\{y_n\}\subset X$ such that $x_n\to x, y_n \to y$ and we have $\forall n\in \N: x_n\precsim y_n$, then we say $\precsim$ is continuous if and only if $x\precsim y$.
+\end{proposition}
+
+\subsubsection{Lemmas}
+Now we provide some lemmas necessary for proving \thmref{thm: Debreu_rep}.
+
+\begin{lemma}[Denseness]
+    Suppose $x\prec y$, then there exists $z\in X$ such that $x\prec z \prec y$.
+\end{lemma}
+
+\subsubsection{Proof of \thmref{thm: Debreu_rep}}
 \section{Constructing Topology}
 \subsection{Topology Subspace}
 Similar to other spaces, we can define its subspace. 
@@ -443,11 +471,11 @@ To define contracting correspondence, we need a fair definition of distance betw
 \subsection{Application: Nash Equiliberium in Finite Games}
 In this subsection, we introduce some applications concerning finite games. We first briefly introduce some concepts and then move on to some results.
 
-A game is triple $\langle N,\mathcal{A}, \{\preceq_i\}_{i\in N}\rangle$, where
+A game is triple $\langle N,\mathcal{A}, \{\precsim_i\}_{i\in N}\rangle$, where
 \begin{itemize}
     \item $N$ is the set of player index, e.g., $N = \{1,2,\cdots, n\}$,
     \item $\mathcal{A}= \prod_{i\in N} \mathcal{A}_i$ is the de Cartesian product of the action set,
-    \item $\{\preceq_i\}_{i\in N}$ is the set of players' preference.
+    \item $\{\precsim_i\}_{i\in N}$ is the set of players' preference.
 \end{itemize}
 \,In a finite game, we have a finite $N$. For simplicity, we suppose $u_i: \mathcal{A} \to \R$ is the payoff function of player $i$ induced by his/her preference.
 
@@ -464,9 +492,9 @@ The definition of NE inspires us to use fixed point theorem to study its existen
     A pure strategy is a strategy from $\mathcal{A}$.
 \end{definition}
 
-To validate the Kakutani's fixed point theorem, we assume $\mathcal{A}_i$ is a nonempt compact convex set and $\preceq_i$ is continuous and quasi-concave on $\mathcal{A}_i$.
+To validate the Kakutani's fixed point theorem, we assume $\mathcal{A}_i$ is a nonempt compact convex set and $\precsim_i$ is continuous and quasi-concave on $\mathcal{A}_i$.
 \begin{theorem}
-    Assume $\mathcal{A}_i$ is a nonempt compact convex set and $\preceq_i$ is continuous and quasi-concave on $\mathcal{A}_i$, there exists a pure-strategy NE.
+    Assume $\mathcal{A}_i$ is a nonempt compact convex set and $\precsim_i$ is continuous and quasi-concave on $\mathcal{A}_i$, there exists a pure-strategy NE.
 \end{theorem}
 \subsubsection{Existence of a Mixed-strategy Nash Equiliberium}
 \begin{definition}[Mixed Strategy]

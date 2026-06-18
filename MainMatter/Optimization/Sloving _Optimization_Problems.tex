@@ -1,8 +1,19 @@
 \section{Solving Optimization Problems}
 \subsection{Existence of Sloution and Some General Results}
 \subsubsection{Weierstrass's Theorem}
-
+\begin{theorem}[Weierstrass]
+    Suppose $f: X\to \R$ is convex, $\arg \min_{x\in X}f(x)$ is convex and if $f$ is strictly convex, then $\arg \min_{x\in X}f(x)$ has at most one point.
+\end{theorem}
 \subsubsection{Berge's Maiximization Theorem}
+\begin{theorem}[Berge]
+    Suppose $f:X\times \Theta \to \R$ and $D:\Theta\twoheadrightarrow X$ such that $D(\Theta)$ is nonempty, closed and continuous, consider the following optimization problem:
+    $$\max_{\theta \in D(\Theta)} f(x,\theta).$$
+    \,We have the followings:
+    \begin{itemize}
+        \item the value function $V(\theta) = \max\{f(x,\theta): x\in D(\theta)\}$ is continuous;
+        \item the argmax correspondence $D^*(\theta)=\{x\in D(\theta): f(x,\theta) = V(\theta) \}$ is nonempty, compact and upper hemicontinuous.
+    \end{itemize}
+\end{theorem}
 
 \subsection{The Equation Constraints Case}
 

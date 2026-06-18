@@ -1,15 +1,84 @@
+\chapter{Optimization}
 \section{Analysis on Covex Sets}
 \subsection{Convex Set}
 Recall the definition of linear combination:
 $$\forall x,y \in V, a,b \in \mathbb{F}: ax+by.$$
 If we further restrict $a+b=1$, we say it's a convex combination. 
 \begin{definition}[Convex Set]
-    Let $W$ be a subset of $V$, we say it's a convex subset if $W$ is closed under convex combination.
+    Let $W$ be a subset of $V$, we say it's a convex subset if $W$ is closed under convex combination. We denote convex hull, the smallest convex set containing $W$, as $co(W)$, i.e.,
+    $$co(W):=\bigcap\{C: C \text{ is convex } \land W\subset C\}.$$ 
 \end{definition}
 \subsection{Convex Functions}
+\begin{definition}[Convex and Concave Functions]
+    Suppose $C$ is a convex set, we say $f: C\to V$ to $V$ is (strictly) convex if and only if 
+$\forall x,y\in C$ and $a\in [0,1]$, $$f(ax+(1-a)y) (<)\leq af(x)+(1-a)f(y).$$
+\,If $-f$ is (strictly) convex, we say $f$ is (strictly) concave.
+\end{definition}
 
+We now turn studying whether a function is convex to studying whether a set is convex.
+\begin{definition}
+    We define the following:
+    \begin{description}
+        \item[Epigraph] $Epi(a):=\{(x,a) \in X\times \R: a\geq f(x)\}$
+        \item[Subgraph] $Sub(a):=\{(x,a) \in X\times \R: a\leq f(x)\}$
+    \end{description}
+\end{definition}
 
+\begin{proposition}
+    Suppose $f:C\to \R$, then 
+    \begin{itemize}
+        \item $f$ is convex $\iff$ epigraph is convex;
+        \item $f$ is concave $\iff$ subgraph is convex.
+    \end{itemize}
+\end{proposition}
 \subsection{Quasi-Convexity}
+We motivate the definition of quasi-convexity by the next example.
+\begin{example}
+    Consider a special Cobb-Douglas preference whose utility representation is $u(x,y) = x^{\frac{1}{2}}y^{\frac{1}{2}}$. If we add a monotonic transformation
+to the utility representation, the new function is still an utility representation for the original preference. However, the concavity may NOT be preserved. For example, if we do the 
+transformation $f(x) = x^6$, then $f\circ u (x,y)=x^3y^3$, which is convex, as you may verify. This leads to no difference in the UMP, but we want a concept that preserves concavity and also
+leads to good properties when it comes to optimization.
+\end{example}
+
+\begin{definition}[Quasi-Convex and Quasi-Concave Functions]
+    Suppose $C$ is a convex set, we say $f: C\to V$ to $V$ is (strictly) quasi-convex if and only if 
+$\forall x,y\in C$ and $a\in [0,1]$, $$f(ax+(1-a)y) (<)\leq \max\{f(x),f(y)\}.$$
+\,If $-f$ is (strictly) quasi-convex, we say $f$ is (strictly) quasi-concave.
+\end{definition}
+
+\begin{proposition}
+    Suppose $g:\R\to \R$ is an increasing and $f: C\to \R$ is quasi-convex(quasi-concave), then $g\circ f$ is quasi-convex(quasi-concave).
+\end{proposition}
+
+We similarly define the concept of upper and lower contour set.
+\begin{definition}[Upper and Lower Contour Set]
+        We define the following:
+    \begin{description}
+        \item[Upper Contour Set] $U_f(a):=\{x\in X: f(x)\geq a\}$
+        \item[Lower Contour Set] $L_f(a):=\{x \in X: f(x)\leq a\}$
+    \end{description}
+\end{definition}
+
+\begin{proposition}
+    Suppose $f:C\to \R$, then 
+    \begin{itemize}
+        \item $f$ is convex $\iff$ every lower contour set is convex;
+        \item $f$ is concave $\iff$ every upper contour set is convex.
+    \end{itemize}
+\end{proposition}
+
+\subsection{Application: Convexity of Preference and its Induced Utility Representation}
 
 
 \subsection{Hyperplane Separation Theorem}
+\begin{theorem}
+    Suppose $C\subset \R^n$ is (closed and) convex, then there exists $p\neq 0 \in \R^n$ such that $$\sup_{y\in C} p\cdot y (<) \leq p\cdot x. $$
+\end{theorem}
+
+\begin{theorem}
+    Suppose $A,B\subset \R^n$ are convex sets such that $A\cap B = \emptyset$, then there exists $p\neq 0 \in \R^n$ such that $$\sup_{x\in A} p\cdot x \leq \inf_{y\in B} p\cdot y. $$
+
+    Moreover, if $A,B$ are closed and at least one is compact, then there exists $p\neq 0 \in \R^n$ such that $$\sup_{x\in A} p\cdot x < \inf_{y\in B} p\cdot y. $$
+\end{theorem}
+
+\subsection{Application: Strictly Dominated Stragtegy and Non Best Response}
