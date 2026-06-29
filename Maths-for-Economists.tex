@@ -11,7 +11,7 @@
 \frontmatter
 
 % Include the title page, which is located in the FrontMatter subfolder.
-\input{./FrontMatter/titlepage}
+\includepdf[pages={1}]{./FrontMatter/BookCover/Cover.Maths-for-Economists.pdf}
 
 % Create the book's title page.
 \maketitle\pagebreak
@@ -55,13 +55,17 @@
 \input{./MainMatter/Metric Space and Topology Space/Metric_spc.tex}
 \input{./MainMatter/Metric Space and Topology Space/Top_spc.tex}
 
-\part{Differentiation in One Variable}
+\part{Measure, Integration and Differentiation}
 
+
+\part{Probabilistic Theory and Basics in Statistical Inference}
+
+
+\part{Tools in Economics}
 \input{MainMatter/Optimization/Analysis_on_Convex_Sets.tex}
 \input{MainMatter/Optimization/Sloving _Optimization_Problems.tex}
 \input{MainMatter/Optimization/Dynamic_Problems.tex}
 
-\part{More in Convergence: Uniform Convergence}
 
 % Appendices section.
 \appendix
